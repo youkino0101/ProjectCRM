@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace demo.Project
 {
-    public class Tasks : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class Task : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         public string TaskCode { get; set; }
         public string Title { get; set; }
@@ -19,10 +19,10 @@ namespace demo.Project
         public StatusTask Status { get; set; } // Trạng thái công việc
         public TaskPriority Priority { get; set; } // Độ ưu tiên của công việc
         public long ProjectId { get; set; } // Của dự án nào
-        public virtual Projects Project { get; set; }
-        public virtual ICollection<TaskAssignments> TaskAssignments { get; set; }
-        public virtual ICollection<Notes> Notes { get; set; }
-        public virtual ICollection<Attachments> Attachments { get; set; } 
+        public virtual Project Project { get; set; }
+        public virtual ICollection<TaskAssignment> TaskAssignments { get; set; }
+        public virtual ICollection<Note> Notes { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; } 
 
         public DateTime CreationTime { get; set; }
         public DateTime? LastModificationTime { get; set; }

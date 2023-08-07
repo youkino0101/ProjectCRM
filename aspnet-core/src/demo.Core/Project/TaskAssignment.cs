@@ -9,13 +9,13 @@ using demo.Category;
 
 namespace demo.Project
 {
-    public class TaskAssignments : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class TaskAssignment : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         public long TaskId { get; set; }
-        public virtual Tasks Task { get; set; }
+        public virtual Task Task { get; set; }
 
         public long StaffId { get; set; }
-        public virtual Staffs Staff { get; set; }
+        public virtual Staff Staff { get; set; }
 
         public DateTime CreationTime { get; set; }
         public DateTime? LastModificationTime { get; set; }

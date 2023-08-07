@@ -6,7 +6,7 @@ using demo.Common;
 
 namespace demo.Category
 {
-    public class Staffs : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class Staff : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         [MaxLength(16)]
         public string StaffCode { get; set; }

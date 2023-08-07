@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace demo.Category
 {
-    public class Activities : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class Activity : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         public long CustomerId { get; set; }
-        public virtual Customers Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         public long StaffId { get; set; }
-        public virtual Staffs Staff { get; set; }
+        public virtual Staff Staff { get; set; }
         public DateTime ActivityDate { get; set; } // ngày bắt đầu hoạt động
         public DateTime EndTime { get; set; }
         public ActivityType ActivityType { get; set; } // enum

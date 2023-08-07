@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace demo.Project
 {
-    public class Projects : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class Project : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         public string CodeProject { get; set; }
         public string Name { get; set; }
@@ -15,7 +15,7 @@ namespace demo.Project
         public DateTime DueDate { get; set; } // Ngày dự kiến hoàn thành dự án
         public StatusProject StatusProject { get; set; } // trạng thái dự án
         public string? LeaderName { get; set; } // người nhận dự án (có thể null)
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
 
         public DateTime CreationTime { get; set; }
         public DateTime? LastModificationTime { get; set; }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace demo.Project
 {
-    public class QuoteDetails : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class QuoteDetail : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         public long QuoteId { get; set; }
-        public virtual Quotes Quote { get; set; }
+        public virtual Quote Quote { get; set; }
         public string QuoteName { get; set;}
         public long Quantity { get; set;}
         public long Price { get; set;}

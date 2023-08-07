@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace demo.Category
 {
-    public class Customers : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class Customer : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
         public string Name { get; set; }
         public string? CompanyName { get; set; }
