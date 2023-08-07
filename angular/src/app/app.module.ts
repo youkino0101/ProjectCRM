@@ -13,10 +13,6 @@ import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
-// tenants
-import { TenantsComponent } from '@app/tenants/tenants.component';
-import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
-import { EditTenantDialogComponent } from './tenants/edit-tenant/edit-tenant-dialog.component';
 // roles
 import { RolesComponent } from '@app/roles/roles.component';
 import { CreateRoleDialogComponent } from './roles/create-role/create-role-dialog.component';
@@ -42,10 +38,6 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
     declarations: [
         AppComponent,
         HomeComponent,
-        // tenants
-        TenantsComponent,
-        CreateTenantDialogComponent,
-        EditTenantDialogComponent,
         // roles
         RolesComponent,
         CreateRoleDialogComponent,
