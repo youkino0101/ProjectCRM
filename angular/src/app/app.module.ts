@@ -33,6 +33,10 @@ import { SidebarComponent } from './layout/sidebar.component';
 import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
+// staffs
+import { StaffsComponent } from '@app/staffs/staffs.component';
+// import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-dialog.component';
+// import { EditStaffDialogComponent } from './staffs/edit-staff/edit-staff-dialog.component';
 
 @NgModule({
     declarations: [
@@ -48,6 +52,9 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
         EditUserDialogComponent,
         ChangePasswordComponent,
         ResetPasswordDialogComponent,
+        // staffs
+        StaffsComponent,
+      
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,
