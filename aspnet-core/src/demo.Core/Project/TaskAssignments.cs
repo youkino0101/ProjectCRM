@@ -1,20 +1,19 @@
-﻿using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
-using demo.Category;
+﻿using Abp.Domain.Entities.Auditing;
+using Abp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using demo.Category;
 
 namespace demo.Project
 {
-    public class Attachments : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
+    public class TaskAssignments : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
         public long TaskId { get; set; }
         public virtual Tasks Task { get; set; }
+
         public long StaffId { get; set; }
         public virtual Staffs Staff { get; set; }
 

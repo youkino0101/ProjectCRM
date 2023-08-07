@@ -30,5 +30,8 @@ namespace demo.Authorization.Users
 
             return user;
         }
+
+        //Custom new fields
+        public string? AvatarImage { get; set; }
     }
 }

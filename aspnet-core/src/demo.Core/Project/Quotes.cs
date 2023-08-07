@@ -1,4 +1,6 @@
 ﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
+using demo.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +9,24 @@ using System.Threading.Tasks;
 
 namespace demo.Project
 {
-    public class Quotes : Entity<long>
+    public class Quotes : Entity<long>, IHasCreationTime, IHasModificationTime, ICreationAudited, IModificationAudited
     {
+        public string QuotesCode { get; set; }
         public long CustomerId { get; set; }
-        public long ProjectId { get; set; }
+        public virtual Customers Customer { get; set; }
+        public long ProjectId { get; set; } // Của dự án nào
+        public virtual Projects Project { get; set; }
         public DateTime QuoteDate { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string Status { get; set; }
         public long Amount { get; set; }
-        public long Vat { get; set; };
+        public long Vat { get; set; }
         public long TotalAmount { get; set; }
+        public virtual ICollection<QuoteDetails> QuoteDetails { get; set; }
+
+        public DateTime CreationTime { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? CreatorUserId { get; set; }
+        public long? LastModifierUserId { get; set; }
     }
 }
