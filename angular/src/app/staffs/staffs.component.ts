@@ -6,11 +6,8 @@ import {
   PagedListingComponentBase,
   PagedRequestDto
 } from '@shared/paged-listing-component-base';
-import {
-  StaffServiceProxy,
-  StaffDto,
-  StaffDtoPagedResultDto
-} from '@shared/service-proxies/service-proxies';
+import { StaffDto, StaffDtoPagedResultDto, StaffServiceProxy } from '@shared/service-proxies/staff-service';
+
 // import { CreateStaffComponentDialogComponent } from './create-staff/create-staff-dialog.component';
 // import { EditStaffDialogComponent } from './edit-staff/edit-staff-dialog.component';
 
