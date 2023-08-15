@@ -6,9 +6,11 @@ import {
   PagedListingComponentBase,
   PagedRequestDto
 } from '@shared/paged-listing-component-base';
-import { StaffDto, StaffDtoPagedResultDto, StaffServiceProxy } from '@shared/service-proxies/staff-service';
+import { StaffDto } from '@shared/dto/staff/staff';
+import { StaffDtoPagedResultDto } from '@shared/dto/staff/staff-page';
+import { StaffServiceProxy } from '@shared/service-proxies/staff-service';
 
-// import { CreateStaffComponentDialogComponent } from './create-staff/create-staff-dialog.component';
+import { CreateStaffDialogComponent } from './create-staff/create-staff-dialog.component';
 // import { EditStaffDialogComponent } from './edit-staff/edit-staff-dialog.component';
 
 class PagedStaffsRequestDto extends PagedRequestDto {
@@ -66,12 +68,12 @@ export class StaffsComponent extends PagedListingComponentBase<StaffDto> {
   showCreateOrEditStaffDialog(id?: number): void {
     let createOrEditStaffDialog: BsModalRef;
     if (!id) {
-      // createOrEditStaffDialog = this._modalService.show(
-      //   CreateStaffDialogComponent,
-      //   {
-      //     class: 'modal-lg',
-      //   }
-      // );
+      createOrEditStaffDialog = this._modalService.show(
+        CreateStaffDialogComponent,
+        {
+          class: 'modal-lg',
+        }
+      );
     } else {
       // createOrEditStaffDialog = this._modalService.show(
       //   EditStaffDialogComponent,

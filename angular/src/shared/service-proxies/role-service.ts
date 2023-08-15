@@ -1,12 +1,17 @@
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
-import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
+import { Injectable, Inject, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
+// dto
+import * as GeneralApi from '@shared/dto/common/general-api'
 import { RoleDto } from '@shared/dto/role/role'
+import { CreateRoleDto } from '@shared/dto/role/role-create'
+import { RoleListDtoListResultDto} from '@shared/dto/role/role-list-list'
+import { PermissionDtoListResultDto} from '@shared/dto/role/role-permission-list'
+import { GetRoleForEditOutput} from '@shared/dto/role/role-get-for-edit-output'
+import { RoleDtoPagedResultDto} from '@shared/dto/role/role-page'
 
-import * as moment from 'moment';
-
-export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
+import { API_BASE_URL } from '@shared/service-proxies/service-proxies';
 
 @Injectable()
 export class RoleServiceProxy {
@@ -61,15 +66,15 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = RoleDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -117,15 +122,15 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = RoleListDtoListResultDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -173,15 +178,15 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = RoleDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -228,12 +233,12 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return _observableOf(null as any);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -276,15 +281,15 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = PermissionDtoListResultDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -332,15 +337,15 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = GetRoleForEditOutput.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -388,15 +393,15 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = RoleDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
@@ -454,588 +459,17 @@ export class RoleServiceProxy {
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = RoleDtoPagedResultDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);
     }
-}
-
-export class CreateRoleDto implements ICreateRoleDto {
-    name: string;
-    displayName: string;
-    normalizedName: string | undefined;
-    description: string | undefined;
-    grantedPermissions: string[] | undefined;
-
-    constructor(data?: ICreateRoleDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.name = _data["name"];
-            this.displayName = _data["displayName"];
-            this.normalizedName = _data["normalizedName"];
-            this.description = _data["description"];
-            if (Array.isArray(_data["grantedPermissions"])) {
-                this.grantedPermissions = [] as any;
-                for (let item of _data["grantedPermissions"])
-                    this.grantedPermissions.push(item);
-            }
-        }
-    }
-
-    static fromJS(data: any): CreateRoleDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new CreateRoleDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["name"] = this.name;
-        data["displayName"] = this.displayName;
-        data["normalizedName"] = this.normalizedName;
-        data["description"] = this.description;
-        if (Array.isArray(this.grantedPermissions)) {
-            data["grantedPermissions"] = [];
-            for (let item of this.grantedPermissions)
-                data["grantedPermissions"].push(item);
-        }
-        return data;
-    }
-
-    clone(): CreateRoleDto {
-        const json = this.toJSON();
-        let result = new CreateRoleDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface ICreateRoleDto {
-    name: string;
-    displayName: string;
-    normalizedName: string | undefined;
-    description: string | undefined;
-    grantedPermissions: string[] | undefined;
-}
-
-
-
-
-
-
-export class RoleDtoPagedResultDto implements IRoleDtoPagedResultDto {
-    items: RoleDto[] | undefined;
-    totalCount: number;
-
-    constructor(data?: IRoleDtoPagedResultDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            if (Array.isArray(_data["items"])) {
-                this.items = [] as any;
-                for (let item of _data["items"])
-                    this.items.push(RoleDto.fromJS(item));
-            }
-            this.totalCount = _data["totalCount"];
-        }
-    }
-
-    static fromJS(data: any): RoleDtoPagedResultDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new RoleDtoPagedResultDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        if (Array.isArray(this.items)) {
-            data["items"] = [];
-            for (let item of this.items)
-                data["items"].push(item.toJSON());
-        }
-        data["totalCount"] = this.totalCount;
-        return data;
-    }
-
-    clone(): RoleDtoPagedResultDto {
-        const json = this.toJSON();
-        let result = new RoleDtoPagedResultDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IRoleDtoPagedResultDto {
-    items: RoleDto[] | undefined;
-    totalCount: number;
-}
-
-export class RoleEditDto implements IRoleEditDto {
-    id: number;
-    name: string;
-    displayName: string;
-    description: string | undefined;
-    isStatic: boolean;
-
-    constructor(data?: IRoleEditDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.displayName = _data["displayName"];
-            this.description = _data["description"];
-            this.isStatic = _data["isStatic"];
-        }
-    }
-
-    static fromJS(data: any): RoleEditDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new RoleEditDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["displayName"] = this.displayName;
-        data["description"] = this.description;
-        data["isStatic"] = this.isStatic;
-        return data;
-    }
-
-    clone(): RoleEditDto {
-        const json = this.toJSON();
-        let result = new RoleEditDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IRoleEditDto {
-    id: number;
-    name: string;
-    displayName: string;
-    description: string | undefined;
-    isStatic: boolean;
-}
-
-export class RoleListDto implements IRoleListDto {
-    id: number;
-    name: string | undefined;
-    displayName: string | undefined;
-    isStatic: boolean;
-    isDefault: boolean;
-    creationTime: moment.Moment;
-
-    constructor(data?: IRoleListDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.displayName = _data["displayName"];
-            this.isStatic = _data["isStatic"];
-            this.isDefault = _data["isDefault"];
-            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): RoleListDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new RoleListDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["displayName"] = this.displayName;
-        data["isStatic"] = this.isStatic;
-        data["isDefault"] = this.isDefault;
-        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
-        return data;
-    }
-
-    clone(): RoleListDto {
-        const json = this.toJSON();
-        let result = new RoleListDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IRoleListDto {
-    id: number;
-    name: string | undefined;
-    displayName: string | undefined;
-    isStatic: boolean;
-    isDefault: boolean;
-    creationTime: moment.Moment;
-}
-
-export class RoleListDtoListResultDto implements IRoleListDtoListResultDto {
-    items: RoleListDto[] | undefined;
-
-    constructor(data?: IRoleListDtoListResultDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            if (Array.isArray(_data["items"])) {
-                this.items = [] as any;
-                for (let item of _data["items"])
-                    this.items.push(RoleListDto.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): RoleListDtoListResultDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new RoleListDtoListResultDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        if (Array.isArray(this.items)) {
-            data["items"] = [];
-            for (let item of this.items)
-                data["items"].push(item.toJSON());
-        }
-        return data;
-    }
-
-    clone(): RoleListDtoListResultDto {
-        const json = this.toJSON();
-        let result = new RoleListDtoListResultDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IRoleListDtoListResultDto {
-    items: RoleListDto[] | undefined;
-}
-
-export class PermissionDtoListResultDto implements IPermissionDtoListResultDto {
-    items: PermissionDto[] | undefined;
-
-    constructor(data?: IPermissionDtoListResultDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            if (Array.isArray(_data["items"])) {
-                this.items = [] as any;
-                for (let item of _data["items"])
-                    this.items.push(PermissionDto.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): PermissionDtoListResultDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new PermissionDtoListResultDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        if (Array.isArray(this.items)) {
-            data["items"] = [];
-            for (let item of this.items)
-                data["items"].push(item.toJSON());
-        }
-        return data;
-    }
-
-    clone(): PermissionDtoListResultDto {
-        const json = this.toJSON();
-        let result = new PermissionDtoListResultDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IPermissionDtoListResultDto {
-    items: PermissionDto[] | undefined;
-}
-
-export class GetRoleForEditOutput implements IGetRoleForEditOutput {
-    role: RoleEditDto;
-    permissions: FlatPermissionDto[] | undefined;
-    grantedPermissionNames: string[] | undefined;
-
-    constructor(data?: IGetRoleForEditOutput) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.role = _data["role"] ? RoleEditDto.fromJS(_data["role"]) : <any>undefined;
-            if (Array.isArray(_data["permissions"])) {
-                this.permissions = [] as any;
-                for (let item of _data["permissions"])
-                    this.permissions.push(FlatPermissionDto.fromJS(item));
-            }
-            if (Array.isArray(_data["grantedPermissionNames"])) {
-                this.grantedPermissionNames = [] as any;
-                for (let item of _data["grantedPermissionNames"])
-                    this.grantedPermissionNames.push(item);
-            }
-        }
-    }
-
-    static fromJS(data: any): GetRoleForEditOutput {
-        data = typeof data === 'object' ? data : {};
-        let result = new GetRoleForEditOutput();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
-        if (Array.isArray(this.permissions)) {
-            data["permissions"] = [];
-            for (let item of this.permissions)
-                data["permissions"].push(item.toJSON());
-        }
-        if (Array.isArray(this.grantedPermissionNames)) {
-            data["grantedPermissionNames"] = [];
-            for (let item of this.grantedPermissionNames)
-                data["grantedPermissionNames"].push(item);
-        }
-        return data;
-    }
-
-    clone(): GetRoleForEditOutput {
-        const json = this.toJSON();
-        let result = new GetRoleForEditOutput();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IGetRoleForEditOutput {
-    role: RoleEditDto;
-    permissions: FlatPermissionDto[] | undefined;
-    grantedPermissionNames: string[] | undefined;
-}
-
-export class FlatPermissionDto implements IFlatPermissionDto {
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-
-    constructor(data?: IFlatPermissionDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.name = _data["name"];
-            this.displayName = _data["displayName"];
-            this.description = _data["description"];
-        }
-    }
-
-    static fromJS(data: any): FlatPermissionDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new FlatPermissionDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["name"] = this.name;
-        data["displayName"] = this.displayName;
-        data["description"] = this.description;
-        return data;
-    }
-
-    clone(): FlatPermissionDto {
-        const json = this.toJSON();
-        let result = new FlatPermissionDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IFlatPermissionDto {
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-}
-
-export class PermissionDto implements IPermissionDto {
-    id: number;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-
-    constructor(data?: IPermissionDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.displayName = _data["displayName"];
-            this.description = _data["description"];
-        }
-    }
-
-    static fromJS(data: any): PermissionDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new PermissionDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["displayName"] = this.displayName;
-        data["description"] = this.description;
-        return data;
-    }
-
-    clone(): PermissionDto {
-        const json = this.toJSON();
-        let result = new PermissionDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IPermissionDto {
-    id: number;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-}
-
-export class ApiException extends Error {
-    message: string;
-    status: number;
-    response: string;
-    headers: { [key: string]: any; };
-    result: any;
-
-    constructor(message: string, status: number, response: string, headers: { [key: string]: any; }, result: any) {
-        super();
-
-        this.message = message;
-        this.status = status;
-        this.response = response;
-        this.headers = headers;
-        this.result = result;
-    }
-
-    protected isApiException = true;
-
-    static isApiException(obj: any): obj is ApiException {
-        return obj.isApiException === true;
-    }
-}
-
-function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
-    if (result !== null && result !== undefined)
-        return _observableThrow(result);
-    else
-        return _observableThrow(new ApiException(message, status, response, headers, null));
-}
-
-function blobToText(blob: any): Observable<string> {
-    return new Observable<string>((observer: any) => {
-        if (!blob) {
-            observer.next("");
-            observer.complete();
-        } else {
-            let reader = new FileReader();
-            reader.onload = event => {
-                observer.next((event.target as any).result);
-                observer.complete();
-            };
-            reader.readAsText(blob);
-        }
-    });
 }

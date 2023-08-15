@@ -3,9 +3,7 @@ import { Observable, throwError as _observableThrow, of as _observableOf } from 
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 
-import * as moment from 'moment';
-
-export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
+import { API_BASE_URL } from '@shared/service-proxies/service-proxies';
 
 @Injectable()
 export class TenantServiceProxy {

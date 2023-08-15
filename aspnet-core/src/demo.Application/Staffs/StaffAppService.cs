@@ -60,7 +60,7 @@ namespace demo.Staffs
                 || x.Email.Contains(input.Keyword)
                 || x.PhoneNumber.Contains(input.Keyword)
                 || x.Address.Contains(input.Keyword))
-                .WhereIf(input.StaffStatus.HasValue, x => x.StaffStatus == input.StaffStatus);
+                .WhereIf(input.StaffStatus.HasValue, x => x.StaffStatus == input.StaffStatus).OrderByDescending(s => s.CreationTime);
         }
     }
 }

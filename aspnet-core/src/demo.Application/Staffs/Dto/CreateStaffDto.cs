@@ -12,7 +12,6 @@ namespace demo.Staffs.Dto
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
-        public string? AvatarImage { get; set; }
         public StaffStatus StaffStatus { get; set; }
     }
 }

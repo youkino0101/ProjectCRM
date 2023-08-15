@@ -6,14 +6,13 @@ import {
   PagedListingComponentBase,
   PagedRequestDto
 } from 'shared/paged-listing-component-base';
-import {
-  UserServiceProxy,
-  UserDto,
-  UserDtoPagedResultDto
-} from '@shared/service-proxies/service-proxies';
+
 import { CreateUserDialogComponent } from './create-user/create-user-dialog.component';
 import { EditUserDialogComponent } from './edit-user/edit-user-dialog.component';
 import { ResetPasswordDialogComponent } from './reset-password/reset-password.component';
+import { UserDto } from '@shared/dto/user/user';
+import { UserServiceProxy } from '@shared/service-proxies/user-service';
+import { UserDtoPagedResultDto } from '@shared/dto/user/user-page';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;

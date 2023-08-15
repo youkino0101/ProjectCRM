@@ -5,10 +5,9 @@ import {
   Injector
 } from '@angular/core';
 import { AppComponentBase } from '@shared/app-component-base';
-import {
-  UserServiceProxy,
-  ChangeUserLanguageDto
-} from '@shared/service-proxies/service-proxies';
+import { ChangeUserLanguageDto } from '@shared/dto/common/change-user-language';
+import { UserServiceProxy } from '@shared/service-proxies/user-service';
+
 import { filter as _filter } from 'lodash-es';
 
 @Component({

@@ -5,6 +5,7 @@ using demo.Authorization.Users;
 using demo.MultiTenancy;
 using demo.Project;
 using demo.Category;
+using demo.Extensions;
 
 namespace demo.EntityFrameworkCore
 {
@@ -21,6 +22,8 @@ namespace demo.EntityFrameworkCore
         public DbSet<Activity> Activity { set; get; }
         public DbSet<Customer> Customer { set; get; }
         public DbSet<Staff> Staff { set; get; }
+
+        public DbSet<GenerateNumber> GenerateNumber { set; get; }
 
         public demoDbContext(DbContextOptions<demoDbContext> options)
             : base(options)
@@ -46,7 +49,7 @@ namespace demo.EntityFrameworkCore
 
             builder.Entity<Quote>(entity => { entity.HasIndex(p => p.QuotesCode); });
             builder.Entity<QuoteDetail>().HasOne(c => c.Quote).WithMany(t => t.QuoteDetails).OnDelete(DeleteBehavior.Cascade);
-
+            builder.Entity<GenerateNumber>(entity => { entity.HasIndex(p => p.Code); });
         }
     }
 }

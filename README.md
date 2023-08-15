@@ -90,3 +90,19 @@ ActivityDate: Ngày thực hiện hoạt động.
 ActivityType: Loại hoạt động (lịch sử liên hệ, lịch hẹn, v.v.).
 Description: Mô tả chi tiết hoạt động.
 Status: Trạng thái của hoạt động (đã xác nhận, chưa xác nhận, đã hủy, v.v.).
+
+STAFF: 
+	staffDTO{
+		id: number;
+		staffCode: string;
+		staffName: string;
+		phoneNumber: string;
+		email: string;
+		birthDate: moment.Moment;
+		address: string;
+		staffStatus: number;
+		creationTime : moment.Moment;
+	}
+	+View index { staffName, phoneNumber ,email, staffStatus,creationTime}
+	+View create { staffCode(disenable), staffName, phoneNumber, email(check email exits), birthDate, address(textarea)}
+	+View edit { staffCode(disenable), staffName, phoneNumber, email(disenable), birthDate, statusCode, address(textarea)}

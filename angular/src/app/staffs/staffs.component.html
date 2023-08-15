@@ -47,13 +47,9 @@
               [busy]="isTableLoading">
               <thead class="bg-light">
                 <tr>
-                  <th>{{ "StaffCode" | localize }}</th>
                   <th>{{ "StaffName" | localize }}</th>
                   <th>{{ "PhoneNumber" | localize }}</th>
                   <th>{{ "Email" | localize }}</th>
-                  <th>{{ "BirthDate" | localize }}</th>
-                  <th>{{ "Address" | localize }}</th>
-                  <th>{{ "AvatarImage" | localize }}</th>
                   <th>{{ "StaffStatus" | localize }}</th>
                   <th>{{ "CreationTime" | localize }}</th>
                   <th style="width: 200px;">{{ "Actions" | localize }}</th>
@@ -70,13 +66,9 @@
                           totalItems: totalItems
                         }
                 ">
-                  <td>{{ staff.staffCode }}</td>
                   <td>{{ staff.staffName }}</td>
                   <td>{{ staff.phoneNumber }}</td>
                   <td>{{ staff.email }}</td>
-                  <td>{{ staff.birthDate | date: 'dd/MM/yyyy'}}</td>
-                  <td>{{ staff.address }}</td>
-                  <td>{{ staff.avatarImage }}</td>
                   <td>{{ staff.staffStatus }}</td>
                   <td>{{ staff.creationTime | date: 'dd/MM/yyyy'}}</td>
                   <td>

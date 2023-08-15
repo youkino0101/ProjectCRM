@@ -18,9 +18,7 @@ namespace demo.Category
         public DateTime BirthDate { get; set; }
         [MaxLength(512)]
         public string Address { get; set; }
-        public string? AvatarImage { get; set; }
         public StaffStatus StaffStatus { get; set; }
-
         public DateTime CreationTime { get; set; }
         public DateTime? LastModificationTime { get; set; }
         public long? CreatorUserId { get; set; }

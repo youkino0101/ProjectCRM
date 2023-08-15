@@ -15,14 +15,14 @@ import * as UserApiServiceProxies from './user-service';
 
 @NgModule({
     providers: [
-        RoleApiServiceProxies.RoleServiceProxy,
-        SessionApiServiceProxies.SessionServiceProxy,
-        TenantApiServiceProxies.TenantServiceProxy,
-        UserApiServiceProxies.UserServiceProxy,
-        TokenAuthApiServiceProxies.TokenAuthServiceProxy,
         AccountApiServiceProxies.AccountServiceProxy,
         ConfigurationApiServiceProxies.ConfigurationServiceProxy,
+        RoleApiServiceProxies.RoleServiceProxy,
+        SessionApiServiceProxies.SessionServiceProxy,
         StaffApiServiceProxies.StaffServiceProxy,
+        TenantApiServiceProxies.TenantServiceProxy,
+        TokenAuthApiServiceProxies.TokenAuthServiceProxy,
+        UserApiServiceProxies.UserServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

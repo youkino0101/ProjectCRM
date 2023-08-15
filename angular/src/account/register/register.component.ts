@@ -5,8 +5,9 @@ import { AppComponentBase } from '@shared/app-component-base';
 
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
 import { AppAuthService } from '@shared/auth/app-auth.service';
-import { AccountServiceProxy, RegisterInput,
-  RegisterOutput } from '@shared/service-proxies/account-service';
+import { AccountServiceProxy } from '@shared/service-proxies/account-service';
+import { RegisterInput } from '@shared/dto/account/account-register-input';
+import { RegisterOutput } from '@shared/dto/account/account-register-output';
 
 @Component({
   templateUrl: './register.component.html',

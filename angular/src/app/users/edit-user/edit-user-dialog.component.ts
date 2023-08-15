@@ -8,11 +8,9 @@ import {
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
-import {
-  UserServiceProxy,
-  UserDto,
-  RoleDto
-} from '@shared/service-proxies/service-proxies';
+import { UserDto } from '@shared/dto/user/user';
+import { RoleDto } from '@shared/dto/role/role';
+import { UserServiceProxy } from '@shared/service-proxies/user-service';
 
 @Component({
   templateUrl: './edit-user-dialog.component.html'

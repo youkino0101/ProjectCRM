@@ -7,6 +7,6 @@ namespace demo.Staffs
 {
     public interface IStaffAppService : IAsyncCrudAppService<StaffDto, long, PagedStaffResultRequestDto, CreateStaffDto, EditStaffDto>
     {
-       
+        Task<string> GetGenerateNumber();
     }
 }

@@ -1516,7 +1516,7 @@ namespace demo.Migrations
                     b.ToTable("AbpUsers");
                 });
 
-            modelBuilder.Entity("demo.Category.Activities", b =>
+            modelBuilder.Entity("demo.Category.Activity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1566,7 +1566,7 @@ namespace demo.Migrations
                     b.ToTable("Activity");
                 });
 
-            modelBuilder.Entity("demo.Category.Customers", b =>
+            modelBuilder.Entity("demo.Category.Customer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1606,7 +1606,7 @@ namespace demo.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("demo.Category.Staffs", b =>
+            modelBuilder.Entity("demo.Category.Staff", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1615,9 +1615,6 @@ namespace demo.Migrations
                     b.Property<string>("Address")
                         .HasMaxLength(512)
                         .HasColumnType("varchar(512)");
-
-                    b.Property<string>("AvatarImage")
-                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime(6)");
@@ -1721,7 +1718,7 @@ namespace demo.Migrations
                     b.ToTable("AbpTenants");
                 });
 
-            modelBuilder.Entity("demo.Project.Attachments", b =>
+            modelBuilder.Entity("demo.Project.Attachment", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1762,7 +1759,7 @@ namespace demo.Migrations
                     b.ToTable("Attachment");
                 });
 
-            modelBuilder.Entity("demo.Project.Notes", b =>
+            modelBuilder.Entity("demo.Project.Note", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1801,7 +1798,7 @@ namespace demo.Migrations
                     b.ToTable("Note");
                 });
 
-            modelBuilder.Entity("demo.Project.Projects", b =>
+            modelBuilder.Entity("demo.Project.Project", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1847,47 +1844,7 @@ namespace demo.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("demo.Project.QuoteDetails", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<long?>("CreatorUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<long?>("LastModifierUserId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Price")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Quantity")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("QuoteId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("QuoteName")
-                        .HasColumnType("longtext");
-
-                    b.Property<long>("Subtotal")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuoteId");
-
-                    b.ToTable("QuoteDetail");
-                });
-
-            modelBuilder.Entity("demo.Project.Quotes", b =>
+            modelBuilder.Entity("demo.Project.Quote", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1943,7 +1900,7 @@ namespace demo.Migrations
                     b.ToTable("Quote");
                 });
 
-            modelBuilder.Entity("demo.Project.TaskAssignments", b =>
+            modelBuilder.Entity("demo.Project.QuoteDetail", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1961,22 +1918,29 @@ namespace demo.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("StaffId")
+                    b.Property<long>("Price")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TaskId")
+                    b.Property<long>("Quantity")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("QuoteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("QuoteName")
+                        .HasColumnType("longtext");
+
+                    b.Property<long>("Subtotal")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("QuoteId");
 
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("TaskAssignment");
+                    b.ToTable("QuoteDetail");
                 });
 
-            modelBuilder.Entity("demo.Project.Tasks", b =>
+            modelBuilder.Entity("demo.Project.Task", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -2023,6 +1987,39 @@ namespace demo.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("demo.Project.TaskAssignment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StaffId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TaskId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StaffId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("TaskAssignment");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -2243,15 +2240,15 @@ namespace demo.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
-            modelBuilder.Entity("demo.Category.Activities", b =>
+            modelBuilder.Entity("demo.Category.Activity", b =>
                 {
-                    b.HasOne("demo.Category.Customers", "Customer")
+                    b.HasOne("demo.Category.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("demo.Category.Staffs", "Staff")
+                    b.HasOne("demo.Category.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2289,15 +2286,15 @@ namespace demo.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
-            modelBuilder.Entity("demo.Project.Attachments", b =>
+            modelBuilder.Entity("demo.Project.Attachment", b =>
                 {
-                    b.HasOne("demo.Category.Staffs", "Staff")
+                    b.HasOne("demo.Category.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("demo.Project.Tasks", "Task")
+                    b.HasOne("demo.Project.Task", "Task")
                         .WithMany("Attachments")
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2308,15 +2305,15 @@ namespace demo.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("demo.Project.Notes", b =>
+            modelBuilder.Entity("demo.Project.Note", b =>
                 {
-                    b.HasOne("demo.Category.Staffs", "Staff")
+                    b.HasOne("demo.Category.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("demo.Project.Tasks", "Task")
+                    b.HasOne("demo.Project.Task", "Task")
                         .WithMany("Notes")
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2327,26 +2324,15 @@ namespace demo.Migrations
                     b.Navigation("Task");
                 });
 
-            modelBuilder.Entity("demo.Project.QuoteDetails", b =>
+            modelBuilder.Entity("demo.Project.Quote", b =>
                 {
-                    b.HasOne("demo.Project.Quotes", "Quote")
-                        .WithMany("QuoteDetails")
-                        .HasForeignKey("QuoteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Quote");
-                });
-
-            modelBuilder.Entity("demo.Project.Quotes", b =>
-                {
-                    b.HasOne("demo.Category.Customers", "Customer")
+                    b.HasOne("demo.Category.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("demo.Project.Projects", "Project")
+                    b.HasOne("demo.Project.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2357,15 +2343,37 @@ namespace demo.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("demo.Project.TaskAssignments", b =>
+            modelBuilder.Entity("demo.Project.QuoteDetail", b =>
                 {
-                    b.HasOne("demo.Category.Staffs", "Staff")
+                    b.HasOne("demo.Project.Quote", "Quote")
+                        .WithMany("QuoteDetails")
+                        .HasForeignKey("QuoteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quote");
+                });
+
+            modelBuilder.Entity("demo.Project.Task", b =>
+                {
+                    b.HasOne("demo.Project.Project", "Project")
+                        .WithMany("Tasks")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("demo.Project.TaskAssignment", b =>
+                {
+                    b.HasOne("demo.Category.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("demo.Project.Tasks", "Task")
+                    b.HasOne("demo.Project.Task", "Task")
                         .WithMany("TaskAssignments")
                         .HasForeignKey("TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2374,17 +2382,6 @@ namespace demo.Migrations
                     b.Navigation("Staff");
 
                     b.Navigation("Task");
-                });
-
-            modelBuilder.Entity("demo.Project.Tasks", b =>
-                {
-                    b.HasOne("demo.Project.Projects", "Project")
-                        .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -2458,17 +2455,17 @@ namespace demo.Migrations
                     b.Navigation("Tokens");
                 });
 
-            modelBuilder.Entity("demo.Project.Projects", b =>
+            modelBuilder.Entity("demo.Project.Project", b =>
                 {
                     b.Navigation("Tasks");
                 });
 
-            modelBuilder.Entity("demo.Project.Quotes", b =>
+            modelBuilder.Entity("demo.Project.Quote", b =>
                 {
                     b.Navigation("QuoteDetails");
                 });
 
-            modelBuilder.Entity("demo.Project.Tasks", b =>
+            modelBuilder.Entity("demo.Project.Task", b =>
                 {
                     b.Navigation("Attachments");
 

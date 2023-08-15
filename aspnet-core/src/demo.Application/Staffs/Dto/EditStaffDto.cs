@@ -19,7 +19,7 @@ namespace demo.Staffs.Dto
         public DateTime BirthDate { get; set; }
         [MaxLength(512)]
         public string Address { get; set; }
-        public string? AvatarImage { get; set; }
         public StaffStatus StaffStatus { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }
