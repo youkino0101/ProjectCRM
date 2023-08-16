@@ -7,7 +7,7 @@ import * as GeneralApi from '@shared/dto/common/general-api'
 import { RoleDto } from '@shared/dto/role/role'
 import { CreateRoleDto } from '@shared/dto/role/role-create'
 import { RoleListDtoListResultDto} from '@shared/dto/role/role-list-list'
-import { PermissionDtoListResultDto} from '@shared/dto/role/role-permission-list'
+import { PermissionDtoListResultDto } from '@shared/dto/role/role-permission-list'
 import { GetRoleForEditOutput} from '@shared/dto/role/role-get-for-edit-output'
 import { RoleDtoPagedResultDto} from '@shared/dto/role/role-page'
 

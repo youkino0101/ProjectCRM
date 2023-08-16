@@ -10,7 +10,8 @@ import {
 import { CreateRoleDialogComponent } from './create-role/create-role-dialog.component';
 import { EditRoleDialogComponent } from './edit-role/edit-role-dialog.component';
 import { RoleDto } from '@shared/dto/role/role';
-import { RoleDtoPagedResultDto, RoleServiceProxy } from '@shared/service-proxies/role-service';
+import { RoleServiceProxy } from '@shared/service-proxies/role-service';
+import { RoleDtoPagedResultDto } from '@shared/dto/role/role-page';
 
 class PagedRolesRequestDto extends PagedRequestDto {
   keyword: string;

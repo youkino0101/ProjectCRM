@@ -36,7 +36,6 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 // staffs
 import { StaffsComponent } from '@app/staffs/staffs.component';
 import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-dialog.component';
-// import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-dialog.component';
 // import { EditStaffDialogComponent } from './staffs/edit-staff/edit-staff-dialog.component';
 
 @NgModule({

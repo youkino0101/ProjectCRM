@@ -1,6 +1,7 @@
 using demo.Common;
 using System.ComponentModel.DataAnnotations;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace demo.Staffs.Dto
 {
@@ -13,5 +14,6 @@ namespace demo.Staffs.Dto
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
         public StaffStatus StaffStatus { get; set; }
+        public IFormFile File { get; set; } 
     }
 }

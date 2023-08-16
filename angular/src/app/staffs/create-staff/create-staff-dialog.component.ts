@@ -9,7 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
 //dto
 import { StaffDto } from '@shared/dto/staff/staff';
-import { PermissionDto } from '@shared/dto/role/role-permission';
+import { CreateStaffDto } from '@shared/dto/staff/staff-create';
 
 import { forEach as _forEach, map as _map } from 'lodash-es';
 import { StaffServiceProxy } from '@shared/service-proxies/staff-service';
@@ -20,8 +20,8 @@ import { StaffServiceProxy } from '@shared/service-proxies/staff-service';
 export class CreateStaffDialogComponent extends AppComponentBase
   implements OnInit {
   saving = false;
-  staff = new StaffDto();
-  permissions: PermissionDto[] = [];
+
+  staff: CreateStaffDto = new CreateStaffDto('','','','',null ,'',null);
   checkedPermissionsMap: { [key: string]: boolean } = {};
   defaultPermissionCheckedStatus = true;
 
@@ -36,60 +36,61 @@ export class CreateStaffDialogComponent extends AppComponentBase
   }
 
   ngOnInit(): void {
-    this._staffService
-      .getAllPermissions()
-      .subscribe((result: PermissionDtoListResultDto) => {
-        this.permissions = result.items;
-        this.setInitialPermissionsStatus();
-      });
+   
   }
 
-  setInitialPermissionsStatus(): void {
-    _map(this.permissions, (item) => {
-      this.checkedPermissionsMap[item.name] = this.isPermissionChecked(
-        item.name
-      );
-    });
-  }
-
-  isPermissionChecked(permissionName: string): boolean {
-    // just return default permission checked status
-    // it's better to use a setting
-    return this.defaultPermissionCheckedStatus;
-  }
-
-  onPermissionChange(permission: PermissionDto, $event) {
-    this.checkedPermissionsMap[permission.name] = $event.target.checked;
-  }
-
-  getCheckedPermissions(): string[] {
-    const permissions: string[] = [];
-    _forEach(this.checkedPermissionsMap, function (value, key) {
-      if (value) {
-        permissions.push(key);
+  submitForm(form: any) {
+    if (form.valid) {
+      const formData = new FormData();
+      formData.append('staffCode', this.staff.staffCode);
+      formData.append('staffName', this.staff.staffName);
+      formData.append('phoneNumber', this.staff.phoneNumber);
+      formData.append('email', this.staff.email);
+      formData.append('birthDate', this.staff.birthDate.toString());
+      formData.append('address', this.staff.address);
+      formData.append('staffStatus', "0");
+      if (this.staff.file) {
+        formData.append('file', this.staff.file);
       }
-    });
-    return permissions;
-  }
+      formData.forEach((value, key) => {
+        console.log(key, value);
+      });
 
-  save(): void {
-    this.saving = true;
-
-    const staff = new CreateStaffDto();
-    staff.init(this.staff);
-    staff.grantedPermissions = this.getCheckedPermissions();
-
-    this._staffService
-      .create(staff)
+      this._staffService
+      .create(formData)
       .subscribe(
         () => {
-          this.notify.info(this.l('SavedSuccessfully'));
-          this.bsModalRef.hide();
-          this.onSave.emit();
+            abp.message.success('Thành công', 'Success')
         },
-        () => {
-          this.saving = false;
+        (error) => {
+            abp.message.error(error, 'Error')
         }
       );
+    }
   }
+
+  onImageChange(event: any) {
+    const file = event.target.files[0];
+    this.staff.file = file;
+  }
+
+//   save(): void {
+//     this.saving = true;
+
+//     const staff = new CreateStaffDto();
+//     staff.init(this.staff);
+
+//     this._staffService
+//       .create(staff)
+//       .subscribe(
+//         () => {
+//           this.notify.info(this.l('SavedSuccessfully'));
+//           this.bsModalRef.hide();
+//           this.onSave.emit();
+//         },
+//         () => {
+//           this.saving = false;
+//         }
+//       );
+//   }
 }

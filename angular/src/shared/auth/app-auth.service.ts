@@ -4,7 +4,9 @@ import { finalize } from 'rxjs/operators';
 import { TokenService, LogService, UtilsService } from 'abp-ng2-module';
 import { AppConsts } from '@shared/AppConsts';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
-import { AuthenticateModel, AuthenticateResultModel, TokenAuthServiceProxy } from '@shared/service-proxies/tokenAuth-service';
+import { TokenAuthServiceProxy } from '@shared/service-proxies/tokenAuth-service';
+import { AuthenticateModel } from '@shared/dto/tokenAuth/authenticate';
+import { AuthenticateResultModel } from '@shared/dto/tokenAuth/authenticate-result';
 
 
 @Injectable()

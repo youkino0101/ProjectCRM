@@ -1,3 +1,5 @@
+import { PermissionDto } from "./role-permission";
+
 export interface IPermissionDtoListResultDto {
     items: PermissionDto[] | undefined;
 }

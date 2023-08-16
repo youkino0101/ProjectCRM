@@ -1,33 +1,61 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.UI;
 using demo.Category;
 using demo.Staffs.Dto;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace demo.Staffs
 {
     public class StaffAppService : AsyncCrudAppService<Staff, StaffDto, long, PagedStaffResultRequestDto, CreateStaffDto, EditStaffDto>, IStaffAppService
     {
-        public StaffAppService(IRepository<Staff, long> repository) : base(repository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public StaffAppService(IRepository<Staff, long> repository, IWebHostEnvironment webHostEnvironment) : base(repository)
         {
+            _webHostEnvironment = webHostEnvironment;
         }
 
-        public override Task<StaffDto> CreateAsync(CreateStaffDto input)
+        public async override Task<StaffDto> CreateAsync([FromForm]CreateStaffDto input)
         {
             try
             {
                 input.StaffStatus = Common.StaffStatus.Active;
-                return base.CreateAsync(input);
+                if (input.File != null && input.File.Length > 0)
+                {
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + input.File.FileName;
+
+                    // Save the file with the new name
+                    var imagePath = Path.Combine("images", uniqueFileName);
+                    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await input.File.CopyToAsync(fileStream);
+                    }
+
+                    input.Address = imagePath;
+                }
+                CheckCreatePermission();
+                var entity = MapToEntity(input);
+
+                await Repository.InsertAsync(entity);
+                await CurrentUnitOfWork.SaveChangesAsync();
+
+                return MapToEntityDto(entity);
 
             } catch (Exception ex)
             {
-               throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
+                throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
         }
 
@@ -54,6 +82,7 @@ namespace demo.Staffs
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
         }
+
         protected override IQueryable<Staff> CreateFilteredQuery(PagedStaffResultRequestDto input)
         {
             return Repository.GetAll().WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.StaffName.Contains(input.Keyword)
@@ -63,5 +92,6 @@ namespace demo.Staffs
                 .WhereIf(input.StaffStatus.HasValue, x => x.StaffStatus == input.StaffStatus).OrderByDescending(s => s.CreationTime);
         }
     }
+   
 }
 
