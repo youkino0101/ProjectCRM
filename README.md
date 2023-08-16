@@ -1,95 +1,68 @@
-Bảng "Projects" (Dự án):
-ProjectID (Khóa chính): Mã duy nhất của dự án.
-ProjectName: Tên dự án.
-Description: Mô tả chi tiết về dự án.
-StartDate: Ngày bắt đầu dự án.
-DueDate: Ngày dự kiến hoàn thành dự án.
-Status: Trạng thái của dự án (đang triển khai, đã hoàn thành, v.v.).
-AssignedTo: Người được giao quản lý dự án.
-CreatedBy: Người tạo dự án.
-CreatedDate: Ngày tạo dự án.
-UpdatedBy: Người cập nhật dự án.
-UpdatedDate: Ngày cập nhật dự án.
+Tất nhiên, dưới đây là một phân tích chi tiết hơn về cấu trúc và tính năng cơ sở dữ liệu quản lý bán hàng:
 
-BBảng "Tasks" (Công việc):
-TaskID (Khóa chính): Mã duy nhất của công việc.
-Title: Tiêu đề của công việc.
-Description: Mô tả chi tiết công việc.
-StartDate: Ngày bắt đầu công việc.
-DueDate: Ngày kết thúc dự kiến của công việc.
-Status: Trạng thái của công việc (đang thực hiện, đã hoàn thành, v.v.).
-Priority: Độ ưu tiên của công việc (thấp, trung bình, cao, v.v.).
-CreatedBy: Người tạo công việc.
-CreatedDate: Ngày tạo công việc.
-UpdatedBy: Người cập nhật công việc.
-UpdatedDate: Ngày cập nhật công việc.
+Sản phẩm:
 
-Bảng "TaskAssignments" (Việc giao công việc cho nhân viên):
-AssignmentID (Khóa chính): Mã duy nhất của việc giao công việc.
-TaskID (Khóa ngoại): Liên kết việc giao công việc với công việc cụ thể.
-UserID (Khóa ngoại): Liên kết việc giao công việc với người nhân viên được giao công việc.
+Mã sản phẩm: Định danh duy nhất cho mỗi sản phẩm.
+Tên sản phẩm: Tên thường dùng để mô tả sản phẩm.
+Mô tả: Thông tin chi tiết về sản phẩm.
+Giá: Giá bán của sản phẩm.
+Số lượng trong kho: Số lượng hiện có trong kho để quản lý tồn kho.
+Hình ảnh: Để hiển thị sản phẩm trực quan hơn.
+Thuộc tính: Các thông số kỹ thuật, màu sắc, kích thước, v.v.
+Khách hàng:
 
-Bảng "Users" (Người dùng):
-UserID (Khóa chính): Mã duy nhất của người dùng.
-FirstName: Tên.
-LastName: Họ.
-Email: Địa chỉ email của người dùng.
-Role: Vai trò của người dùng (quản lý, nhân viên, v.v.).
+Mã khách hàng: Định danh duy nhất cho mỗi khách hàng.
+Tên khách hàng: Tên thường dùng để gọi tên khách hàng.
+Địa chỉ: Địa chỉ liên hệ của khách hàng.
+Số điện thoại: Liên lạc với khách hàng.
+Email: Để gửi thông tin liên quan đến đơn hàng, khuyến mãi, v.v.
+Lịch sử mua hàng: Các đơn hàng trước đây của khách hàng.
+Đơn hàng:
 
-Bảng "Customers" (Khách hàng):
-CustomerID (Khóa chính): Mã duy nhất của khách hàng.
-CompanyName: Tên công ty của khách hàng.
-ContactName: Tên người liên hệ.
-Email: Địa chỉ email của người liên hệ.
-Phone: Số điện thoại của người liên hệ.
+Mã đơn hàng: Định danh duy nhất cho mỗi đơn hàng.
+Thông tin khách hàng: Liên kết với khách hàng đặt hàng.
+Sản phẩm: Các sản phẩm trong đơn hàng, bao gồm thông tin về sản phẩm và số lượng.
+Giá: Giá của mỗi sản phẩm và tổng tiền của đơn hàng.
+Trạng thái đơn hàng: Ví dụ: Đã đặt hàng, Đang xử lý, Đã giao hàng, Hoàn thành.
+Thời gian đặt hàng: Khi nào đơn hàng được đặt.
+Kho hàng:
 
-Bảng "Notes" 
-NoteID (Khóa chính): Mã duy nhất của ghi chú.
-TaskID (Khóa ngoại): Liên kết ghi chú với công việc cụ thể.
-UserID (Khóa ngoại): Liên kết ghi chú với người dùng tạo nó.
-Content: Nội dung của ghi chú.
-CreatedDate: Ngày tạo ghi chú.
+Mã sản phẩm: Liên kết với sản phẩm.
+Số lượng: Số lượng sản phẩm có sẵn trong kho.
+Ngày cập nhật: Khi nào số lượng trong kho được cập nhật lần cuối.
+Nhân viên:
 
-Bảng "Attachments" (Tệp đính kèm):
-AttachmentID (Khóa chính): Mã duy nhất của tệp đính kèm.
-TaskID (Khóa ngoại): Liên kết tệp đính kèm với công việc cụ thể.
-UserID (Khóa ngoại): Liên kết tệp đính kèm với người dùng tạo nó.
-FileName: Tên tệp đính kèm.
-FilePath: Đường dẫn lưu trữ tệp đính kèm.
-CreatedDate: Ngày tạo tệp đính kèm.
+Mã nhân viên: Định danh duy nhất cho mỗi nhân viên.
+Tên nhân viên: Tên của nhân viên.
+Vị trí: Vị trí công việc của nhân viên.
+Lịch sử công việc: Các thông tin về công việc trước đây của nhân viên.
+Quyền truy cập: Phạm vi quyền truy cập của nhân viên vào hệ thống.
+Thống kê và báo cáo:
 
-Bảng "Quotes" (Báo giá) (đã bổ sung các trường liên kết "CustomerID" và "ProjectID"):
-QuoteID (Khóa chính): Mã duy nhất của báo giá.
-CustomerID (Khóa ngoại): Liên kết báo giá với khách hàng cụ thể.
-ProjectID (Khóa ngoại): Liên kết báo giá với dự án cụ thể (nếu có).
-QuoteDate: Ngày tạo báo giá.
-ExpiryDate: Ngày hết hạn của báo giá.
-Status: Trạng thái của báo giá (đang hiệu lực, đã hết hạn, đã chấp nhận, v.v.).
-Amount: tổng tiền trong chi tiết báo giá
-VAT: thuế GTGT
-TotalAmount: Tổng số tiền trong báo giá.
+Báo cáo doanh thu: Tổng doanh thu theo thời gian.
+Báo cáo lợi nhuận: Tính toán lợi nhuận dựa trên doanh thu và chi phí.
+Báo cáo tồn kho: Số lượng sản phẩm có sẵn trong kho theo thời gian.
+Xu hướng mua sắm: Phân tích xu hướng mua sắm của khách hàng.
+Thanh toán:
 
-Bảng "QuoteDetails" (Chi tiết báo giá) ():
-ID (Khóa chính): Mã duy nhất của chi tiết báo giá.
-QuoteID (Khóa ngoại): Liên kết chi tiết báo giá với báo giá chính tương ứng.
-Name: Tên chi tiết dịch vụ
-Quantity: Số lượng dịch vụ được báo giá.
-Price: Đơn giá của dịch vụ.
-Subtotal: Tổng tiền cho mỗi dòng trong báo giá (Quantity x UnitPrice).
-(Ví dụ: Phí khởi tạo, 1, 1.000.000;
-		Phí duy trì theo tháng;
-		Phí duy trì theo năm;
-		Phí sử dụng vĩnh viễn)
-		
-		
-Bảng "Activities" (Hoạt động):
-ActivityID (Khóa chính): Mã duy nhất của hoạt động.
-CustomerID (Khóa ngoại): Liên kết hoạt động với khách hàng cụ thể.
-UserID (Khóa ngoại): Liên kết hoạt động với người dùng tương ứng.
-ActivityDate: Ngày thực hiện hoạt động.
-ActivityType: Loại hoạt động (lịch sử liên hệ, lịch hẹn, v.v.).
-Description: Mô tả chi tiết hoạt động.
-Status: Trạng thái của hoạt động (đã xác nhận, chưa xác nhận, đã hủy, v.v.).
+Mã đơn hàng: Liên kết với đơn hàng.
+Phương thức thanh toán: Tiền mặt, thẻ tín dụng, chuyển khoản, v.v.
+Thông tin thanh toán: Số thẻ tín dụng, mã bảo mật, ngày hết hạn (nếu áp dụng).
+Khuyến mãi và giảm giá:
+
+Mã giảm giá: Mã để áp dụng giảm giá.
+Phần trăm giảm giá: Tỷ lệ phần trăm giảm giá.
+Ngày hết hạn: Ngày kết thúc áp dụng khuyến mãi.
+Giao vận và vận chuyển:
+
+Mã đơn hàng: Liên kết với đơn hàng.
+Địa chỉ giao hàng: Địa chỉ nhận hàng.
+Công ty vận chuyển: Thông tin về công ty vận chuyển.
+Bảo hành và hỗ trợ:
+
+Mã đơn hàng: Liên kết với đơn hàng.
+Yêu cầu bảo hành: Thông tin về yêu cầu bảo hành hoặc hỗ trợ.
+Lịch sử sửa chữa: Thông tin về các lần sửa chữa hoặc hỗ trợ trước đó.
 
 STAFF: 
 	staffDTO{
