@@ -11,7 +11,7 @@ import * as SessionApiServiceProxies from './session-service';
 import * as TenantApiServiceProxies from './tenant-service';
 import * as TokenAuthApiServiceProxies from './tokenAuth-service';
 import * as UserApiServiceProxies from './user-service';
-
+import * as AuditLogApiServiceProxies from './audit-log-service';
 
 @NgModule({
     providers: [
@@ -23,6 +23,7 @@ import * as UserApiServiceProxies from './user-service';
         TenantApiServiceProxies.TenantServiceProxy,
         TokenAuthApiServiceProxies.TokenAuthServiceProxy,
         UserApiServiceProxies.UserServiceProxy,
+        AuditLogApiServiceProxies.AuditLogServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

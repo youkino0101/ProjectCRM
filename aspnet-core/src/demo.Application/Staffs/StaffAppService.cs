@@ -7,6 +7,7 @@ using Abp.Linq.Extensions;
 using Abp.UI;
 using demo.Category;
 using demo.Staffs.Dto;
+using demo.Users;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,10 +21,12 @@ namespace demo.Staffs
     public class StaffAppService : AsyncCrudAppService<Staff, StaffDto, long, PagedStaffResultRequestDto, CreateStaffDto, EditStaffDto>, IStaffAppService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IUserAppService _userAppService;
 
-        public StaffAppService(IRepository<Staff, long> repository, IWebHostEnvironment webHostEnvironment) : base(repository)
+        public StaffAppService(IRepository<Staff, long> repository, IWebHostEnvironment webHostEnvironment, IUserAppService userAppService) : base(repository)
         {
             _webHostEnvironment = webHostEnvironment;
+            _userAppService = userAppService;
         }
 
         public async override Task<StaffDto> CreateAsync([FromForm]CreateStaffDto input)
@@ -45,13 +48,8 @@ namespace demo.Staffs
 
                     input.Address = imagePath;
                 }
-                CheckCreatePermission();
-                var entity = MapToEntity(input);
-
-                await Repository.InsertAsync(entity);
-                await CurrentUnitOfWork.SaveChangesAsync();
-
-                return MapToEntityDto(entity);
+                    
+                return await base.CreateAsync(input);
 
             } catch (Exception ex)
             {

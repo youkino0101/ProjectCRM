@@ -3,6 +3,7 @@ using Abp.Domain.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 using demo.Common;
+using demo.Authorization.Users;
 
 namespace demo.Category
 {
@@ -23,5 +24,8 @@ namespace demo.Category
         public DateTime? LastModificationTime { get; set; }
         public long? CreatorUserId { get; set; }
         public long? LastModifierUserId { get; set; }
+        //Liên kết với tài khoản người dùng
+        public long UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }

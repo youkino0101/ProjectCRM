@@ -20,14 +20,14 @@ namespace demo.AuditLogs.Dto
 
         public string Parameters { get; set; }
 
-        public string ReturnValue { get; set; }
+        public string? ReturnValue { get; set; }
 
         public DateTime ExecutionTime { get; set; }
         public int ExecutionDuration { get; set; }
 
         public string ClientIpAddress { get; set; }
 
-        public string ClientName { get; set; }
+        public string? ClientName { get; set; }
 
         public string BrowserInfo { get; set; }
 
