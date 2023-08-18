@@ -8,7 +8,7 @@ export interface ILogsDto {
     methodName: string;
     parameters: string;
     returnValue: string | undefined;
-    executionTime: moment.Moment;
+    executionTime: Date;
     executionDuration: number;
     clientIpAddress: string;
     clientName: string | undefined;
@@ -28,7 +28,7 @@ export class LogsDto implements ILogsDto {
     methodName: string;
     parameters: string;
     returnValue: string | undefined;
-    executionTime: moment.Moment;
+    executionTime: Date ;
     executionDuration: number;
     clientIpAddress: string;
     clientName: string | undefined;

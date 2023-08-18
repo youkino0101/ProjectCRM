@@ -2,24 +2,24 @@
 <div class="modal-body">
   <div class="row">
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "UserId" | localize }}
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.UserId" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="userId" id="userId" readonly  [value]="log.userId">
       </div>
     </div>
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "MethodName" | localize }}
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.MethodName" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="methodName" id="methodName" [value]="log.methodName" readonly>
       </div>
     </div>
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "ReturnValue" | localize }}
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ReturnValue" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="returnValue" id="returnValue" [value]="log.returnValue" readonly>
@@ -28,16 +28,16 @@
   </div> 
   <div class="row">
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "ExecutionTime" | localize }}
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ExecutionTime" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="executionTime" id="executionTime"
-        [value]="log.executionTime.toString() | date : 'dd/MM/yy, HH:mm:ss'" readonly/>
+        [value]="log.executionTime | date :'dd/MM/yy, HH:mm:ss'" readonly/>
       </div>
     </div>
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
+      <label class="col-md-5 col-form-label" for="name">
         {{ "ExecutionDuration" | localize }}
       </label>
       <div class="col-md-9">
@@ -46,8 +46,8 @@
       </div>
     </div>
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "ClientIpAddress" | localize }}
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ClientIpAddress" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="name" id="name" [value]="log.clientIpAddress" readonly/>
@@ -56,24 +56,24 @@
   </div>
   <div class="row">
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "ClientName" | localize }}
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ClientName" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="clientName" id="clientName" [value]="log.clientName" readonly/>
       </div>
     </div>
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "ImpersonatorUserId" | localize }}
+      <label class="col-md-8 col-form-label" for="name">
+        {{ "AuditLogs.ImpersonatorUserId" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="impersonatorUserId" id="impersonatorUserId" [value]="log.impersonatorUserId" readonly/>
       </div>
     </div>
     <div class="col-md-4">
-      <label class="col-md-3 col-form-label" for="name">
-        {{ "ImpersonatorTenantId" | localize }}
+      <label class="col-md-8 col-form-label" for="name">
+        {{ "AuditLogs.ImpersonatorTenantId" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="impersonatorTenantId" id="impersonatorTenantId" [value]="log.impersonatorTenantId" readonly/>
@@ -83,32 +83,32 @@
   <!--textarea-->
   <div class="row m-1">
     <label class="col-form-label" for="name">
-      {{ "ServiceName" | localize }}
+      {{ "AuditLogs.ServiceName" | localize }}
     </label>
     <textarea class="form-control" name="serviceName" id="serviceName" readonly
       [(ngModel)]="log.serviceName"></textarea>
   </div>
   <div class="row m-1">
     <label class="col-form-label" for="name">
-      {{ "Parameters" | localize }}
+      {{ "AuditLogs.Parameters" | localize }}
     </label>
     <textarea class="form-control" name="parameters" id="parameters" readonly [(ngModel)]="log.parameters"></textarea>
   </div>
   <div class="row m-1">
     <label class="col-form-label" for="name">
-      {{ "BrowserInfo" | localize }}
+      {{ "AuditLogs.BrowserInfo" | localize }}
     </label>
     <textarea class="form-control" name="browserInfo" id="browserInfo" readonly [(ngModel)]="log.browserInfo"></textarea>
   </div>
   <div class="row m-1">
     <label class="col-form-label" for="name">
-      {{ "ExceptionMessage" | localize }}
+      {{ "AuditLogs.ExceptionMessage" | localize }}
     </label>
     <textarea class="form-control" name="exceptionMessage" id="exceptionMessage" readonly [(ngModel)]="log.exceptionMessage"></textarea>
   </div>
   <div class="row m-1">
     <label class="col-form-label" for="name">
-      {{ "Exception" | localize }}
+      {{ "AuditLogs.Exception" | localize }}
     </label>
     <textarea class="form-control" name="exception" id="exception" readonly [(ngModel)]="log.exception"></textarea>
   </div>

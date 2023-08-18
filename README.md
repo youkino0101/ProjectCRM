@@ -79,3 +79,5 @@ STAFF:
 	+View index { staffName, phoneNumber ,email, staffStatus,creationTime}
 	+View create { staffCode(disenable), staffName, phoneNumber, email(check email exits), birthDate, address(textarea)}
 	+View edit { staffCode(disenable), staffName, phoneNumber, email(disenable), birthDate, statusCode, address(textarea)}
+
++ test(chụp evi, import export excel, csv)
