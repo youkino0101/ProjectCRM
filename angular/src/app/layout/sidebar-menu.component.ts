@@ -19,7 +19,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     menuItemsMap: { [key: number]: MenuItem } = {};
     activatedMenuItems: MenuItem[] = [];
     routerEvents: BehaviorSubject<RouterEvent> = new BehaviorSubject(undefined);
-    homeRoute = '/app/about';
+    homeRoute = '/app/home';
 
     constructor(injector: Injector, private router: Router) {
         super(injector);
@@ -60,6 +60,11 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 '/app/users',
                 'fas fa-users',
                 'Pages.Users'
+            ),
+            new MenuItem(
+                this.l('AuditLogs'),
+                '/app/audit-logs',
+                'fas fa-info',
             ),
             // new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
             //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [

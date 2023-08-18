@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AbpHttpInterceptor } from 'abp-ng2-module';
 
-import * as ApiServiceProxies from './service-proxies';
 import * as AccountApiServiceProxies from './account-service';
 import * as ConfigurationApiServiceProxies from './configuration-service';
 import * as StaffApiServiceProxies from './staff-service';

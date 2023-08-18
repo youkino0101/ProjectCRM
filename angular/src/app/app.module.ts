@@ -37,6 +37,9 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 import { StaffsComponent } from '@app/staffs/staffs.component';
 import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-dialog.component';
 // import { EditStaffDialogComponent } from './staffs/edit-staff/edit-staff-dialog.component';
+// auditlogs
+import { AuditLogsComponent } from './auditlog/auditlogs.component';
+import { ViewAuditLogDialogComponent } from './auditlog/view-log/view-log-dialog.component';
 
 @NgModule({
     declarations: [
@@ -55,6 +58,9 @@ import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-d
         // staffs
         StaffsComponent,
         CreateStaffDialogComponent,
+        // auditlogs
+        AuditLogsComponent,
+        ViewAuditLogDialogComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

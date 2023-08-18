@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-export interface ILogDto {
+export interface ILogsDto {
     id: number;
     tenantId: number | undefined;
     userId: number;
@@ -13,13 +13,14 @@ export interface ILogDto {
     clientIpAddress: string;
     clientName: string | undefined;
     browserInfo: string;
-    exceptionMessage: string;
-    exception: string;
+    exceptionMessage: string | undefined;
+    exception: string | undefined;
     impersonatorUserId: number | undefined;
     impersonatorTenantId: number | undefined;
+    customData: string | undefined;
 }
 
-export class LogDto implements ILogDto {
+export class LogsDto implements ILogsDto {
     id: number;
     tenantId: number | undefined;
     userId: number;
@@ -32,12 +33,13 @@ export class LogDto implements ILogDto {
     clientIpAddress: string;
     clientName: string | undefined;
     browserInfo: string;
-    exceptionMessage: string;
-    exception: string;
+    exceptionMessage: string | undefined;
+    exception: string | undefined;
     impersonatorUserId: number | undefined;
     impersonatorTenantId: number | undefined;
-
-    constructor(data?: ILogDto) {
+    customData: string | undefined;
+    
+    constructor(data?: ILogsDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -67,9 +69,9 @@ export class LogDto implements ILogDto {
         }
     }
 
-    static fromJS(data: any): LogDto {
+    static fromJS(data: any): LogsDto {
         data = typeof data === 'object' ? data : {};
-        let result = new LogDto();
+        let result = new LogsDto();
         result.init(data);
         return result;
     }
@@ -95,9 +97,9 @@ export class LogDto implements ILogDto {
         return data;
     }
 
-    clone(): LogDto {
+    clone(): LogsDto {
         const json = this.toJSON();
-        let result = new LogDto();
+        let result = new LogsDto();
         result.init(json);
         return result;
     }

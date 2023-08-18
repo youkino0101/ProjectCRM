@@ -1,12 +1,12 @@
-import { LogDto } from "./LogDto";
+import { LogsDto } from "./LogDto";
 
 export interface ILogDtoPagedResultDto {
-    items: LogDto[] | undefined;
+    items: LogsDto[] | undefined;
     totalCount: number;
 }
 
 export class LogDtoPagedResultDto implements ILogDtoPagedResultDto {
-    items: LogDto[] | undefined;
+    items: LogsDto[] | undefined;
     totalCount: number;
 
     constructor(data?: ILogDtoPagedResultDto) {
@@ -23,7 +23,7 @@ export class LogDtoPagedResultDto implements ILogDtoPagedResultDto {
             if (Array.isArray(_data["items"])) {
                 this.items = [] as any;
                 for (let item of _data["items"])
-                    this.items.push(LogDto.fromJS(item));
+                    this.items.push(LogsDto.fromJS(item));
             }
             this.totalCount = _data["totalCount"];
         }
