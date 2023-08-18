@@ -117,5 +117,22 @@
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="UsersActivation">Users activation</text>
+	<text name="View">View</text>
+	  
+	  <!-- Logs -->
+	  <text name="AuditLogs.ServiceName">Service Name</text>
+	  <text name="AuditLogs.MethodName">Method Name</text>
+	  <text name="AuditLogs.Parameters">Parameters</text>
+	  <text name="AuditLogs.ExceptionMessage">Exception Message</text>
+	  <text name="AuditLogs.Exception">Exception</text>
+	  <text name="AuditLogs.UserId">User Id</text>
+	  <text name="AuditLogs.ExecutionTime">Execution Time</text>
+	  <text name="AuditLogs.ReturnValue">Return Value</text>
+	  <text name="AuditLogs.ExecutionDuration">Execution Duration</text>
+	  <text name="AuditLogs.BrowserInfo">Browser Info</text>
+	  <text name="AuditLogs.ClientIpAddress">Client Ip Address</text>
+	  <text name="AuditLogs.ClientName">Client Name</text>
+	  <text name="AuditLogs.ImpersonatorUserId">Impersonator User Id</text>
+	  <text name="AuditLogs.ImpersonatorTenantId">Impersonator Tenant Id</text>
   </texts>
 </localizationDictionary>
