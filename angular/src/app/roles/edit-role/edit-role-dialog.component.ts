@@ -8,14 +8,13 @@ import {
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
-import {
-  RoleServiceProxy,
-  GetRoleForEditOutput,
-  RoleDto,
-  PermissionDto,
-  RoleEditDto,
-  FlatPermissionDto
-} from '@shared/service-proxies/service-proxies';
+import { RoleServiceProxy } from '@shared/service-proxies/role-service';
+import { RoleDto } from '@shared/dto/role/role';
+import { RoleEditDto } from '@shared/dto/role/role-edit';
+import { FlatPermissionDto } from '@shared/dto/role/role-flat-permission';
+import { GetRoleForEditOutput } from '@shared/dto/role/role-get-for-edit-output';
+import { PermissionDto } from '@shared/dto/role/role-permission';
+
 
 @Component({
   templateUrl: 'edit-role-dialog.component.html'

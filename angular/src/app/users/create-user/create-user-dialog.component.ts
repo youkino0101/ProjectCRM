@@ -8,12 +8,11 @@ import {
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
-import {
-  UserServiceProxy,
-  CreateUserDto,
-  RoleDto
-} from '@shared/service-proxies/service-proxies';
+
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
+import { CreateUserDto } from '@shared/dto/user/user-create';
+import { RoleDto } from '@shared/dto/role/role';
+import { UserServiceProxy } from '@shared/service-proxies/user-service';
 
 @Component({
   templateUrl: './create-user-dialog.component.html'

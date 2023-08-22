@@ -1,4 +1,5 @@
-import { TenantAvailabilityState } from '@shared/service-proxies/service-proxies';
+import { TenantAvailabilityState } from "./dto/account/account-is-tenant-available-output";
+
 
 
 export class AppTenantAvailabilityState {

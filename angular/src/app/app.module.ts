@@ -13,10 +13,6 @@ import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
-// tenants
-import { TenantsComponent } from '@app/tenants/tenants.component';
-import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
-import { EditTenantDialogComponent } from './tenants/edit-tenant/edit-tenant-dialog.component';
 // roles
 import { RolesComponent } from '@app/roles/roles.component';
 import { CreateRoleDialogComponent } from './roles/create-role/create-role-dialog.component';
@@ -37,15 +33,20 @@ import { SidebarComponent } from './layout/sidebar.component';
 import { SidebarLogoComponent } from './layout/sidebar-logo.component';
 import { SidebarUserPanelComponent } from './layout/sidebar-user-panel.component';
 import { SidebarMenuComponent } from './layout/sidebar-menu.component';
+// staffs
+import { StaffsComponent } from '@app/staffs/staffs.component';
+import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-dialog.component';
+// import { EditStaffDialogComponent } from './staffs/edit-staff/edit-staff-dialog.component';
+// auditlogs
+import { AuditLogsComponent } from './auditlog/auditlogs.component';
+import { ViewAuditLogDialogComponent } from './auditlog/view-log/view-log-dialog.component';
+// product
+import { ProductsComponent } from '@app/product/products.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        // tenants
-        TenantsComponent,
-        CreateTenantDialogComponent,
-        EditTenantDialogComponent,
         // roles
         RolesComponent,
         CreateRoleDialogComponent,
@@ -56,6 +57,14 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
         EditUserDialogComponent,
         ChangePasswordComponent,
         ResetPasswordDialogComponent,
+        // staffs
+        StaffsComponent,
+        CreateStaffDialogComponent,
+        // auditlogs
+        AuditLogsComponent,
+        ViewAuditLogDialogComponent,
+        // product
+        ProductsComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

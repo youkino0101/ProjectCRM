@@ -7,14 +7,13 @@ import {
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
-import {
-  RoleServiceProxy,
-  RoleDto,
-  PermissionDto,
-  CreateRoleDto,
-  PermissionDtoListResultDto
-} from '@shared/service-proxies/service-proxies';
+
 import { forEach as _forEach, map as _map } from 'lodash-es';
+import { RoleDto } from '@shared/dto/role/role';
+import { RoleServiceProxy } from '@shared/service-proxies/role-service';
+import { PermissionDto } from '@shared/dto/role/role-permission';
+import { PermissionDtoListResultDto } from '@shared/dto/role/role-permission-list';
+import { CreateRoleDto } from '@shared/dto/role/role-create';
 
 @Component({
   templateUrl: 'create-role-dialog.component.html'

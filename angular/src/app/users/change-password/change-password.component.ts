@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { AppComponentBase } from '@shared/app-component-base';
-import {
-  ChangePasswordDto,
-  UserServiceProxy
-} from '@shared/service-proxies/service-proxies';
+
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
+import { ChangePasswordDto } from '@shared/dto/user/user-change-password';
+import { UserServiceProxy } from '@shared/service-proxies/user-service';
 
 @Component({
   templateUrl: './change-password.component.html',

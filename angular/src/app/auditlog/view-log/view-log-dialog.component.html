@@ -1,0 +1,118 @@
+<abp-modal-header [title]="'View' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.UserId" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="userId" id="userId" readonly  [value]="log.userId">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.MethodName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="methodName" id="methodName" [value]="log.methodName" readonly>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ReturnValue" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="returnValue" id="returnValue" [value]="log.returnValue" readonly>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ExecutionTime" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="executionTime" id="executionTime"
+        [value]="log.executionTime | date :'dd/MM/yy, HH:mm:ss'" readonly/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "ExecutionDuration" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="executionDuration" id="executionDuration"
+        [value]="log.executionDuration" readonly/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ClientIpAddress" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="name" id="name" [value]="log.clientIpAddress" readonly/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="col-md-5 col-form-label" for="name">
+        {{ "AuditLogs.ClientName" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="clientName" id="clientName" [value]="log.clientName" readonly/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-8 col-form-label" for="name">
+        {{ "AuditLogs.ImpersonatorUserId" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="impersonatorUserId" id="impersonatorUserId" [value]="log.impersonatorUserId" readonly/>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="col-md-8 col-form-label" for="name">
+        {{ "AuditLogs.ImpersonatorTenantId" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="impersonatorTenantId" id="impersonatorTenantId" [value]="log.impersonatorTenantId" readonly/>
+      </div>
+    </div>
+  </div>
+  <!--textarea-->
+  <div class="row m-1">
+    <label class="col-form-label" for="name">
+      {{ "AuditLogs.ServiceName" | localize }}
+    </label>
+    <textarea class="form-control" name="serviceName" id="serviceName" readonly
+      [(ngModel)]="log.serviceName"></textarea>
+  </div>
+  <div class="row m-1">
+    <label class="col-form-label" for="name">
+      {{ "AuditLogs.Parameters" | localize }}
+    </label>
+    <textarea class="form-control" name="parameters" id="parameters" readonly [(ngModel)]="log.parameters"></textarea>
+  </div>
+  <div class="row m-1">
+    <label class="col-form-label" for="name">
+      {{ "AuditLogs.BrowserInfo" | localize }}
+    </label>
+    <textarea class="form-control" name="browserInfo" id="browserInfo" readonly [(ngModel)]="log.browserInfo"></textarea>
+  </div>
+  <div class="row m-1">
+    <label class="col-form-label" for="name">
+      {{ "AuditLogs.ExceptionMessage" | localize }}
+    </label>
+    <textarea class="form-control" name="exceptionMessage" id="exceptionMessage" readonly [(ngModel)]="log.exceptionMessage"></textarea>
+  </div>
+  <div class="row m-1">
+    <label class="col-form-label" for="name">
+      {{ "AuditLogs.Exception" | localize }}
+    </label>
+    <textarea class="form-control" name="exception" id="exception" readonly [(ngModel)]="log.exception"></textarea>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
+</div>
