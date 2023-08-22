@@ -60,5 +60,28 @@ namespace demo.Common
         Expired, // báo giá hết hạn
         Rejected, // Báo giá bị từ chối.
     }
+    public enum Status
+    {
+        Active, // hoạt động
+        Lock, // khóa
+        Canceled, // đã hủy
+        Orther, // khác
+    }
 
+    public enum Category
+    {
+        SmartPhone, // điện thoại thông minh
+        Ipad, // máy tính bảng
+        Phone, // điện thoại bth
+        Orther // 
+    }
+
+    public enum StatusOrder
+    {
+        Processing, // đang xử lý
+        Confirmed, // đã xác nhận
+        Completed, // đã hoàn thành
+        Cancel, // đã hủy
+        Orther // khác
+    }
 }

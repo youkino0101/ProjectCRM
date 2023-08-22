@@ -29,9 +29,9 @@ namespace demo.Extensions
                 var enity = await _repository.FirstOrDefaultAsync(x => x.Code == code);
                 if (enity != null)
                 {
-                    enity.SoHienTai++;
+                    enity.CurrentNumber++;
                     await _repository.UpdateAsync(enity);
-                    result = enity.Code + enity.SoHienTai.ToString().PadLeft(enity.DoDaiSo, '0');
+                    result = enity.Code + enity.CurrentNumber.ToString().PadLeft(enity.Digit, '0');
                 }
 
                 return result;

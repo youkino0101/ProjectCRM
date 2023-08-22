@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using demo.EntityFrameworkCore;
 
@@ -10,9 +11,11 @@ using demo.EntityFrameworkCore;
 namespace demo.Migrations
 {
     [DbContext(typeof(demoDbContext))]
-    partial class demoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230822064751_Init2")]
+    partial class Init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1785,9 +1788,6 @@ namespace demo.Migrations
 
                     b.Property<ulong>("Quantity")
                         .HasColumnType("bigint unsigned");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.Property<string>("Trademark")
                         .HasColumnType("longtext");

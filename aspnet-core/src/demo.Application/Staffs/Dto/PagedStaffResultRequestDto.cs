@@ -6,7 +6,7 @@ namespace demo.Staffs.Dto
     public class PagedStaffResultRequestDto : PagedResultRequestDto
     {
         public string Keyword { get; set; }
-        public StaffStatus? StaffStatus { get; set; }
+        public StaffStatus? StaffStatus { get; set; } = Common.StaffStatus.Active;
     }
 }
 

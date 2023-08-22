@@ -3,26 +3,24 @@ using Abp.Zero.EntityFrameworkCore;
 using demo.Authorization.Roles;
 using demo.Authorization.Users;
 using demo.MultiTenancy;
-using demo.Project;
-using demo.Category;
 using demo.Extensions;
+using demo.Entity;
 
 namespace demo.EntityFrameworkCore
 {
     public class demoDbContext : AbpZeroDbContext<Tenant, Role, User, demoDbContext>
     {
         /* Define a DbSet for each entity of the application */
-        public DbSet<Attachment> Attachment { set; get; }
-        public DbSet<Note> Note { set; get; }
-        public DbSet<Project.Project> Project { set; get; }
-        public DbSet<Quote> Quote { set; get; }
-        public DbSet<QuoteDetail> QuoteDetail { set; get; }
-        public DbSet<TaskAssignment> TaskAssignment { set; get; }
-        public DbSet<Task> Tasks { set; get; }
-        public DbSet<Activity> Activity { set; get; }
+       
         public DbSet<Customer> Customer { set; get; }
         public DbSet<Staff> Staff { set; get; }
-
+        public DbSet<Supplier> Supplier {  set; get; }
+        public DbSet<Product> Product { set; get; }
+        public DbSet<Order> Order { set; get; }
+        public DbSet<OrderDetail> OrderDetail { set; get; }
+        public DbSet<GoodsReceipt> GoodsReceipt { set; get; }
+        public DbSet<GoodsReceiptDetail> GoodsReceiptDetail { set; get; }
+        // Extension
         public DbSet<GenerateNumber> GenerateNumber { set; get; }
 
         public demoDbContext(DbContextOptions<demoDbContext> options)
@@ -35,21 +33,15 @@ namespace demo.EntityFrameworkCore
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Customer>(entity => { entity.HasIndex(p => p.Email); });
+            builder.Entity<Customer>(entity => { entity.HasIndex(p => p.Email).IsUnique(); });
             builder.Entity<Staff>(entity => { entity.HasIndex(p => p.StaffCode); });
-            builder.Entity<Activity>(entity => { entity.HasIndex(p => p.Id); });
-
-            builder.Entity<Project.Project>(entity => { entity.HasIndex(p => p.CodeProject); });
-            builder.Entity<Task>().HasOne(c => c.Project).WithMany(t => t.Tasks).OnDelete(DeleteBehavior.Cascade);
-            builder.Entity<TaskAssignment>().HasOne(c => c.Task).WithMany(t => t.TaskAssignments).OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<Attachment>(entity => { entity.HasIndex(p => p.Id); });
-
-            builder.Entity<Note>(entity => { entity.HasIndex(p => p.Id); });
-
-            builder.Entity<Quote>(entity => { entity.HasIndex(p => p.QuotesCode); });
-            builder.Entity<QuoteDetail>().HasOne(c => c.Quote).WithMany(t => t.QuoteDetails).OnDelete(DeleteBehavior.Cascade);
             builder.Entity<GenerateNumber>(entity => { entity.HasIndex(p => p.Code); });
+            builder.Entity<Supplier>(entity => { entity.HasIndex(p => p.SupplierCode); });
+            builder.Entity<Product>(entity => { entity.HasIndex(p => p.ProductCode); });
+            builder.Entity<Order>().HasOne(c => c.Customer).WithMany(o => o.Orders).OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<OrderDetail>().HasOne(o => o.Order).WithMany(od => od.OrderDetails).OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<GoodsReceipt>().HasOne(s => s.Supplier).WithMany(o => o.GoodsReceipts).OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<GoodsReceiptDetail>().HasOne(o => o.GoodsReceipt).WithMany(od => od.GoodsReceiptDetails).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

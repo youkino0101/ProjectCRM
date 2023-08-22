@@ -40,6 +40,8 @@ import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-d
 // auditlogs
 import { AuditLogsComponent } from './auditlog/auditlogs.component';
 import { ViewAuditLogDialogComponent } from './auditlog/view-log/view-log-dialog.component';
+// product
+import { ProductsComponent } from '@app/product/products.component';
 
 @NgModule({
     declarations: [
@@ -61,6 +63,8 @@ import { ViewAuditLogDialogComponent } from './auditlog/view-log/view-log-dialog
         // auditlogs
         AuditLogsComponent,
         ViewAuditLogDialogComponent,
+        // product
+        ProductsComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

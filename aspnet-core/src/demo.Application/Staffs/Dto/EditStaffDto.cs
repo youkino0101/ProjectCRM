@@ -21,5 +21,6 @@ namespace demo.Staffs.Dto
         public string Address { get; set; }
         public StaffStatus StaffStatus { get; set; }
         public DateTime CreationTime { get; set; }
+        public long UserId { get; set; }
     }
 }

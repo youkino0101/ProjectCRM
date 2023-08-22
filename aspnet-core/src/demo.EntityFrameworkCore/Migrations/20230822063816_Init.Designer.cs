@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using demo.EntityFrameworkCore;
 
@@ -10,9 +11,11 @@ using demo.EntityFrameworkCore;
 namespace demo.Migrations
 {
     [DbContext(typeof(demoDbContext))]
-    partial class demoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230822063816_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1584,13 +1587,13 @@ namespace demo.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("StaffId")
+                    b.Property<long>("StaffId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<long?>("SupplierId")
+                    b.Property<long>("SupplierId")
                         .HasColumnType("bigint");
 
                     b.Property<ulong>("TotalPrice")
@@ -1629,7 +1632,7 @@ namespace demo.Migrations
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("GoodsReceiptId")
+                    b.Property<long>("GoodsReceiptId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("LastModificationTime")
@@ -1638,7 +1641,7 @@ namespace demo.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ProductId")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Unit")
@@ -1722,10 +1725,10 @@ namespace demo.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("OrderId")
+                    b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ProductId")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<ulong>("Quantity")
@@ -1785,9 +1788,6 @@ namespace demo.Migrations
 
                     b.Property<ulong>("Quantity")
                         .HasColumnType("bigint unsigned");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.Property<string>("Trademark")
                         .HasColumnType("longtext");
@@ -2210,12 +2210,15 @@ namespace demo.Migrations
                 {
                     b.HasOne("demo.Entity.Staff", "Staff")
                         .WithMany("GoodsReceipts")
-                        .HasForeignKey("StaffId");
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("demo.Entity.Supplier", "Supplier")
                         .WithMany("GoodsReceipts")
                         .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Staff");
 
@@ -2227,11 +2230,14 @@ namespace demo.Migrations
                     b.HasOne("demo.Entity.GoodsReceipt", "GoodsReceipt")
                         .WithMany("GoodsReceiptDetails")
                         .HasForeignKey("GoodsReceiptId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("demo.Entity.Product", "Product")
                         .WithMany("GoodsReceiptDetails")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("GoodsReceipt");
 
@@ -2259,11 +2265,14 @@ namespace demo.Migrations
                     b.HasOne("demo.Entity.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("demo.Entity.Product", "Product")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
 

@@ -5,7 +5,8 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.UI;
-using demo.Category;
+using demo.Common;
+using demo.Entity;
 using demo.Staffs.Dto;
 using demo.Users;
 using Microsoft.AspNetCore.Hosting;
@@ -29,26 +30,25 @@ namespace demo.Staffs
             _userAppService = userAppService;
         }
 
-        public async override Task<StaffDto> CreateAsync([FromForm]CreateStaffDto input)
+        public async override Task<StaffDto> CreateAsync(CreateStaffDto input)
         {
             try
             {
-                input.StaffStatus = Common.StaffStatus.Active;
-                if (input.File != null && input.File.Length > 0)
-                {
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + input.File.FileName;
-
-                    // Save the file with the new name
-                    var imagePath = Path.Combine("images", uniqueFileName);
-                    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                input.StaffStatus = StaffStatus.Active;
+                var user = await _userAppService.CreateAsync(
+                    new Users.Dto.CreateUserDto()
                     {
-                        await input.File.CopyToAsync(fileStream);
-                    }
+                        UserName = input.StaffCode,
+                        Name = input.StaffName,
+                        Surname = input.StaffCode,
+                        EmailAddress = input.Email,
+                        IsActive = true ,
+                        Password = CommonHelper.PasswordDefault,
+                        RoleNames = new string[] { }
+                    });
 
-                    input.Address = imagePath;
-                }
-                    
+                input.UserId = user.Id;
+
                 return await base.CreateAsync(input);
 
             } catch (Exception ex)
@@ -69,11 +69,21 @@ namespace demo.Staffs
             }
         }
 
-        public override Task<StaffDto> UpdateAsync(EditStaffDto input)
+        public async override Task<StaffDto> UpdateAsync(EditStaffDto input)
         {
             try
             {
-                return base.UpdateAsync(input);
+                var user = await _userAppService.GetAsync(new EntityDto<long>(input.UserId));
+                if (user != null)
+                {
+                    user.Name = input.StaffName;
+                    user.EmailAddress = input.Email;
+                    user.IsActive = input.StaffStatus == StaffStatus.Active ? true : false;
+                    user.RoleNames = input.StaffStatus == StaffStatus.Active ? user.RoleNames : new string[] { };
+                    await _userAppService.UpdateAsync(user);
+                }
+
+                return await base.UpdateAsync(input);
             }
             catch (Exception ex)
             {
@@ -88,6 +98,10 @@ namespace demo.Staffs
                 || x.PhoneNumber.Contains(input.Keyword)
                 || x.Address.Contains(input.Keyword))
                 .WhereIf(input.StaffStatus.HasValue, x => x.StaffStatus == input.StaffStatus).OrderByDescending(s => s.CreationTime);
+        }
+        public override Task<PagedResultDto<StaffDto>> GetAllAsync(PagedStaffResultRequestDto input)
+        {
+            return base.GetAllAsync(input);
         }
     }
    

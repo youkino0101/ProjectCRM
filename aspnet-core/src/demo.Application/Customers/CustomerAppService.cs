@@ -4,8 +4,8 @@ using Abp.Domain.Repositories;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.UI;
-using demo.Category;
 using demo.Customers.Dto;
+using demo.Entity;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,8 +20,8 @@ namespace demo.Customers
 
         protected override IQueryable<Customer> CreateFilteredQuery(PagedCustomerResultRequestDto input)
         {
-            return Repository.GetAll().WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.Name.Contains(input.Keyword)
-               || x.CompanyName.Contains(input.Keyword)
+            return Repository.GetAll().WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.NameCustomer.Contains(input.Keyword)
+               || x.CodeCustomer.Contains(input.Keyword)
                || x.Email.Contains(input.Keyword)
                || x.PhoneNumber.Contains(input.Keyword)
                || x.Address.Contains(input.Keyword));

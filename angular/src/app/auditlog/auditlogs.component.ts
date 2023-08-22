@@ -6,8 +6,8 @@ import {
   PagedListingComponentBase,
   PagedRequestDto
 } from '@shared/paged-listing-component-base';
-import { LogsDto } from '@shared/dto/audit-log/LogDto';
-import { LogDtoPagedResultDto } from '@shared/dto/audit-log/LogDtoPagedResultDto';
+import { LogsDto } from '@shared/dto/audit-log/audit-log';
+import { LogDtoPagedResultDto } from '@shared/dto/audit-log/audit-log-page';
 import { AuditLogServiceProxy } from '@shared/service-proxies/audit-log-service';
 import { ViewAuditLogDialogComponent } from './view-log/view-log-dialog.component';
 

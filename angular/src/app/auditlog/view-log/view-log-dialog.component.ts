@@ -8,7 +8,7 @@ import {
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
-import { LogsDto } from '@shared/dto/audit-log/LogDto';
+import { LogsDto } from '@shared/dto/audit-log/audit-log';
 import { AuditLogServiceProxy } from '@shared/service-proxies/audit-log-service';
 
 @Component({

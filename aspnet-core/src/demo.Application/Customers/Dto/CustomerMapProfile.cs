@@ -3,7 +3,7 @@ using AutoMapper;
 using Abp.Authorization;
 using Abp.Authorization.Roles;
 using demo.Authorization.Roles;
-using demo.Category;
+using demo.Entity;
 
 namespace demo.Customers.Dto
 {
