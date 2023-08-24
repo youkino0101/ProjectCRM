@@ -13,5 +13,8 @@ namespace demo.Extensions
         /// <param name="code"></param>       
         /// <returns></returns>
         Task<string> GetGenerateNumber(string code);
+    
+        Task<List<SelectListItem>> GetSelectListItemEnumStatusAsync();
+        Task<List<SelectListItem>> GetSelectListItemEnumCategoryAsync();
     }
 }
