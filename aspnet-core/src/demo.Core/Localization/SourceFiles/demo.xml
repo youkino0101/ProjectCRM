@@ -134,5 +134,22 @@
 	  <text name="AuditLogs.ClientName">Client Name</text>
 	  <text name="AuditLogs.ImpersonatorUserId">Impersonator User Id</text>
 	  <text name="AuditLogs.ImpersonatorTenantId">Impersonator Tenant Id</text>
+
+	  <!-- Products -->
+	  <text name="Product.ProductCode">Product Code</text>
+	  <text name="Product.ProductName">Product Name</text>
+	  <text name="Product.Image">Image</text>
+	  <text name="Product.Quantity">Quantity</text>
+	  <text name="Product.Price">Price</text>
+	  <text name="Product.Description">Description</text>
+	  <text name="Product.Category">Category</text>
+	  <text name="Product.Trademark">Trademark</text>
+	  <text name="Product.Status">Status</text>
+	  
+	  <!-- Category -->
+	  <text name="SmartPhone">Smart Phone</text>
+	  <text name="Ipad">Ipad</text>
+	  <text name="Phone">Phone</text>
+	  <text name="Orther">Orther</text>
   </texts>
 </localizationDictionary>

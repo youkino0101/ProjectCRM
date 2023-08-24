@@ -132,6 +132,23 @@
 	  <text name="AuditLogs.ClientIpAddress">Client Ip Address</text>
 	  <text name="AuditLogs.ClientName">Client Name</text>
 	  <text name="AuditLogs.ImpersonatorUserId">Ẩn danh mã người dùng</text>
-	  <text name="AuditLogs.ImpersonatorTenantId">Ẩn danh mã người thuê</text>
+	  <text name="AuditLogs.ImpersonatorTenantId">Ẩn danh mã người dùng 2</text>
+
+	  <!-- Products -->
+	  <text name="Product.ProductCode">Mã sản phẩm</text>
+	  <text name="Product.ProductName">Tên sản phẩm</text>
+	  <text name="Product.Image">Hình ảnh</text>
+	  <text name="Product.Quantity">Số lượng</text>
+	  <text name="Product.Price">Đơn giá</text>
+	  <text name="Product.Description">Thông tin chi tiết</text>
+	  <text name="Product.Category">Danh mục</text>
+	  <text name="Product.Trademark">Xuất xứ</text>
+	  <text name="Product.Status">Trạng thái</text>
+
+	  <!-- Category -->
+	  <text name="SmartPhone">Điện thoại thông minh</text>
+	  <text name="Ipad">Máy tính bản</text>
+	  <text name="Phone">Điện thoại</text>
+	  <text name="Orther">Khác</text>
   </texts>
 </localizationDictionary>
