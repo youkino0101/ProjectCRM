@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using demo.Products.Dto;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace demo.Products
 {
     public interface IProductAppService : IAsyncCrudAppService<ProductDto, long, PagedProductResultRequestDto, CreateProductDto, EditProductDto>
     {
+        
     }
 }

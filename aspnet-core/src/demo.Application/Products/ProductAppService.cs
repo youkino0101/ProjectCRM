@@ -1,4 +1,4 @@
-﻿using Abp.Application.Services;
+﻿    using Abp.Application.Services;
 using Abp.Domain.Repositories;
 using demo.Entity;
 using demo.Products.Dto;
@@ -9,6 +9,11 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Abp.UI;
+using System.Linq;
+using Abp.Extensions;
+using Abp.Linq.Extensions;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace demo.Products
 {
@@ -70,6 +75,13 @@ namespace demo.Products
             {
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
+        }
+        protected override IQueryable<Product> CreateFilteredQuery(PagedProductResultRequestDto input)
+        {
+            return Repository.GetAll().WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.ProductCode.Contains(input.Keyword)
+                || x.ProductName.Contains(input.Keyword)
+                || x.Trademark.Contains(input.Keyword))
+                .WhereIf(input.Status.HasValue, x => x.Status == input.Status).OrderByDescending(s => s.CreationTime);
         }
     }
 }

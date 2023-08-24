@@ -5,8 +5,8 @@ namespace demo.Products.Dto
 {
     public class PagedProductResultRequestDto : PagedResultRequestDto
     {
-        public string Keyword { get; set; }
-        public StaffStatus? StaffStatus { get; set; }
+        public string? Keyword { get; set; }
+        public Status? Status { get; set; }
     }
 }
 

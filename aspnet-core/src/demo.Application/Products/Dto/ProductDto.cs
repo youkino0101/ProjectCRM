@@ -14,5 +14,7 @@ namespace demo.Products.Dto
         public Category Category { get; set; }
         public string Trademark { get; set; }
         public Status Status { get; set; }
+        public string CategoryName { get; set; }
+        public string StatusName { get; set; }
     }
 }
