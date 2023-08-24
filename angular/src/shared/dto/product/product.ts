@@ -7,8 +7,10 @@ export interface IProductDto {
     price: number;
     description: string | undefined;
     category: string;
+    categoryName: string;
     trademark: string | undefined;
     status: string;
+    statusName: string;
 }
 
 export class ProductDto implements IProductDto {
@@ -20,8 +22,10 @@ export class ProductDto implements IProductDto {
     price: number;
     description: string | undefined;
     category: string;
+    categoryName: string;
     trademark: string | undefined;
     status: string;
+    statusName: string;
 
     constructor(data?: IProductDto) {
         if (data) {
@@ -44,6 +48,8 @@ export class ProductDto implements IProductDto {
             this.category = _data["category"];
             this.trademark = _data["trademark"];
             this.status = _data["status"];
+            this.categoryName = _data["categoryName"];
+            this.statusName = _data["statusName"];
         }
     }
 
@@ -66,6 +72,8 @@ export class ProductDto implements IProductDto {
         data["category"] = this.category;
         data["trademark"] = this.trademark;
         data["status"] = this.status;
+        data["categoryName"] = this.categoryName;
+        data["statusName"] = this.statusName;
         return data;
     }
 

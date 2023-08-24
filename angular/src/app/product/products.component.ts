@@ -9,10 +9,7 @@ import {
 import { ProductDto } from '@shared/dto/product/product';
 import { ProductDtoPagedResultDto } from '@shared/dto/product/product-page';
 import { ProductServiceProxy } from '@shared/service-proxies/product-service';
-//import { CreateProductDialogComponent } from './create-product/create-product-dialog.component';
-
-// import { CreateProductDialogComponent } from './create-product/create-product-dialog.component';
-// import { EditProductDialogComponent } from './edit-product/edit-product-dialog.component';
+import { CreateProductDialogComponent } from './create-product/create-product-dialog.component';
 
 class PagedProductsRequestDto extends PagedRequestDto {
   keyword: string;
@@ -66,15 +63,19 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
     this.showCreateOrEditProductDialog(product.id);
   }
 
-  showCreateOrEditProductDialog(id?: number): void {
+  viewProduct(product: ProductDto): void {
+
+  }
+
+  private showCreateOrEditProductDialog(id?: number): void {
     let createOrEditProductDialog: BsModalRef;
     if (!id) {
-      // createOrEditProductDialog = this._modalService.show(
-      //   CreateProductDialogComponent,
-      //   {
-      //     class: 'modal-lg',
-      //   }
-      // );
+      createOrEditProductDialog = this._modalService.show(
+        CreateProductDialogComponent,
+        {
+          class: 'modal-xl',
+        }
+      );
     } else {
       // createOrEditProductDialog = this._modalService.show(
       //   EditProductDialogComponent,
