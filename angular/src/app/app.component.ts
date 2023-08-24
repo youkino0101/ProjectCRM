@@ -20,7 +20,7 @@ export class AppComponent extends AppComponentBase implements OnInit {
   ngOnInit(): void {
     this.renderer.addClass(document.body, 'sidebar-mini');
 
-    SignalRAspNetCoreHelper.initSignalR();
+    // SignalRAspNetCoreHelper.initSignalR();
 
     abp.event.on('abp.notifications.received', (userNotification) => {
       abp.notifications.showUiNotifyForUserNotification(userNotification);
