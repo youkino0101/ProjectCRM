@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace demo.Common
 {
@@ -62,17 +64,25 @@ namespace demo.Common
     }
     public enum Status
     {
+        [Display(Name = "Active")]
         Active, // hoạt động
+        [Display(Name = "Lock")]
         Lock, // khóa
+        [Display(Name = "Cancel")]
         Canceled, // đã hủy
+        [Display(Name = "Orther")]
         Orther, // khác
     }
 
     public enum Category
     {
+        [Display(Name = "SmartPhone")]
         SmartPhone, // điện thoại thông minh
+        [Display(Name = "Ipad")]
         Ipad, // máy tính bảng
+        [Display(Name = "Phone")]
         Phone, // điện thoại bth
+        [Display(Name = "Orther")]
         Orther // 
     }
 
