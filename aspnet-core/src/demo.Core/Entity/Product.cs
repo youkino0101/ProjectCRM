@@ -15,7 +15,7 @@ namespace demo.Entity
         [MaxLength(16)]
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
-        public string? PathImage { get; set; } = string.Empty;
+        public string? PathImage { get; set; }
         public ulong Quantity { get; set; }
         public ulong Price { get; set; }
         public string? Description { get; set; } = null;
