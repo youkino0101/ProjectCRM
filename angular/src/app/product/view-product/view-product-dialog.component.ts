@@ -6,34 +6,74 @@ import {
   Output,
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
-import { LogsDto } from '@shared/dto/audit-log/audit-log';
-import { AuditLogServiceProxy } from '@shared/service-proxies/audit-log-service';
+import { ProductDto } from '@shared/dto/product/product';
+import { ProductServiceProxy } from '@shared/service-proxies/product-service';
+import { GenerateNumberServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
-  templateUrl: 'view-log-dialog.component.html'
+  templateUrl: 'view-product-dialog.component.html',
+  animations: [appModuleAnimation()]
 })
-export class ViewAuditLogDialogComponent extends AppComponentBase
+export class ViewProductDialogComponent extends AppComponentBase
   implements OnInit {
   id: number;
-  log = new LogsDto();
-
-  @Output() onSave = new EventEmitter<any>();
+  product = new ProductDto();
+  selectListStatus: any[] = [];
+  selectListCategory: any[] = [];
+  selectedValueCate: string;
+  selectedValueStatus: string;
 
   constructor(
     injector: Injector,
-    private _logService: AuditLogServiceProxy,
+    private _productsService: ProductServiceProxy,
+    private _extensionService: GenerateNumberServiceProxy,
     public bsModalRef: BsModalRef
   ) {
     super(injector);
   }
 
   ngOnInit(): void {
-    this._logService
+    this._productsService
       .get(this.id)
-      .subscribe((result: LogsDto) => {
-        this.log = result;
+      .subscribe((result: ProductDto) => {
+        this.product = result;
+        this.selectedValueCate = result.categoryName;
+        this.selectedValueStatus = result.statusName;
       });
+    this.getEnumStatus();
+    this.getEnumCategory();
+  }
+
+  private getEnumStatus() {
+    this._extensionService.getItemEnumStatus().subscribe(
+      (success) => {
+        this.selectListStatus = success;
+      }
+    );
+  }
+
+  private getEnumCategory() {
+    this._extensionService.getItemEnumCategory().subscribe(
+      (success) => {
+        this.selectListCategory = success;
+      }
+    );
+  }
+
+  formatWithCommas(value) {
+    const valueWithoutCommas = value.replace(/,/g, '');
+    const formatted = valueWithoutCommas.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return formatted;
+  }
+  
+  onInputChangePrice(value: any) {
+    this.product.price = this.formatWithCommas(value);
+  }
+  
+  onInputChangeQuantity(value: any) {
+    this.product.quantity = this.formatWithCommas(value);
   }
 }

@@ -43,6 +43,8 @@ import { ViewAuditLogDialogComponent } from './auditlog/view-log/view-log-dialog
 // product
 import { ProductsComponent } from '@app/product/products.component';
 import { CreateProductDialogComponent } from './product/create-product/create-product-dialog.component';
+import { ViewProductDialogComponent } from './product/view-product/view-product-dialog.component';
+import { EditProductDialogComponent } from './product/edit-product/edit-product-dialog.component';
 
 @NgModule({
     declarations: [
@@ -67,6 +69,8 @@ import { CreateProductDialogComponent } from './product/create-product/create-pr
         // product
         ProductsComponent,
         CreateProductDialogComponent,
+        ViewProductDialogComponent,
+        EditProductDialogComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

@@ -21,8 +21,8 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col-md-6">&emsp;</div>
-            <div class="col-md-6">
+            <div class="col-md-9">&emsp;</div>
+            <div class="col-md-3">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <button type="button"
@@ -72,7 +72,10 @@
                   <td>{{ product.productCode }}</td>
                   <td>{{ product.productName }}</td>
                   <td class="text-center">
-                    <img alt="Avatar" class="table-avatar" src="https://localhost:44311/{{product.pathImage}}" style="width: auto; height: 80px; ">
+                    <img class="table-avatar" *ngIf="product.pathImage !== null; else defaultImage" src="https://localhost:44311/{{product.pathImage}}" alt="Product Image" style="width: auto; height: 80px;">
+                    <ng-template #defaultImage>
+                      <img src="assets/img/default.jpg" class="table-avatar" alt="Default Image" style="width: auto; height: 80px;">
+                    </ng-template>
                   </td>
                   <td class="text-right">{{ product.quantity }}</td>
                   <td class="text-right">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</td>
@@ -81,16 +84,16 @@
                   <td>{{ product.statusName | localize }}</td>
                   <td>
                     <button type="button"
-                      class="btn btn-sm bg-secondary"
+                      class="btn btn-sm bg-info"
+                      (click)="viewProduct(product)">
+                      <i class="fas fa-eye"></i>
+                      {{ "View" | localize }}
+                    </button>
+                    <button type="button"
+                      class="btn btn-sm bg-secondary mx-2"
                       (click)="editProduct(product)">
                       <i class="fas fa-pencil-alt"></i>
                       {{ "Edit" | localize }}
-                    </button>
-                    <button type="button"
-                      class="btn btn-sm bg-danger mx-2"
-                      (click)="delete(product)">
-                      <i class="fas fa-trash"></i>
-                      {{ "Delete" | localize }}
                     </button>
                   </td>
                 </tr>

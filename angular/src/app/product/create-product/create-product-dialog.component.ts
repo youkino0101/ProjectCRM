@@ -7,13 +7,15 @@ import {
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
+import { appModuleAnimation } from '@shared/animations/routerTransition';
 //dto
 import { ProductCreateDto } from '@shared/dto/product/product-create';
 import { ProductServiceProxy } from '@shared/service-proxies/product-service';
 import { GenerateNumberServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
-  templateUrl: 'create-product-dialog.component.html'
+  templateUrl: 'create-product-dialog.component.html',
+  animations: [appModuleAnimation()]
 })
 export class CreateProductDialogComponent extends AppComponentBase
   implements OnInit {
@@ -25,7 +27,7 @@ export class CreateProductDialogComponent extends AppComponentBase
   selectListStatus: any[] = [];
   selectListCategory: any[] = [];
   selectedValueCate: string;
-  selectedValueStatus: string;
+  selectedValueStatus: string = 'Active';
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
@@ -38,28 +40,9 @@ export class CreateProductDialogComponent extends AppComponentBase
   }
 
   ngOnInit(): void {
-    this._extensionService.getGenerateNumber('P').subscribe(
-      (success) => {
-        this.product.productCode = success
-      },
-      (error) => {
-        abp.message.error(error, 'Error')
-        this.saving = false;
-      }
-    );
-
-    this._extensionService.getItemEnumStatus().subscribe(
-      success => {
-        console.log(success);
-        this.selectListStatus = success;
-      }
-    );
-    this._extensionService.getItemEnumCategory().subscribe(
-      success => {
-        console.log(success);
-        this.selectListCategory = success;
-      }
-    );
+    this.getGenerateNumber()
+    this.getEnumStatus();
+    this.getEnumCategory();
   }
 
   save(): void {
@@ -79,7 +62,7 @@ export class CreateProductDialogComponent extends AppComponentBase
     formData.append('description', this.product.description);
     formData.append('category', this.product.category);
     formData.append('trademark', this.product.trademark);
-    formData.append('status', this.product.status);
+    formData.append('status', this.product.status == undefined  ? this.selectedValueStatus : this.product.status );
 
     this._productService
       .create(formData)
@@ -109,6 +92,35 @@ export class CreateProductDialogComponent extends AppComponentBase
       reader.readAsDataURL(file);
     }
   }
+
+  private getGenerateNumber() {
+    this._extensionService.getGenerateNumber('P').subscribe(
+      (success) => {
+        this.product.productCode = success
+      },
+      (error) => {
+        abp.message.error(error, 'Error')
+
+      }
+    );
+  }
+  
+  private getEnumStatus() {
+    this._extensionService.getItemEnumStatus().subscribe(
+      (success) => {
+        this.selectListStatus = success;
+      }
+    );
+  }
+
+  private getEnumCategory() {
+    this._extensionService.getItemEnumCategory().subscribe(
+      (success) => {
+        this.selectListCategory = success;
+      }
+    );
+  }
+
   formatWithCommas(value) {
     const valueWithoutCommas = value.replace(/,/g, '');
     const formatted = valueWithoutCommas.replace(/\B(?=(\d{3})+(?!\d))/g, ',');

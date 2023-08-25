@@ -67,7 +67,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fas fa-info',
             ),
             new MenuItem(
-                this.l('Product'),
+                this.l('Products'),
                 '/app/products',
                 'fas fa-barcode',
             ),

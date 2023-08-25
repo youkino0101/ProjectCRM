@@ -1,104 +1,149 @@
-<!-- <form
+<form
   class="form-horizontal"
   autocomplete="off"
-  #editRoleForm="ngForm"
+  #editProductModal="ngForm"
   (ngSubmit)="save()"
 >
-  <abp-modal-header
-    [title]="'EditRole' | localize"
-    (onCloseClick)="bsModalRef.hide()"
-  ></abp-modal-header>
-  <div class="modal-body">
-    <tabset>
-      <tab [heading]="'Details' | localize" class="pt-3 px-2">
-        <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="name">
-            {{ "Name" | localize }}
-          </label>
-          <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="name"
-              id="name"
-              required
-              minlength="2"
-              maxlength="32"
-              [(ngModel)]="role.name"
-              #nameModel="ngModel"
-              #nameEl
-            />
-            <abp-validation-summary
-              [control]="nameModel"
-              [controlEl]="nameEl"
-            ></abp-validation-summary>
-          </div>
+<abp-modal-header
+[title]="'Product.Edit' | localize"
+(onCloseClick)="bsModalRef.hide()"
+></abp-modal-header>
+<div class="modal-body">
+<div class="row">
+<div class="col-md-8">
+    <div class="form-group row required">
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="productCode">
+          {{ "Product.ProductCode" | localize }}
+        </label>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control"
+            name="productCode"
+            id="productCode"
+            [(ngModel)]="product.productCode"
+            
+          />
         </div>
-        <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="displayName">
-            {{ "DisplayName" | localize }}
-          </label>
-          <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="displayName"
-              id="displayName"
-              required
-              minlength="2"
-              maxlength="32"
-              [(ngModel)]="role.displayName"
-              #displayNameModel="ngModel"
-              #displayNameEl
-            />
-            <abp-validation-summary
-              [control]="displayNameModel"
-              [controlEl]="displayNameEl"
-            ></abp-validation-summary>
-          </div>
+      </div>
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="category">
+          {{ "Product.Category" | localize }}
+        </label>
+        <div class="col-md">
+          <select [(ngModel)]="selectedValueCate" class="form-control"  name="selectedValueCate form-control" >
+            <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text }}</option>
+          </select>
         </div>
-        <div class="form-group row mb-0">
-          <label class="col-md-3 col-form-label" for="description">
-            {{ "RoleDescription" | localize }}
-          </label>
-          <div class="col-md-9">
-            <textarea
-              type="text"
-              class="form-control"
-              name="description"
-              id="description"
-              [(ngModel)]="role.description"
+      </div>
+      
+    </div>
+    <div class="form-group row required">
+      <div class="col-md">
+        <label class="col-md-7 col-form-label" for="productName">
+          {{ "Product.ProductName" | localize }}
+        </label>
+        <div class="col-md">
+          <input 
+            type="text"
+            class="form-control"
+            name="productName" 
+            id="productName"  
+            [(ngModel)]="product.productName"
+            required
             >
-            </textarea>
-          </div>
         </div>
-      </tab>
-      <tab [heading]="'Permissions' | localize" class="pt-3 px-2">
-        <div class="form-group row mb-0">
-          <ng-container *ngFor="let permission of permissions; let i = index">
-            <div class="col-md-6">
-              <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  [id]="'permission_' + i"
-                  [checked]="isPermissionChecked(permission.name)"
-                  [disabled]="role.isStatic"
-                  (change)="onPermissionChange(permission, $event)"
-                />
-                <label class="custom-control-label" [for]="'permission_' + i">
-                  {{ permission.displayName }}
-                </label>
-              </div>
-            </div>
-          </ng-container>
+      </div>
+      
+    </div>
+    <div class="form-group row required">
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="quantity">
+          {{ "Product.Quantity" | localize }}
+        </label>
+        <div class="col-md">
+          <input 
+            type="text" 
+            class="form-control" 
+            name="quantity" 
+            id="quantity" 
+            [(ngModel)]="product.quantity" 
+            (input)="onInputChangeQuantity(product.quantity)"
+            >
         </div>
-      </tab>
-    </tabset>
+      </div>
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="price">
+          {{ "Product.Price" | localize }}
+        </label>
+        <div class="col-md">
+          <input 
+            type="text"
+            class="form-control"
+            name="price" 
+            id="price"  
+            [(ngModel)]="product.price"
+            (input)="onInputChangePrice(product.price)"
+            >
+        </div>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="trademark">
+          {{ "Product.Trademark" | localize }}
+        </label>
+        <div class="col-md">
+          <input 
+            type="text" 
+            class="form-control" 
+            name="trademark" 
+            id="trademark" 
+            [(ngModel)]="product.trademark" 
+            >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="status">
+          {{ "Product.Status" | localize }}
+        </label>
+        <div class="col-md">
+          <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control" >
+            <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <div class="col-md">
+        <label class="col-form-label" for="name">
+          {{ "Product.Description" | localize }}
+        </label>
+        <textarea class="form-control" rows="3" name="description" id="description"
+          [(ngModel)]="product.description" ></textarea>
+      </div>
+    </div>
   </div>
-  <abp-modal-footer
+  <div class="col-md-4">
+      <div *ngIf="selectedImage; else defaultImageTemplate">
+        <img src="https://localhost:44311/{{selectedImage}}" alt="Edited Image" style="max-width: 100%; max-height: 400px;">
+        
+      </div>
+      <ng-template #defaultImageTemplate>
+        <img [src]="defaultImage" alt="Default Image" style="max-width: 100%; max-height: 400px;">
+      </ng-template>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile" (change)="onImageChange($event)">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div> 
+  </div>
+</div>
+  
+</div>
+<abp-modal-footer
     [cancelDisabled]="saving"
-    [saveDisabled]="!editRoleForm.form.valid || saving"
+    [saveDisabled]="!editProductModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"
   ></abp-modal-footer>
-</form> -->
+</form>

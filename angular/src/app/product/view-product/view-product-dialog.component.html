@@ -1,118 +1,133 @@
-<!-- <abp-modal-header [title]="'View' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
-<div class="modal-body">
-  <div class="row">
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "AuditLogs.UserId" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="userId" id="userId" readonly  [value]="log.userId">
-      </div>
+<abp-modal-header
+      [title]="'Product.View' | localize"
+      (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-8">
+          <div class="form-group row required">
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="productCode">
+                {{ "Product.ProductCode" | localize }}
+              </label>
+              <div class="col-md">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="productCode"
+                  id="productCode"
+                  [(ngModel)]="product.productCode"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="category">
+                {{ "Product.Category" | localize }}
+              </label>
+              <div class="col-md">
+                <select [(ngModel)]="selectedValueCate" class="form-control"  name="selectedValueCate form-control" readonly>
+                  <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text }}</option>
+                </select>
+              </div>
+            </div>
+            
+          </div>
+          <div class="form-group row required">
+            <div class="col-md">
+              <label class="col-md-7 col-form-label" for="productName">
+                {{ "Product.ProductName" | localize }}
+              </label>
+              <div class="col-md">
+                <input 
+                  type="text"
+                  class="form-control"
+                  name="productName" 
+                  id="productName"  
+                  [(ngModel)]="product.productName"
+                  required
+                  readonly>
+              </div>
+            </div>
+            
+          </div>
+          <div class="form-group row required">
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="quantity">
+                {{ "Product.Quantity" | localize }}
+              </label>
+              <div class="col-md">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="quantity" 
+                  id="quantity" 
+                  [(ngModel)]="product.quantity" 
+                  (input)="onInputChangeQuantity(product.quantity)"
+                  readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="price">
+                {{ "Product.Price" | localize }}
+              </label>
+              <div class="col-md">
+                <input 
+                  type="text"
+                  class="form-control"
+                  name="price" 
+                  id="price"  
+                  [(ngModel)]="product.price"
+                  (input)="onInputChangePrice(product.price)"
+                  readonly>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="trademark">
+                {{ "Product.Trademark" | localize }}
+              </label>
+              <div class="col-md">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  name="trademark" 
+                  id="trademark" 
+                  [(ngModel)]="product.trademark" 
+                  readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="status">
+                {{ "Product.Status" | localize }}
+              </label>
+              <div class="col-md">
+                <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control" readonly>
+                  <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <div class="col-md">
+              <label class="col-form-label" for="name">
+                {{ "Product.Description" | localize }}
+              </label>
+              <textarea class="form-control" rows="3" name="description" id="description"
+                [(ngModel)]="product.description" readonly></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img class="table-avatar" *ngIf="product.pathImage !== null; else defaultImage" src="https://localhost:44311/{{product.pathImage}}" alt="Product Image" style="max-width: 100%; max-height: 400px;">
+            <ng-template #defaultImage>
+              <img src="assets/img/default.jpg" class="table-avatar" alt="Default Image" style="max-width: 100%; max-height: 400px;">
+            </ng-template>
+        </div>
     </div>
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "AuditLogs.MethodName" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="methodName" id="methodName" [value]="log.methodName" readonly>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "AuditLogs.ReturnValue" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="returnValue" id="returnValue" [value]="log.returnValue" readonly>
-      </div>
-    </div>
-  </div> 
-  <div class="row">
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "AuditLogs.ExecutionTime" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="executionTime" id="executionTime"
-        [value]="log.executionTime | date :'dd/MM/yy, HH:mm:ss'" readonly/>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "ExecutionDuration" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="executionDuration" id="executionDuration"
-        [value]="log.executionDuration" readonly/>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "AuditLogs.ClientIpAddress" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="name" id="name" [value]="log.clientIpAddress" readonly/>
-      </div>
-    </div>
+        
   </div>
-  <div class="row">
-    <div class="col-md-4">
-      <label class="col-md-5 col-form-label" for="name">
-        {{ "AuditLogs.ClientName" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="clientName" id="clientName" [value]="log.clientName" readonly/>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-8 col-form-label" for="name">
-        {{ "AuditLogs.ImpersonatorUserId" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="impersonatorUserId" id="impersonatorUserId" [value]="log.impersonatorUserId" readonly/>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-8 col-form-label" for="name">
-        {{ "AuditLogs.ImpersonatorTenantId" | localize }}
-      </label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" name="impersonatorTenantId" id="impersonatorTenantId" [value]="log.impersonatorTenantId" readonly/>
-      </div>
-    </div>
-  </div> -->
-  <!--textarea-->
-  <!-- <div class="row m-1">
-    <label class="col-form-label" for="name">
-      {{ "AuditLogs.ServiceName" | localize }}
-    </label>
-    <textarea class="form-control" name="serviceName" id="serviceName" readonly
-      [(ngModel)]="log.serviceName"></textarea>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
   </div>
-  <div class="row m-1">
-    <label class="col-form-label" for="name">
-      {{ "AuditLogs.Parameters" | localize }}
-    </label>
-    <textarea class="form-control" name="parameters" id="parameters" readonly [(ngModel)]="log.parameters"></textarea>
-  </div>
-  <div class="row m-1">
-    <label class="col-form-label" for="name">
-      {{ "AuditLogs.BrowserInfo" | localize }}
-    </label>
-    <textarea class="form-control" name="browserInfo" id="browserInfo" readonly [(ngModel)]="log.browserInfo"></textarea>
-  </div>
-  <div class="row m-1">
-    <label class="col-form-label" for="name">
-      {{ "AuditLogs.ExceptionMessage" | localize }}
-    </label>
-    <textarea class="form-control" name="exceptionMessage" id="exceptionMessage" readonly [(ngModel)]="log.exceptionMessage"></textarea>
-  </div>
-  <div class="row m-1">
-    <label class="col-form-label" for="name">
-      {{ "AuditLogs.Exception" | localize }}
-    </label>
-    <textarea class="form-control" name="exception" id="exception" readonly [(ngModel)]="log.exception"></textarea>
-  </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
-</div> -->

@@ -5,7 +5,7 @@
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'CreateNewProduct' | localize"
+    [title]="'Product.Create' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
@@ -28,6 +28,19 @@
               </div>
             </div>
             <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="category">
+                {{ "Product.Category" | localize }}
+              </label>
+              <div class="col-md">
+                <select [(ngModel)]="selectedValueCate" class="form-control"  name="selectedValueCate form-control" (change)="onSelectionChange()">
+                  <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text }}</option>
+                </select>
+              </div>
+            </div>
+            
+          </div>
+          <div class="form-group row required">
+            <div class="col-md">
               <label class="col-md-7 col-form-label" for="productName">
                 {{ "Product.ProductName" | localize }}
               </label>
@@ -42,6 +55,7 @@
                   >
               </div>
             </div>
+            
           </div>
           <div class="form-group row required">
             <div class="col-md-6">
@@ -77,32 +91,6 @@
           </div>
           <div class="form-group row required">
             <div class="col-md-6">
-              <label class="col-md-7 col-form-label" for="description">
-                {{ "Product.Description" | localize }}
-              </label>
-              <div class="col-md">
-                <input 
-                  type="text" 
-                  class="form-control" 
-                  name="description" 
-                  id="description" 
-                  [(ngModel)]="product.description" 
-                  >
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label class="col-md-7 col-form-label" for="category">
-                {{ "Product.Category" | localize }}
-              </label>
-              <div class="col-md">
-                <select [(ngModel)]="selectedValueCate" class="form-control"  name="selectedValueCate" (change)="onSelectionChange()">
-                  <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text }}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row required">
-            <div class="col-md-6">
               <label class="col-md-7 col-form-label" for="trademark">
                 {{ "Product.Trademark" | localize }}
               </label>
@@ -125,6 +113,15 @@
                   <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text }}</option>
                 </select>
               </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <div class="col-md">
+              <label class="col-form-label" for="name">
+                {{ "Product.Description" | localize }}
+              </label>
+              <textarea class="form-control" rows="3" name="description" id="description"
+                [(ngModel)]="product.description"></textarea>
             </div>
           </div>
         </div>

@@ -10,6 +10,8 @@ import { ProductDto } from '@shared/dto/product/product';
 import { ProductDtoPagedResultDto } from '@shared/dto/product/product-page';
 import { ProductServiceProxy } from '@shared/service-proxies/product-service';
 import { CreateProductDialogComponent } from './create-product/create-product-dialog.component';
+import { ViewProductDialogComponent } from './view-product/view-product-dialog.component';
+import { EditProductDialogComponent } from './edit-product/edit-product-dialog.component';
 
 class PagedProductsRequestDto extends PagedRequestDto {
   keyword: string;
@@ -63,8 +65,19 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
     this.showCreateOrEditProductDialog(product.id);
   }
 
-  viewProduct(product: ProductDto): void {
-
+  viewProduct(product?: ProductDto): void {
+    let viewModalDialog: BsModalRef;
+    if (product.id) {
+      viewModalDialog = this._modalService.show(
+        ViewProductDialogComponent,
+        {
+          class: 'modal-xl',
+          initialState: {
+            id: product.id,
+          },
+        }
+      );
+    }
   }
 
   private showCreateOrEditProductDialog(id?: number): void {
@@ -77,15 +90,15 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
         }
       );
     } else {
-      // createOrEditProductDialog = this._modalService.show(
-      //   EditProductDialogComponent,
-      //   {
-      //     class: 'modal-lg',
-      //     initialState: {
-      //       id: id,
-      //     },
-      //   }
-      // );
+      createOrEditProductDialog = this._modalService.show(
+        EditProductDialogComponent,
+        {
+          class: 'modal-xl',
+          initialState: {
+            id: id,
+          },
+        }
+      );
     }
 
     createOrEditProductDialog.content.onSave.subscribe(() => {
