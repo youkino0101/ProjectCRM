@@ -111,7 +111,7 @@
 	  <text name="InvalidPattern">Không hợp lệ</text>
 	  <text name="PairsDoNotMatch">Không khớp</text>
 	  <text name="All">Tất cả</text>
-	  <text name="TotalRecordsCount">Tổng cộng: {0}</text>
+	  <text name="TotalRecordsCount">Tổng cộng: {0} bản ghi</text>
 	  <text name="Search">Tìm kiếm</text>
 	  <text name="Clear">Làm mới</text>
 	  <text name="ResetPasswordStepOneInfo">1. Nhập mật khẩu quản trị viên của bạn</text>
@@ -119,6 +119,7 @@
 	  <text name="View">Xem</text>
 
 	  <!-- Logs -->
+	  <text name="AuditLogs">Nhật ký log</text>
 	  <text name="AuditLogs.ServiceName">Tên Service</text>
 	  <text name="AuditLogs.MethodName">Tên Method</text>
 	  <text name="AuditLogs.Parameters">Parameters</text>
@@ -135,6 +136,10 @@
 	  <text name="AuditLogs.ImpersonatorTenantId">Ẩn danh mã người dùng 2</text>
 
 	  <!-- Products -->
+	  <text name="Products">Sản phẩm</text>
+	  <text name="Product.Create">Thêm sản phẩm</text>
+	  <text name="Product.Edit">Sửa sản phẩm</text>
+	  <text name="Product.View">Xem sản phẩm</text>
 	  <text name="Product.ProductCode">Mã sản phẩm</text>
 	  <text name="Product.ProductName">Tên sản phẩm</text>
 	  <text name="Product.Image">Hình ảnh</text>
@@ -147,7 +152,7 @@
 
 	  <!-- Category -->
 	  <text name="SmartPhone">Điện thoại thông minh</text>
-	  <text name="Ipad">Máy tính bản</text>
+	  <text name="Ipad">Máy tính bảng</text>
 	  <text name="Phone">Điện thoại</text>
 	  <text name="Orther">Khác</text>
   </texts>

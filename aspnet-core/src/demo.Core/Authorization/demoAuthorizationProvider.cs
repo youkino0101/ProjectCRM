@@ -12,6 +12,11 @@ namespace demo.Authorization
             context.CreatePermission(PermissionNames.Pages_Users_Activation, L("UsersActivation"));
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
+
+            context.CreatePermission(PermissionNames.Pages_AuditLogs, L("AuditLogs"));
+            context.CreatePermission(PermissionNames.Pages_Product_Create, L("Create"));
+            context.CreatePermission(PermissionNames.Pages_Product_View, L("View"));
+            context.CreatePermission(PermissionNames.Pages_Product_Get, L("Get"));
         }
 
         private static ILocalizableString L(string name)

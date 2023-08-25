@@ -66,14 +66,15 @@ namespace demo.Common
     {
         [Display(Name = "Active")]
         Active, // hoạt động
+        [Display(Name = "Processing")]
+        Processing, // đang xử lý
         [Display(Name = "Lock")]
         Lock, // khóa
-        [Display(Name = "Cancel")]
+        [Display(Name = "Canceled")]
         Canceled, // đã hủy
         [Display(Name = "Orther")]
         Orther, // khác
     }
-
     public enum Category
     {
         [Display(Name = "SmartPhone")]
@@ -85,7 +86,6 @@ namespace demo.Common
         [Display(Name = "Orther")]
         Orther // 
     }
-
     public enum StatusOrder
     {
         Processing, // đang xử lý

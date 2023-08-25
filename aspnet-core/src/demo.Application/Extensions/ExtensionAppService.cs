@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace demo.Extensions
 {
+    [AbpAuthorize]
     public class ExtensionAppService : IApplicationService, IExtensionAppService
     {
         IRepository<GenerateNumber> _repository;

@@ -14,9 +14,12 @@ using Abp.Extensions;
 using Abp.Linq.Extensions;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Abp.Application.Services.Dto;
+using Abp.Authorization;
 
 namespace demo.Products
 {
+    [AbpAuthorize]
     public class ProductAppService : AsyncCrudAppService<Product, ProductDto, long, PagedProductResultRequestDto, CreateProductDto, EditProductDto>, IProductAppService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -29,6 +32,8 @@ namespace demo.Products
         {
             try
             {
+                input.Status = Common.Status.Active;
+                input.PathImage = null;
                 if (input.File != null && input.File.Length > 0)
                 {
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + input.File.FileName;
@@ -54,6 +59,10 @@ namespace demo.Products
         {
             try
             {
+                if (input.PathImage.Equals("null"))
+                {
+                    input.PathImage = null;
+                }
                 if (input.File != null && input.File.Length > 0)
                 {
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + input.File.FileName;
@@ -64,7 +73,7 @@ namespace demo.Products
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await input.File.CopyToAsync(fileStream);
-                        File.Delete(input.PathImage);
+                        File.Delete("wwwroot/" +input.PathImage);
                     }
 
                     input.PathImage = imagePath;
@@ -76,6 +85,7 @@ namespace demo.Products
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
         }
+
         protected override IQueryable<Product> CreateFilteredQuery(PagedProductResultRequestDto input)
         {
             return Repository.GetAll().WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.ProductCode.Contains(input.Keyword)
