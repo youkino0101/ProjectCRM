@@ -38,7 +38,7 @@
     </div>
     <div class="col-md-4">
       <label class="col-md-5 col-form-label" for="name">
-        {{ "ExecutionDuration" | localize }}
+        {{ "AuditLogs.ExecutionDuration" | localize }}
       </label>
       <div class="col-md-9">
         <input type="text" class="form-control" name="executionDuration" id="executionDuration"
@@ -113,6 +113,6 @@
     <textarea class="form-control" name="exception" id="exception" readonly [(ngModel)]="log.exception"></textarea>
   </div>
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
-</div>
+<abp-modal-footer-view
+(onCancelClick)="bsModalRef.hide()"
+></abp-modal-footer-view>

@@ -126,8 +126,7 @@
             </ng-template>
         </div>
     </div>
-        
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
-  </div>
+  <abp-modal-footer-view
+  (onCancelClick)="bsModalRef.hide()"
+></abp-modal-footer-view>
