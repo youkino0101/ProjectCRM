@@ -1,0 +1,10 @@
+<div class="modal-footer justify-content-end">
+  <button
+    type="button"
+    class="btn btn-default"
+    [disabled]="cancelDisabled"
+    (click)="onCancelClick.emit()"
+  >
+    {{ cancelLabel }}
+  </button>
+</div>
