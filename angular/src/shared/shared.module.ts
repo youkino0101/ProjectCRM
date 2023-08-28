@@ -18,6 +18,9 @@ import { LayoutStoreService } from './layout/layout-store.service';
 import { BusyDirective } from './directives/busy.directive';
 import { EqualValidator } from './directives/equal-validator.directive';
 
+// custom
+import { AbpModalFooterViewComponent } from './components/modal/abp-modal-footer-view.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -29,6 +32,7 @@ import { EqualValidator } from './directives/equal-validator.directive';
         AbpValidationSummaryComponent,
         AbpModalHeaderComponent,
         AbpModalFooterComponent,
+        AbpModalFooterViewComponent,
         LocalizePipe,
         BusyDirective,
         EqualValidator
@@ -38,6 +42,7 @@ import { EqualValidator } from './directives/equal-validator.directive';
         AbpValidationSummaryComponent,
         AbpModalHeaderComponent,
         AbpModalFooterComponent,
+        AbpModalFooterViewComponent,
         LocalizePipe,
         BusyDirective,
         EqualValidator
