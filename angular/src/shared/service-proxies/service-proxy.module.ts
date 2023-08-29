@@ -27,7 +27,7 @@ import * as ExtensionApiServiceProxies from './service-proxies';
         UserApiServiceProxies.UserServiceProxy,
         AuditLogApiServiceProxies.AuditLogServiceProxy,
         ProductApiServiceProxies.ProductServiceProxy,
-        ExtensionApiServiceProxies.GenerateNumberServiceProxy,
+        ExtensionApiServiceProxies.ExtensionServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

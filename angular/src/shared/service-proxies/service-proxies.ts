@@ -17,7 +17,7 @@ import * as GeneralApi from '@shared/dto/common/general-api'
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
-export class GenerateNumberServiceProxy {
+export class ExtensionServiceProxy {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
