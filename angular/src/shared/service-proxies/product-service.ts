@@ -24,14 +24,24 @@ export class ProductServiceProxy {
      * @param keyword (optional) 
      * @param skipCount (optional) 
      * @param maxResultCount (optional) 
+     * @param status (optional) 
+     * @param category (optional)
      * @return Success
      */
-    getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<ProductDtoPagedResultDto> {
+    getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined, status: string | undefined, category: string | undefined): Observable<ProductDtoPagedResultDto> {
         let url_ = this.baseUrl + "/api/services/app/Product/GetAll?";
         if (keyword === null)
             throw new Error("The parameter 'keyword' cannot be null.");
         else if (keyword !== undefined)
             url_ += "Keyword=" + encodeURIComponent("" + keyword) + "&";
+        if (status === null)
+            throw new Error("The parameter 'status' cannot be null.");
+        else if (status !== undefined)
+            url_ += "Status=" + encodeURIComponent("" + status) + "&";
+        if (category === null)
+            throw new Error("The parameter 'category' cannot be null.");
+        else if (category !== undefined)
+            url_ += "Category=" + encodeURIComponent("" + category) + "&";
         if (skipCount === null)
             throw new Error("The parameter 'skipCount' cannot be null.");
         else if (skipCount !== undefined)

@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -12,25 +12,49 @@ import { ProductServiceProxy } from '@shared/service-proxies/product-service';
 import { CreateProductDialogComponent } from './create-product/create-product-dialog.component';
 import { ViewProductDialogComponent } from './view-product/view-product-dialog.component';
 import { EditProductDialogComponent } from './edit-product/edit-product-dialog.component';
+import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 class PagedProductsRequestDto extends PagedRequestDto {
   keyword: string;
+  status: string;
+  category: string;
 }
 
 @Component({
   templateUrl: './products.component.html',
   animations: [appModuleAnimation()]
 })
-export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
+export class ProductsComponent extends PagedListingComponentBase<ProductDto>{
   products: ProductDto[] = [];
   keyword = '';
+  selectListStatus: any[] = [];
+  selectListCategory: any[] = [];
+  selectedValueCate: string = '';
+  selectedValueStatus: string = '';
+  disabledCreate: boolean = false;
+  disabledEdit: boolean = false;
+  disabledView: boolean = false;
 
   constructor(
     injector: Injector,
     private _productsService: ProductServiceProxy,
+    private _extensionService: ExtensionServiceProxy,
     private _modalService: BsModalService
   ) {
     super(injector);
+    this._extensionService.getItemEnumStatus().subscribe(
+      (success) => {
+        this.selectListStatus = success;
+      }
+    );
+    this._extensionService.getItemEnumCategory().subscribe(
+      (success) => {
+        this.selectListCategory = success;
+      }
+    );
+    this.disabledCreate = this.permission.isGranted("Pages.Product.Create");
+    this.disabledEdit = this.permission.isGranted("Pages.Product.Edit");
+    this.disabledView = this.permission.isGranted("Pages.Product.View");
   }
 
   list(
@@ -39,9 +63,10 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
     finishedCallback: Function
   ): void {
     request.keyword = this.keyword;
-
+    request.category = this.selectedValueCate;
+    request.status = this.selectedValueStatus;
     this._productsService
-      .getAll(request.keyword, request.skipCount, request.maxResultCount)
+      .getAll(request.keyword, request.skipCount, request.maxResultCount, request.status, request.category)
       .pipe(
         finalize(() => {
           finishedCallback();
@@ -74,6 +99,8 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
           class: 'modal-xl',
           initialState: {
             id: product.id,
+            selectListStatus: this.selectListStatus,
+            selectListCategory: this.selectListCategory,
           },
         }
       );
@@ -87,6 +114,10 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
         CreateProductDialogComponent,
         {
           class: 'modal-xl',
+          initialState: {
+            selectListStatus: this.selectListStatus,
+            selectListCategory: this.selectListCategory,
+          },
         }
       );
     } else {
@@ -96,6 +127,8 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
           class: 'modal-xl',
           initialState: {
             id: id,
+            selectListStatus: this.selectListStatus,
+            selectListCategory: this.selectListCategory,
           },
         }
       );
@@ -105,4 +138,5 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto> {
       this.refresh();
     });
   }
+
 }

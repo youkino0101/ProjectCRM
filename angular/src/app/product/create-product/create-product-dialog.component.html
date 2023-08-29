@@ -33,7 +33,7 @@
               </label>
               <div class="col-md">
                 <select [(ngModel)]="selectedValueCate" class="form-control"  name="selectedValueCate form-control" (change)="onSelectionChange()">
-                  <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text }}</option>
+                  <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text | localize }}</option>
                 </select>
               </div>
             </div>
@@ -109,8 +109,8 @@
                 {{ "Product.Status" | localize }}
               </label>
               <div class="col-md">
-                <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control" (change)="onSelectionChange1()">
-                  <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text }}</option>
+                <select [(ngModel)]="selectedValueStatus" name="selectedValueStatusCreate" class="form-control" (change)="onSelectionChange1()">
+                  <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text | localize }}</option>
                 </select>
               </div>
             </div>

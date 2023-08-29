@@ -54,6 +54,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('Staffs'),
                 '/app/staffs',
                 'fas fa-building',
+                'Pages.Users'
             ),
             new MenuItem(
                 this.l('Users'),
@@ -65,11 +66,13 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 this.l('AuditLogs'),
                 '/app/audit-logs',
                 'fas fa-info',
+                'Pages.AuditLogs'
             ),
             new MenuItem(
                 this.l('Products'),
                 '/app/products',
                 'fas fa-barcode',
+                'Pages.Products'
             ),
             // new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
             //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [

@@ -7,6 +7,7 @@ namespace demo.Products.Dto
     {
         public string? Keyword { get; set; }
         public Status? Status { get; set; }
+        public Category? Category { get; set; }
     }
 }
 

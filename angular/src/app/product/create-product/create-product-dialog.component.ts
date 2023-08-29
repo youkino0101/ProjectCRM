@@ -4,6 +4,7 @@ import {
   OnInit,
   EventEmitter,
   Output,
+  Input
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
@@ -11,7 +12,7 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 //dto
 import { ProductCreateDto } from '@shared/dto/product/product-create';
 import { ProductServiceProxy } from '@shared/service-proxies/product-service';
-import { GenerateNumberServiceProxy } from '@shared/service-proxies/service-proxies';
+import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
   templateUrl: 'create-product-dialog.component.html',
@@ -24,25 +25,24 @@ export class CreateProductDialogComponent extends AppComponentBase
   product = new ProductCreateDto();
   selectedImage: any;
   defaultImage = 'assets/img/default.jpg';
-  selectListStatus: any[] = [];
-  selectListCategory: any[] = [];
-  selectedValueCate: string;
+  @Input() selectListStatus: any;
+  @Input() selectListCategory: any;
+  selectedValueCate: string = 'SmartPhone';
   selectedValueStatus: string = 'Active';
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
     injector: Injector,
     private _productService: ProductServiceProxy,
-    private _extensionService: GenerateNumberServiceProxy,
+    private _extensionService: ExtensionServiceProxy,
     public bsModalRef: BsModalRef
   ) {
     super(injector);
+    console.log(this.selectListStatus);
   }
 
   ngOnInit(): void {
     this.getGenerateNumber()
-    this.getEnumStatus();
-    this.getEnumCategory();
   }
 
   save(): void {
@@ -101,22 +101,6 @@ export class CreateProductDialogComponent extends AppComponentBase
       (error) => {
         abp.message.error(error, 'Error')
 
-      }
-    );
-  }
-  
-  private getEnumStatus() {
-    this._extensionService.getItemEnumStatus().subscribe(
-      (success) => {
-        this.selectListStatus = success;
-      }
-    );
-  }
-
-  private getEnumCategory() {
-    this._extensionService.getItemEnumCategory().subscribe(
-      (success) => {
-        this.selectListCategory = success;
       }
     );
   }

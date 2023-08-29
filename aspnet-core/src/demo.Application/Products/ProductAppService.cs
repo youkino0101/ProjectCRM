@@ -16,10 +16,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
+using demo.Authorization;
 
 namespace demo.Products
 {
-    [AbpAuthorize]
+    [AbpAuthorize(PermissionNames.Pages_Products)]
     public class ProductAppService : AsyncCrudAppService<Product, ProductDto, long, PagedProductResultRequestDto, CreateProductDto, EditProductDto>, IProductAppService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -27,7 +28,13 @@ namespace demo.Products
         {
             _webHostEnvironment = webHostEnvironment;
         }
+        [AbpAuthorize(PermissionNames.Pages_Product_View)]
+        public override Task<ProductDto> GetAsync(EntityDto<long> input)
+        {
+            return base.GetAsync(input);
+        }
 
+        [AbpAuthorize(PermissionNames.Pages_Product_Create)]
         public async override Task<ProductDto> CreateAsync([FromForm]CreateProductDto input)
         {
             try
@@ -54,7 +61,7 @@ namespace demo.Products
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
         }
-
+        [AbpAuthorize(PermissionNames.Pages_Product_Edit)]
         public async override Task<ProductDto> UpdateAsync([FromForm]EditProductDto input)
         {
             try
@@ -91,7 +98,12 @@ namespace demo.Products
             return Repository.GetAll().WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.ProductCode.Contains(input.Keyword)
                 || x.ProductName.Contains(input.Keyword)
                 || x.Trademark.Contains(input.Keyword))
-                .WhereIf(input.Status.HasValue, x => x.Status == input.Status).OrderByDescending(s => s.CreationTime);
+                .WhereIf(input.Status.HasValue, x => x.Status == input.Status)
+                .WhereIf(input.Category.HasValue, x => x.Category == input.Category);
+        }
+        protected override IQueryable<Product> ApplySorting(IQueryable<Product> query, PagedProductResultRequestDto input)
+        {
+            return query.OrderByDescending(s => s.Id);
         }
     }
 }

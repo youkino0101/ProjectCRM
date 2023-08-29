@@ -4,6 +4,7 @@ import {
   OnInit,
   EventEmitter,
   Output,
+  Input
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
@@ -11,7 +12,7 @@ import { AppComponentBase } from '@shared/app-component-base';
 import { ProductEditDto } from '@shared/dto/product/product-edit';
 import { ProductDto } from '@shared/dto/product/product';
 import { ProductServiceProxy } from '@shared/service-proxies/product-service';
-import { GenerateNumberServiceProxy } from '@shared/service-proxies/service-proxies';
+import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
   templateUrl: 'edit-product-dialog.component.html'
@@ -24,8 +25,8 @@ export class EditProductDialogComponent extends AppComponentBase
   product = new ProductDto();
   selectedValueCate: string;
   selectedValueStatus: string;
-  selectListStatus: any[] = [];
-  selectListCategory: any[] = [];
+  @Input() selectListStatus: any;
+  @Input() selectListCategory: any;
   selectedImage: any;
   defaultImage = 'assets/img/default.jpg';
   @Output() onSave = new EventEmitter<any>();
@@ -33,7 +34,6 @@ export class EditProductDialogComponent extends AppComponentBase
   constructor(
     injector: Injector,
     private _productService: ProductServiceProxy,
-    private _extensionService: GenerateNumberServiceProxy,
     public bsModalRef: BsModalRef
   ) {
     super(injector);
@@ -48,8 +48,6 @@ export class EditProductDialogComponent extends AppComponentBase
         this.selectedValueStatus = result.statusName;
         this.selectedImage = result.pathImage;
       });
-    this.getEnumStatus();
-    this.getEnumCategory();
   }
 
   formatWithCommas(value) {
@@ -119,19 +117,4 @@ export class EditProductDialogComponent extends AppComponentBase
     );
   }
 
-  private getEnumStatus() {
-    this._extensionService.getItemEnumStatus().subscribe(
-      (success) => {
-        this.selectListStatus = success;
-      }
-    );
-  }
-
-  private getEnumCategory() {
-    this._extensionService.getItemEnumCategory().subscribe(
-      (success) => {
-        this.selectListCategory = success;
-      }
-    );
-  }
 }

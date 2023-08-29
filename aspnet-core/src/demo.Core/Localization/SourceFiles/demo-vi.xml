@@ -117,6 +117,17 @@
 	  <text name="ResetPasswordStepOneInfo">1. Nhập mật khẩu quản trị viên của bạn</text>
 	  <text name="ResetPasswordStepTwoInfo">2. Sao chép mật khẩu ngẫu nhiên này để bạn có thể gửi cho người dùng</text>
 	  <text name="View">Xem</text>
+	  
+	  <!-- Enum Status-->
+	  <text name="Active">Hoạt động</text>
+	  <text name="Processing">Đang xử lý</text>
+	  <text name="Lock">Khóa</text>
+	  <text name="Canceled">Đã hủy</text>
+	  <text name="Orther">Khác</text>
+	  <!-- Enum Category -->
+	  <text name="SmartPhone">Điện thoại thông minh</text>
+	  <text name="Ipad">Máy tính bảng</text>
+	  <text name="Phone">Điện thoại</text>
 
 	  <!-- Logs -->
 	  <text name="AuditLogs">Nhật ký log</text>
@@ -150,10 +161,5 @@
 	  <text name="Product.Trademark">Xuất xứ</text>
 	  <text name="Product.Status">Trạng thái</text>
 
-	  <!-- Category -->
-	  <text name="SmartPhone">Điện thoại thông minh</text>
-	  <text name="Ipad">Máy tính bảng</text>
-	  <text name="Phone">Điện thoại</text>
-	  <text name="Orther">Khác</text>
   </texts>
 </localizationDictionary>

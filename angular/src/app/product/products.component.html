@@ -7,6 +7,7 @@
         </div>
         <div class="col-6 text-right">
           <a href="javascript:;"
+            *ngIf="disabledCreate"
             class="btn bg-blue"
             (click)="createProduct()">
             <i class="fa fa-plus-square"></i>
@@ -21,8 +22,32 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col-md-9">&emsp;</div>
+            <div class="col-md-9 row">
+              <div class="col-md-2 mb-1">
+                <div class="form-group">
+                  <label class="col-md col-form-label control-label">{{ "Product.Category" | localize}}</label>
+                  <div class="col-md">
+                    <select [(ngModel)]="selectedValueCate" class="form-control btn-filter-search statesSelect2"  name="selectedValueCate" (click)="getDataPage(1)">
+                      <option value="">{{ "All" | localize }}</option>
+                      <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text | localize}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 mb-1">
+                <div class="form-group">
+                    <label class="col-md col-form-label control-label">{{ "Product.Status" | localize}}</label>
+                    <div class="col-md">
+                        <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control btn-filter-search statesSelect2" (click)="getDataPage(1)">
+                          <option value="">{{ "All" | localize }}</option>
+                          <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text | localize}}</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+            </div>
             <div class="col-md-3">
+              <label class="col-md col-form-label control-label"></label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <button type="button"
@@ -84,12 +109,14 @@
                   <td>{{ product.statusName | localize }}</td>
                   <td>
                     <button type="button"
+                      *ngIf="disabledView"
                       class="btn btn-sm bg-info"
                       (click)="viewProduct(product)">
                       <i class="fas fa-eye"></i>
                       {{ "View" | localize }}
                     </button>
                     <button type="button"
+                      *ngIf="disabledEdit"
                       class="btn btn-sm bg-secondary mx-2"
                       (click)="editProduct(product)">
                       <i class="fas fa-pencil-alt"></i>

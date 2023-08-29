@@ -118,6 +118,17 @@
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="UsersActivation">Users activation</text>
 	<text name="View">View</text>
+
+	  <!-- Enum Status-->
+	  <text name="Active">Active</text>
+	  <text name="Processing">Processing</text>
+	  <text name="Lock">Lock</text>
+	  <text name="Canceled">Canceled</text>
+	  <text name="Orther">Orther</text>
+	  <!-- Enum Category -->
+	  <text name="SmartPhone">SmartPhone</text>
+	  <text name="Ipad">Ipad</text>
+	  <text name="Phone">Phone</text>
 	  
 	  <!-- Logs -->
 	  <text name="AuditLogs.ServiceName">Service Name</text>
@@ -146,10 +157,5 @@
 	  <text name="Product.Trademark">Trademark</text>
 	  <text name="Product.Status">Status</text>
 	  
-	  <!-- Category -->
-	  <text name="SmartPhone">Smart Phone</text>
-	  <text name="Ipad">Ipad</text>
-	  <text name="Phone">Phone</text>
-	  <text name="Orther">Orther</text>
   </texts>
 </localizationDictionary>

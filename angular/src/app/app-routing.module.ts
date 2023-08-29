@@ -19,11 +19,11 @@ import { ProductsComponent } from './product/products.component';
                 children: [
                     { path: 'home', component: HomeComponent,  canActivate: [AppRouteGuard] },
                     { path: 'users', component: UsersComponent, data: { permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
-                    { path: 'staffs', component: StaffsComponent, canActivate: [AppRouteGuard] },
+                    { path: 'staffs', component: StaffsComponent, canActivate: [AppRouteGuard], data: { permission: 'Pages.Users' }, },
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
-                    { path: 'audit-logs', component: AuditLogsComponent, canActivate: [AppRouteGuard] },
-                    { path: 'products', component: ProductsComponent, canActivate: [AppRouteGuard] }
+                    { path: 'audit-logs', component: AuditLogsComponent, canActivate: [AppRouteGuard], data: { permission: 'Pages.AuditLogs' } },
+                    { path: 'products', component: ProductsComponent,  data: {permission: 'Pages.Products'}, canActivate: [AppRouteGuard] },
                 ]
             }
         ])
