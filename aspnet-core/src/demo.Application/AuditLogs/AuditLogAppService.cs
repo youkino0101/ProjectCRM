@@ -18,9 +18,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Abp.Auditing;
 using demo.AuditLogs.Dto;
+using demo.Authorization;
 
 namespace demo.AuditLogs
 {
+    [AbpAuthorize(PermissionNames.Pages_AuditLogs)]
     public class AuditLogAppService : AsyncCrudAppService<AuditLog, AuditLogDto, long, PagedAuditLogResultRequestDto, AuditLogDto, AuditLogDto>, IAuditLogAppService
     {
         public AuditLogAppService(IRepository<AuditLog, long> repository) : base(repository)
