@@ -24,12 +24,10 @@ namespace demo.Staffs
     [AbpAuthorize(PermissionNames.Pages_Staffs)]
     public class StaffAppService : AsyncCrudAppService<Staff, StaffDto, long, PagedStaffResultRequestDto, CreateStaffDto, EditStaffDto>, IStaffAppService
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IUserAppService _userAppService;
 
-        public StaffAppService(IRepository<Staff, long> repository, IWebHostEnvironment webHostEnvironment, IUserAppService userAppService) : base(repository)
+        public StaffAppService(IRepository<Staff, long> repository, IUserAppService userAppService) : base(repository)
         {
-            _webHostEnvironment = webHostEnvironment;
             _userAppService = userAppService;
         }
 
