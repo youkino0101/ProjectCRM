@@ -23,6 +23,11 @@ namespace demo.Authorization
             context.CreatePermission(PermissionNames.Pages_Product_Create, L("Product.Create"));
             context.CreatePermission(PermissionNames.Pages_Product_View, L("Product.View"));
             context.CreatePermission(PermissionNames.Pages_Product_Edit, L("Product.Edit"));
+
+            context.CreatePermission(PermissionNames.Pages_Suppliers, L("Suppliers"));
+            context.CreatePermission(PermissionNames.Pages_Supplier_Create, L("Supplier.Create"));
+            context.CreatePermission(PermissionNames.Pages_Supplier_View, L("Supplier.View"));
+            context.CreatePermission(PermissionNames.Pages_Supplier_Edit, L("Supplier.Edit"));
         }
 
         private static ILocalizableString L(string name)

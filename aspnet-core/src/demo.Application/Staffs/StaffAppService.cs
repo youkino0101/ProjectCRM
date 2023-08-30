@@ -1,10 +1,12 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using Abp.UI;
+using demo.Authorization;
 using demo.Common;
 using demo.Entity;
 using demo.Staffs.Dto;
@@ -19,6 +21,7 @@ using System.Transactions;
 
 namespace demo.Staffs
 {
+    [AbpAuthorize(PermissionNames.Pages_Staffs)]
     public class StaffAppService : AsyncCrudAppService<Staff, StaffDto, long, PagedStaffResultRequestDto, CreateStaffDto, EditStaffDto>, IStaffAppService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -97,11 +100,7 @@ namespace demo.Staffs
                 || x.Email.Contains(input.Keyword)
                 || x.PhoneNumber.Contains(input.Keyword)
                 || x.Address.Contains(input.Keyword))
-                .WhereIf(input.StaffStatus.HasValue, x => x.StaffStatus == input.StaffStatus).OrderByDescending(s => s.CreationTime);
-        }
-        public override Task<PagedResultDto<StaffDto>> GetAllAsync(PagedStaffResultRequestDto input)
-        {
-            return base.GetAllAsync(input);
+                .WhereIf(input.StaffStatus.HasValue, x => x.StaffStatus == input.StaffStatus);
         }
     }
    

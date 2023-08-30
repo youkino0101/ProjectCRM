@@ -19,5 +19,10 @@
         public const string Pages_Product_Create = "Pages.Product.Create";
         public const string Pages_Product_View = "Pages.Product.View";
         public const string Pages_Product_Edit = "Pages.Product.Edit";
+
+        public const string Pages_Suppliers = "Pages.Suppliers";
+        public const string Pages_Supplier_Create = "Pages.Supplier.Create";
+        public const string Pages_Supplier_View = "Pages.Supplier.View";
+        public const string Pages_Supplier_Edit = "Pages.Supplier.Edit";
     }
 }
