@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from './users/change-password/change-password
 import { StaffsComponent } from './staffs/staffs.component';
 import { AuditLogsComponent } from './auditlog/auditlogs.component';
 import { ProductsComponent } from './product/products.component';
+import { SupplierComponent } from './suppliers/suppliers.component';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { ProductsComponent } from './product/products.component';
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
                     { path: 'audit-logs', component: AuditLogsComponent, canActivate: [AppRouteGuard], data: { permission: 'Pages.AuditLogs' } },
                     { path: 'products', component: ProductsComponent,  data: {permission: 'Pages.Products'}, canActivate: [AppRouteGuard] },
+                    { path: 'suppliers', component: SupplierComponent, canActivate: [AppRouteGuard] },
                 ]
             }
         ])

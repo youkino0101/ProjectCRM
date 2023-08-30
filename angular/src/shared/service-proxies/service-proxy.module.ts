@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AbpHttpInterceptor } from 'abp-ng2-module';
 
+import * as ExtensionApiServiceProxies from './service-proxies';
+
 import * as AccountApiServiceProxies from './account-service';
 import * as ConfigurationApiServiceProxies from './configuration-service';
 import * as StaffApiServiceProxies from './staff-service';
@@ -12,7 +14,7 @@ import * as TokenAuthApiServiceProxies from './tokenAuth-service';
 import * as UserApiServiceProxies from './user-service';
 import * as AuditLogApiServiceProxies from './audit-log-service';
 import * as ProductApiServiceProxies from './product-service';
-import * as ExtensionApiServiceProxies from './service-proxies';
+import * as SupplierApiServiceProxies from './supplier-service';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import * as ExtensionApiServiceProxies from './service-proxies';
         AuditLogApiServiceProxies.AuditLogServiceProxy,
         ProductApiServiceProxies.ProductServiceProxy,
         ExtensionApiServiceProxies.ExtensionServiceProxy,
+        SupplierApiServiceProxies.SupplierServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

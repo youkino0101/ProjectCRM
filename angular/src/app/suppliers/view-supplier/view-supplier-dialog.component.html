@@ -1,0 +1,111 @@
+<abp-modal-header
+      [title]="'Supplier.View' | localize"
+      (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="row">
+          <div class="form-group row required">
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="supplierCode">
+                {{ "Supplier.SupplierCode" | localize }}
+              </label>
+              <div class="col-md">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="supplierCode"
+                  id="supplierCode"
+                  [(ngModel)]="supplier.supplierCode"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="email">
+                {{ "Supplier.Email" | localize }}
+              </label>
+              <div class="col-md">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="emailAddress"
+                  id="emailAddress"
+                  required
+                  maxlength="256"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
+                  [(ngModel)]="supplier.email"
+                  #emailAddressModel="ngModel"
+                  #emailAddressEl
+                />
+                <abp-validation-summary
+                  [control]="emailAddressModel"
+                  [controlEl]="emailAddressEl"
+                ></abp-validation-summary>
+              </div>
+            </div>
+            
+          </div>
+          <div class="form-group row required">
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="supplierName">
+                {{ "Supplier.SupplierName" | localize }}
+              </label>
+              <div class="col-md">
+                <input 
+                  type="text"
+                  class="form-control"
+                  name="supplierName" 
+                  id="supplierName"  
+                  [(ngModel)]="supplier.supplierName"
+                  required
+                  readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="phoneNumber">
+                {{ "Supplier.phoneNumber" | localize }}
+              </label>
+              <div class="col-md">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  required
+                  maxlength="10"
+                  pattern="^[0-9\-\+]{9,15}$"
+                  [(ngModel)]="supplier.phoneNumber"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <div class="col-md-6">
+              &emsp;
+            </div>
+            <div class="col-md-6">
+              <label class="col-md-7 col-form-label" for="status">
+                {{ "Supplier.Status" | localize }}
+              </label>
+              <div class="col-md">
+                <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control" readonly>
+                  <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text | localize }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row required">
+            <div class="col-md">
+              <label class="col-form-label" for="address">
+                {{ "Product.Address" | localize }}
+              </label>
+              <textarea class="form-control" rows="3" name="address" id="address"
+                [(ngModel)]="supplier.address" readonly></textarea>
+            </div>
+          </div>
+        </div>
+  </div>
+  <abp-modal-footer-view
+  (onCancelClick)="bsModalRef.hide()"
+></abp-modal-footer-view>
