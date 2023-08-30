@@ -156,6 +156,17 @@
 	  <text name="Product.Category">Category</text>
 	  <text name="Product.Trademark">Trademark</text>
 	  <text name="Product.Status">Status</text>
-	  
+
+	  <!-- Staffs -->
+	  <text name="Staffs">Staff</text>
+	  <text name="Staff.Create">Add staff</text>
+	  <text name="Staff.Edit">Edit staff</text>
+	  <text name="Staff.View">View staff</text>
+
+	  <!-- Supplier -->
+	  <text name="Suppliers">Supplier</text>
+	  <text name="Supplier.Create">Add supplier</text>
+	  <text name="Supplier.Edit">Edit supplier</text>
+	  <text name="Supplier.View">View supplier</text>
   </texts>
 </localizationDictionary>

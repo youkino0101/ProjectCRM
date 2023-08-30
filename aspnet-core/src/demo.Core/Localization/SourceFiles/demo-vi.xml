@@ -161,5 +161,24 @@
 	  <text name="Product.Trademark">Xuất xứ</text>
 	  <text name="Product.Status">Trạng thái</text>
 
+	  <!-- Staffs -->
+	  <text name="Staffs">Nhân viên</text>
+	  <text name="Staff.Create">Thêm nhân viên</text>
+	  <text name="Staff.Edit">Sửa nhân viên</text>
+	  <text name="Staff.View">Xem nhân viên</text>
+
+	  <!-- Supplier -->
+	  <text name="Suppliers">Nhà cung cấp</text>
+	  <text name="Supplier.Create">Thêm mới nhà cung cấp</text>
+	  <text name="Supplier.Edit">Sửa thông tin nhà cung cấp</text>
+	  <text name="Supplier.View">Xem chi tiết</text>
+	  <text name="Supplier.StaffCode">Mã NCC</text>
+	  <text name="Supplier.Address">Địa chỉ</text>
+	  <text name="Supplier.PhoneNumber">Số điện thoại</text>
+	  <text name="Supplier.Email">Email</text>
+	  <text name="Supplier.Status">Trạng thái</text>
+	  <text name="Supplier.CreationTime">Ngày tạo</text>
+	  
+	  
   </texts>
 </localizationDictionary>
