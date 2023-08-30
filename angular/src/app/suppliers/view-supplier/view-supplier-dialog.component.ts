@@ -2,8 +2,6 @@ import {
   Component,
   Injector,
   OnInit,
-  EventEmitter,
-  Output,
   Input
 } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,7 +10,6 @@ import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-
 import { AppComponentBase } from '@shared/app-component-base';
 import { SupplierDto } from '@shared/dto/supplier/supplier';
 import { SupplierServiceProxy } from '@shared/service-proxies/supplier-service';
-import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 @Component({
   templateUrl: 'view-supplier-dialog.component.html',

@@ -11,6 +11,7 @@ import { SupplierDtoPagedResultDto } from '@shared/dto/supplier/supplier-page';
 import { SupplierServiceProxy } from '@shared/service-proxies/supplier-service';
 import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ViewSupplierDialogComponent } from './view-supplier/view-supplier-dialog.component';
+import { CreateSupplierDialogComponent } from './create-supplier/create-supplier-dialog.component';
 
 
 class PagedSuppliersRequestDto extends PagedRequestDto {
@@ -98,30 +99,29 @@ export class SupplierComponent extends PagedListingComponentBase<SupplierDto>{
 
   private showCreateOrEditSupplierDialog(id?: number): void {
     let createOrEditSupplierDialog: BsModalRef;
-    // if (!id) {
-    //   createOrEditSupplierDialog = this._modalService.show(
-    //     CreateSupplierDialogComponent,
-    //     {
-    //       class: 'modal-xl',
-    //       initialState: {
-    //         selectListStatus: this.selectListStatus,
-    //         selectListCategory: this.selectListCategory,
-    //       },
-    //     }
-    //   );
-    // } else {
-    //   createOrEditSupplierDialog = this._modalService.show(
-    //     EditSupplierDialogComponent,
-    //     {
-    //       class: 'modal-xl',
-    //       initialState: {
-    //         id: id,
-    //         selectListStatus: this.selectListStatus,
-    //         selectListCategory: this.selectListCategory,
-    //       },
-    //     }
-    //   );
-    // }
+    if (!id) {
+      createOrEditSupplierDialog = this._modalService.show(
+        CreateSupplierDialogComponent,
+        {
+          class: 'modal-xl',
+          initialState: {
+            selectListStatus: this.selectListStatus,
+          },
+        }
+      );
+    } else {
+      // createOrEditSupplierDialog = this._modalService.show(
+      //   EditSupplierDialogComponent,
+      //   {
+      //     class: 'modal-xl',
+      //     initialState: {
+      //       id: id,
+      //       selectListStatus: this.selectListStatus,
+      //       selectListCategory: this.selectListCategory,
+      //     },
+      //   }
+      // );
+    }
 
     createOrEditSupplierDialog.content.onSave.subscribe(() => {
       this.refresh();

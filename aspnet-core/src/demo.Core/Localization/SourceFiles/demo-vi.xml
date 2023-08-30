@@ -171,8 +171,9 @@
 	  <text name="Suppliers">Nhà cung cấp</text>
 	  <text name="Supplier.Create">Thêm mới nhà cung cấp</text>
 	  <text name="Supplier.Edit">Sửa thông tin nhà cung cấp</text>
-	  <text name="Supplier.View">Xem chi tiết</text>
-	  <text name="Supplier.StaffCode">Mã NCC</text>
+	  <text name="Supplier.View">Xem chi tiết nhà cung cấp</text>
+	  <text name="Supplier.SupplierCode">Mã NCC</text>
+	  <text name="Supplier.SupplierName">Tên NCC</text>
 	  <text name="Supplier.Address">Địa chỉ</text>
 	  <text name="Supplier.PhoneNumber">Số điện thoại</text>
 	  <text name="Supplier.Email">Email</text>

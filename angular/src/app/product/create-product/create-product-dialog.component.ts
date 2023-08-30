@@ -38,7 +38,6 @@ export class CreateProductDialogComponent extends AppComponentBase
     public bsModalRef: BsModalRef
   ) {
     super(injector);
-    console.log(this.selectListStatus);
   }
 
   ngOnInit(): void {
