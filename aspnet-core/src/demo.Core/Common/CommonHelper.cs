@@ -8,6 +8,6 @@ namespace demo.Common
 {
     public static class CommonHelper
     {
-        public static string PasswordDefault = "Abcd@1234";
+        public static string PasswordDefault = "CMS@1234";
     }
 }

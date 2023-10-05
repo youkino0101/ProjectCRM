@@ -12,7 +12,7 @@ import { SupplierServiceProxy } from '@shared/service-proxies/supplier-service';
 import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ViewSupplierDialogComponent } from './view-supplier/view-supplier-dialog.component';
 import { CreateSupplierDialogComponent } from './create-supplier/create-supplier-dialog.component';
-
+import { EditSupplierDialogComponent } from './edit-supplier/edit-supplier-dialog.component'
 
 class PagedSuppliersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -110,17 +110,16 @@ export class SupplierComponent extends PagedListingComponentBase<SupplierDto>{
         }
       );
     } else {
-      // createOrEditSupplierDialog = this._modalService.show(
-      //   EditSupplierDialogComponent,
-      //   {
-      //     class: 'modal-xl',
-      //     initialState: {
-      //       id: id,
-      //       selectListStatus: this.selectListStatus,
-      //       selectListCategory: this.selectListCategory,
-      //     },
-      //   }
-      // );
+      createOrEditSupplierDialog = this._modalService.show(
+        EditSupplierDialogComponent,
+        {
+          class: 'modal-xl',
+          initialState: {
+            id: id,
+            selectListStatus: this.selectListStatus,
+          },
+        }
+      );
     }
 
     createOrEditSupplierDialog.content.onSave.subscribe(() => {

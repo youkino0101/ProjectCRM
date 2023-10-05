@@ -41,11 +41,14 @@ namespace demo.Staffs
                     {
                         UserName = input.StaffCode,
                         Name = input.StaffName,
-                        Surname = input.StaffCode,
+                        Surname = "",
                         EmailAddress = input.Email,
                         IsActive = true ,
                         Password = CommonHelper.PasswordDefault,
-                        RoleNames = new string[] { }
+                        RoleNames = new string[] 
+                        {
+                            "NHÂN VIÊN"
+                        }
                     });
 
                 input.UserId = user.Id;

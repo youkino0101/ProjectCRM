@@ -49,6 +49,7 @@ import { EditProductDialogComponent } from './product/edit-product/edit-product-
 import { SupplierComponent } from '@app/suppliers/suppliers.component';
 import { CreateSupplierDialogComponent } from './suppliers/create-supplier/create-supplier-dialog.component';
 import { ViewSupplierDialogComponent } from './suppliers/view-supplier/view-supplier-dialog.component';
+import { EditSupplierDialogComponent } from './suppliers/edit-supplier/edit-supplier-dialog.component';
 
 @NgModule({
     declarations: [
@@ -79,6 +80,7 @@ import { ViewSupplierDialogComponent } from './suppliers/view-supplier/view-supp
         SupplierComponent,
         CreateSupplierDialogComponent,
         ViewSupplierDialogComponent,
+        EditSupplierDialogComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

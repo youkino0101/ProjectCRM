@@ -59,9 +59,9 @@ export class CreateProductDialogComponent extends AppComponentBase
     this.product.price = this.product.price.replace(/,/g, '');
     formData.append('price', this.product.price);
     formData.append('description', this.product.description);
-    formData.append('category', this.product.category);
+    formData.append('category', this.product.category == undefined ? this.selectedValueCate : this.product.category);
     formData.append('trademark', this.product.trademark);
-    formData.append('status', this.product.status == undefined  ? this.selectedValueStatus : this.product.status );
+    formData.append('status', this.product.status == undefined ? this.selectedValueStatus : this.product.status );
 
     this._productService
       .create(formData)

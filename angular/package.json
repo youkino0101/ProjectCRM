@@ -36,6 +36,7 @@
     "push.js": "1.0.12",
     "rxjs": "^7.6.0",
     "sweetalert2": "^11.6.15",
+    "tempusdominus-bootstrap-4": "^5.39.2",
     "ts-helpers": "^1.1.2",
     "tslib": "^2.4.1",
     "zone.js": "~0.12.0"

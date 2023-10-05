@@ -1,31 +1,116 @@
-<form #staffForm="ngForm" (ngSubmit)="submitForm(staffForm)">
-  <div>
-    <label for="name">staffCode:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="staff.staffCode" required>
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createStaffModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'Staff.Create' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="staffCode">
+          {{ "Staff.StaffCode" | localize }}
+        </label>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control"
+            name="staffCode"
+            id="staffCode"
+            [(ngModel)]="staff.staffCode"
+            readonly
+          />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="email">
+          {{ "Staff.Email" | localize }}
+        </label>
+        <div class="col-md">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            [(ngModel)]="staff.email"
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
+            #emailAddressModel="ngModel"
+            #emailAddressEl
+            required
+          />
+          <abp-validation-summary
+          [control]="emailAddressModel"
+          [controlEl]="emailAddressEl"
+        ></abp-validation-summary>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <div class="col-md">
+        <label class="col-md-7 col-form-label" for="staffName">
+          {{ "Staff.StaffName" | localize }}
+        </label>
+        <div class="col-md">
+          <input 
+            type="text"
+            class="form-control"
+            name="staffName" 
+            id="staffName"  
+            [(ngModel)]="staff.staffName"
+            required
+            >
+        </div>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="phoneNumber">
+          {{ "Staff.PhoneNumber" | localize }}
+        </label>
+        <div class="col-md">
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="phoneNumber"
+            required
+            maxlength="10"
+            pattern="^[0-9\-\+]{9,15}$"
+            [(ngModel)]="staff.phoneNumber"
+          />
+        </div>
+      </div>
+       <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="birthDate">
+          {{ "Staff.BirthDate" | localize }}
+        </label>
+        <div class="col-md">
+          <input
+            type="date"
+            class="form-control"
+            name="birthDate"
+            id="birthDate"
+            [(ngModel)]="staff.birthDate"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group row m-1">
+      <div class="col-md">
+        <label class="col-form-label" for="address">
+          {{ "Staff.Address" | localize }}
+        </label>
+        <textarea class="form-control" rows="3" name="address" id="address" required
+          [(ngModel)]="staff.address"></textarea>
+      </div>
+    </div>  
   </div>
-  <div>
-    <label for="price">staffName:</label>
-    <input type="text" id="price" name="price" [(ngModel)]="staff.staffName" required>
-  </div>
-  <div>
-    <label for="description">phoneNumber:</label>
-    <input type="text" id="description" name="description" [(ngModel)]="staff.phoneNumber" required>
-  </div>
-  <div>
-    <label for="description">email:</label>
-    <input type="text" id="description" name="description" [(ngModel)]="staff.email" required>
-  </div>
-  <div>
-    <label for="description">birthDate:</label>
-    <input type="date" id="description" name="description" [(ngModel)]="staff.birthDate" required>
-  </div>
-  <div>
-    <label for="description">address:</label>
-    <input type="text" id="description" name="description" [(ngModel)]="staff.address" required>
-  </div>
-  <div>
-    <label for="image">Image:</label>
-    <input type="file" id="image" name="image" (change)="onImageChange($event)">
-  </div>
-  <button type="submit" [disabled]="staffForm.invalid">Submit</button>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createStaffModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
 </form>

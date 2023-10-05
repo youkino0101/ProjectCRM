@@ -8,6 +8,7 @@ import { StaffDto } from '@shared/dto/staff/staff'
 import { StaffDtoPagedResultDto } from '@shared/dto/staff/staff-page'
 
 import { API_BASE_URL } from '@shared/service-proxies/service-proxies';
+import { CreateStaffDto } from '@shared/dto/staff/staff-create';
 
 @Injectable()
 export class StaffServiceProxy {
@@ -24,7 +25,7 @@ export class StaffServiceProxy {
      * @param body (optional) 
      * @return Success
      */
-    create(body: FormData | undefined): Observable<StaffDto> {
+    create(body: CreateStaffDto | undefined): Observable<StaffDto> {
         let url_ = this.baseUrl + "/api/services/app/Staff/Create";
         url_ = url_.replace(/[?&]$/, "");
 

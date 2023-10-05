@@ -1,149 +1,97 @@
-<!-- <form
+<form
   class="form-horizontal"
   autocomplete="off"
-  #editProductModal="ngForm"
+  #supplierEdit="ngForm"
   (ngSubmit)="save()"
 >
-<abp-modal-header
-[title]="'Product.Edit' | localize"
-(onCloseClick)="bsModalRef.hide()"
-></abp-modal-header>
-<div class="modal-body">
-<div class="row">
-<div class="col-md-8">
-    <div class="form-group row required">
-      <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="productCode">
-          {{ "Product.ProductCode" | localize }}
-        </label>
+  <abp-modal-header
+        [title]="'Supplier.Edit' | localize"
+        (onCloseClick)="bsModalRef.hide()"
+    ></abp-modal-header>
+    <div class="modal-body">
+      <div class="row">
         <div class="col-md">
-          <input
-            type="text"
-            class="form-control"
-            name="productCode"
-            id="productCode"
-            [(ngModel)]="product.productCode"
-            
-          />
+          <div class="col-md">
+            <h1 class="text-center">{{ "Supplier.SupplierName" | localize }}: {{supplier.supplierName}}</h1>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="category">
-          {{ "Product.Category" | localize }}
-        </label>
-        <div class="col-md">
-          <select [(ngModel)]="selectedValueCate" class="form-control"  name="selectedValueCate form-control" >
-            <option *ngFor="let item of selectListCategory" [value]="item.value">{{ item.text | localize}}</option>
-          </select>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="col-md-7 col-form-label" for="supplierCode">
+            {{ "Supplier.SupplierCode" | localize }}
+          </label>
+          <div class="col-md">
+            <input
+              type="text"
+              class="form-control"
+              name="supplierCode"
+              id="supplierCode"
+              [(ngModel)]="supplier.supplierCode"
+              readonly
+            />
+          </div>
         </div>
-      </div>
-      
-    </div>
-    <div class="form-group row required">
-      <div class="col-md">
-        <label class="col-md-7 col-form-label" for="productName">
-          {{ "Product.ProductName" | localize }}
-        </label>
-        <div class="col-md">
-          <input 
-            type="text"
-            class="form-control"
-            name="productName" 
-            id="productName"  
-            [(ngModel)]="product.productName"
-            required
-            >
+        <div class="col-md-6">
+          <label class="col-md-7 col-form-label" for="email">
+            {{ "Supplier.Email" | localize }}
+          </label>
+          <div class="col-md">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              id="email"
+              maxlength="256"
+              [(ngModel)]="supplier.email"
+              readonly
+            />
+          </div>
         </div>
-      </div>
-      
-    </div>
-    <div class="form-group row required">
-      <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="quantity">
-          {{ "Product.Quantity" | localize }}
-        </label>
-        <div class="col-md">
-          <input 
-            type="text" 
-            class="form-control" 
-            name="quantity" 
-            id="quantity" 
-            [(ngModel)]="product.quantity" 
-            (input)="onInputChangeQuantity(product.quantity)"
-            >
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="price">
-          {{ "Product.Price" | localize }}
-        </label>
-        <div class="col-md">
-          <input 
-            type="text"
-            class="form-control"
-            name="price" 
-            id="price"  
-            [(ngModel)]="product.price"
-            (input)="onInputChangePrice(product.price)"
-            >
-        </div>
-      </div>
-    </div>
-    <div class="form-group row required">
-      <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="trademark">
-          {{ "Product.Trademark" | localize }}
-        </label>
-        <div class="col-md">
-          <input 
-            type="text" 
-            class="form-control" 
-            name="trademark" 
-            id="trademark" 
-            [(ngModel)]="product.trademark" 
-            >
-        </div>
-      </div>
-      <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="status">
-          {{ "Product.Status" | localize }}
-        </label>
-        <div class="col-md">
-          <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control" >
-            <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text | localize}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="form-group row required">
-      <div class="col-md">
-        <label class="col-form-label" for="name">
-          {{ "Product.Description" | localize }}
-        </label>
-        <textarea class="form-control" rows="3" name="description" id="description"
-          [(ngModel)]="product.description" ></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-      <div *ngIf="selectedImage; else defaultImageTemplate">
-        <img src="https://localhost:44311/{{selectedImage}}" alt="Edited Image" style="max-width: 100%; max-height: 400px;">
         
       </div>
-      <ng-template #defaultImageTemplate>
-        <img [src]="defaultImage" alt="Default Image" style="max-width: 100%; max-height: 400px;">
-      </ng-template>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile" (change)="onImageChange($event)">
-        <label class="custom-file-label" for="customFile">Choose file</label>
-      </div> 
-  </div>
-</div>
-  
-</div>
-<abp-modal-footer
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label class="col-md-7 col-form-label" for="phoneNumber">
+            {{ "Supplier.PhoneNumber" | localize }}
+          </label>
+          <div class="col-md">
+            <input
+              type="text"
+              class="form-control"
+              name="phoneNumber"
+              id="phoneNumber"
+              required
+              maxlength="10"
+              pattern="^[0-9\-\+]{9,15}$"
+              [(ngModel)]="supplier.phoneNumber"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="col-md-7 col-form-label" for="status">
+            {{ "Supplier.Status" | localize }}
+          </label>
+          <div class="col-md">
+            <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control">
+              <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text | localize }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row m-1">
+        <div class="col-md">
+          <label class="col-form-label" for="address">
+            {{ "Supplier.Address" | localize }}
+          </label>
+          <textarea class="form-control" rows="3" name="address" id="address"
+            [(ngModel)]="supplier.address" ></textarea>
+        </div>
+      </div>
+    </div>
+    <abp-modal-footer
     [cancelDisabled]="saving"
-    [saveDisabled]="!editProductModal.form.valid || saving"
+   
     (onCancelClick)="bsModalRef.hide()"
-  ></abp-modal-footer>
-</form> -->
+    ></abp-modal-footer>
+</form>

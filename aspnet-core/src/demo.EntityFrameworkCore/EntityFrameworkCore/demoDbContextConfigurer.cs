@@ -8,14 +8,16 @@ namespace demo.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<demoDbContext> builder, string connectionString)
         {
-            var serverVersion = new MySqlServerVersion(new Version(5, 7, 33));
-            builder.UseMySql(connectionString, serverVersion);
+            //var serverVersion = new MySqlServerVersion(new Version(5, 7, 33));
+            //builder.UseMySql(connectionString, serverVersion);
+            builder.UseSqlServer(connectionString);
         }
 
         public static void Configure(DbContextOptionsBuilder<demoDbContext> builder, DbConnection connection)
         {
-            var serverVersion = new MySqlServerVersion(new Version(5, 7, 33));
-            builder.UseMySql(connection, serverVersion);
+            //var serverVersion = new MySqlServerVersion(new Version(5, 7, 33));
+            //builder.UseMySql(connection, serverVersion);
+            builder.UseSqlServer(connection);
         }
     }
 }

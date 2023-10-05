@@ -17,6 +17,7 @@ namespace demo.EntityFrameworkCore.Seed.Host
             {
                 new GenerateNumber(){Code ="P", Description ="Product", CurrentNumber = 0, Digit = 6},
                 new GenerateNumber(){Code ="SUP", Description ="Supplier", CurrentNumber = 0, Digit = 6},
+                new GenerateNumber(){Code ="NV", Description ="Staff", CurrentNumber = 0, Digit = 6},
             };
         }
 

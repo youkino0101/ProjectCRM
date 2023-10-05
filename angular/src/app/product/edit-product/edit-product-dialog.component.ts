@@ -100,10 +100,6 @@ export class EditProductDialogComponent extends AppComponentBase
     formData.append('category', this.selectedValueCate);
     formData.append('trademark', this.product.trademark);
     formData.append('status', this.selectedValueStatus);
-    formData.forEach(key =>
-        console.log(key)
-        )
-
 
     this._productService.update(formData).subscribe(
       () => {

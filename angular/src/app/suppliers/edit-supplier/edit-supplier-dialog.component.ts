@@ -1,120 +1,62 @@
-// import {
-//   Component,
-//   Injector,
-//   OnInit,
-//   EventEmitter,
-//   Output,
-//   Input
-// } from '@angular/core';
-// import { BsModalRef } from 'ngx-bootstrap/modal';
-// import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
-// import { AppComponentBase } from '@shared/app-component-base';
-// import { ProductEditDto } from '@shared/dto/product/product-edit';
-// import { ProductDto } from '@shared/dto/product/product';
-// import { ProductServiceProxy } from '@shared/service-proxies/product-service';
-// import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
+import {
+  Component,
+  Injector,
+  OnInit,
+  EventEmitter,
+  Output,
+  Input
+} from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
+import { AppComponentBase } from '@shared/app-component-base';
+import { EditSupplierDto } from '@shared/dto/supplier/supplier-edit';
+import { SupplierDto } from '@shared/dto/supplier/supplier';
+import { SupplierServiceProxy } from '@shared/service-proxies/supplier-service';
 
-// @Component({
-//   templateUrl: 'edit-product-dialog.component.html'
-// })
-// export class EditProductDialogComponent extends AppComponentBase
-//   implements OnInit {
-//   saving = false;
-//   id: number;
-//   productEdit = new ProductEditDto();
-//   product = new ProductDto();
-//   selectedValueCate: string;
-//   selectedValueStatus: string;
-//   @Input() selectListStatus: any;
-//   @Input() selectListCategory: any;
-//   selectedImage: any;
-//   defaultImage = 'assets/img/default.jpg';
-//   @Output() onSave = new EventEmitter<any>();
+@Component({
+  templateUrl: 'edit-supplier-dialog.component.html'
+})
+export class EditSupplierDialogComponent extends AppComponentBase
+  implements OnInit {
+  saving = false;
+  id: number;
+  supplier = new SupplierDto();
+  selectedValueCate: string;
+  selectedValueStatus: string;
+  @Input() selectListStatus: any;
+  @Output() onSave = new EventEmitter<any>();
 
-//   constructor(
-//     injector: Injector,
-//     private _productService: ProductServiceProxy,
-//     public bsModalRef: BsModalRef
-//   ) {
-//     super(injector);
-//   }
+  constructor(
+    injector: Injector,
+    private _supplierService: SupplierServiceProxy,
+    public bsModalRef: BsModalRef
+  ) {
+    super(injector);
+  }
 
-//   ngOnInit(): void {
-//     this._productService
-//       .get(this.id)
-//       .subscribe((result: ProductDto) => {
-//         this.product = result;
-//         this.selectedValueCate = result.categoryName;
-//         this.selectedValueStatus = result.statusName;
-//         this.selectedImage = result.pathImage;
-//       });
-//   }
+  ngOnInit(): void {
+    this._supplierService
+      .get(this.id)
+      .subscribe((result: SupplierDto) => {
+        this.supplier = result;
+        this.selectedValueStatus = result.statusName;
+      });
+  }
 
-//   formatWithCommas(value) {
-//     const valueWithoutCommas = value.replace(/,/g, '');
-//     const formatted = valueWithoutCommas.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-//     return formatted;
-//   }
-  
-//   onInputChangePrice(value: any) {
-//     this.product.price = this.formatWithCommas(value);
-//   }
-  
-//   onInputChangeQuantity(value: any) {
-//     this.product.quantity = this.formatWithCommas(value);
-//   }
+  save(): void {
+    this.saving = true;
+    this.supplier.status = this.selectedValueStatus
+    
+    this._supplierService.update(this.supplier).subscribe(
+      () => {
+        this.notify.info(this.l('SavedSuccessfully'));
+        this.bsModalRef.hide();
+        this.onSave.emit();
+      },
+      () => {
+        this.saving = false;
+      }
+    );
+  }
 
-//   onImageChange(event: any) {
-//     this.selectedImage = null
-//     const file = event.target.files[0];
-//     this.productEdit.file = file;
-//     if (file) {
-//       const reader = new FileReader();
-
-//       reader.onload = (e: any) => {
-//         this.defaultImage = e.target.result;
-//       };
-
-//       reader.readAsDataURL(file);
-//     }
-//   }
-
-  
-
-//   save(): void {
-//     this.saving = true;
-
-//     const formData = new FormData();
-//     formData.append('id', this.product.id.toString());
-//     formData.append('productCode', this.product.productCode);
-//     formData.append('productName', this.product.productName);
-//     formData.append('pathImage', this.product.pathImage);
-//     if (this.productEdit.file) {
-//       formData.append('file', this.productEdit.file);
-//     }
-//     this.productEdit.quantity = this.product.quantity.toString().replace(/,/g, '');
-//     formData.append('quantity', this.productEdit.quantity);
-//     this.productEdit.price = this.product.price.toString().replace(/,/g, '');
-//     formData.append('price', this.productEdit.price);
-//     formData.append('description', this.product.description);
-//     formData.append('category', this.selectedValueCate);
-//     formData.append('trademark', this.product.trademark);
-//     formData.append('status', this.selectedValueStatus);
-//     formData.forEach(key =>
-//         console.log(key)
-//         )
-
-
-//     this._productService.update(formData).subscribe(
-//       () => {
-//         this.notify.info(this.l('SavedSuccessfully'));
-//         this.bsModalRef.hide();
-//         this.onSave.emit();
-//       },
-//       () => {
-//         this.saving = false;
-//       }
-//     );
-//   }
-
-// }
+}
