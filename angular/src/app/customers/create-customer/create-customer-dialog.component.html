@@ -1,33 +1,33 @@
 <form
   class="form-horizontal"
   autocomplete="off"
-  #editStaffModal="ngForm"
+  #createCustomerModal="ngForm"
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'Staff.Edit' | localize"
+    [title]="'Customer.Create' | localize"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
     <div class="form-group row required">
       <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="staffCode">
-          {{ "Staff.StaffCode" | localize }}
+        <label class="col-md-7 col-form-label" for="customerCode">
+          {{ "Customer.CustomerCode" | localize }}
         </label>
         <div class="col-md">
           <input
             type="text"
             class="form-control"
-            name="staffCode"
-            id="staffCode"
-            [(ngModel)]="staff.staffCode"
+            name="customerCode"
+            id="customerCode"
+            [(ngModel)]="customer.codeCustomer"
             readonly
           />
         </div>
       </div>
       <div class="col-md-6">
         <label class="col-md-7 col-form-label" for="email">
-          {{ "Staff.Email" | localize }}
+          {{ "Customer.Email" | localize }}
         </label>
         <div class="col-md">
           <input
@@ -35,23 +35,31 @@
             class="form-control"
             name="email"
             id="email"
-            [(ngModel)]="staff.email"
-             />
+            [(ngModel)]="customer.email"
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
+            #emailAddressModel="ngModel"
+            #emailAddressEl
+            required
+          />
+          <abp-validation-summary
+          [control]="emailAddressModel"
+          [controlEl]="emailAddressEl"
+        ></abp-validation-summary>
         </div>
       </div>
     </div>
     <div class="form-group row required">
       <div class="col-md">
-        <label class="col-md-7 col-form-label" for="staffName">
-          {{ "Staff.StaffName" | localize }}
+        <label class="col-md-7 col-form-label" for="customerName">
+          {{ "Customer.CustomerName" | localize }}
         </label>
         <div class="col-md">
           <input 
             type="text"
             class="form-control"
-            name="staffName" 
-            id="staffName"  
-            [(ngModel)]="staff.staffName"
+            name="customerName" 
+            id="customerName"  
+            [(ngModel)]="customer.nameCustomer"
             required
             >
         </div>
@@ -60,7 +68,7 @@
     <div class="form-group row required">
       <div class="col-md-6">
         <label class="col-md-7 col-form-label" for="phoneNumber">
-          {{ "Staff.PhoneNumber" | localize }}
+          {{ "Customer.PhoneNumber" | localize }}
         </label>
         <div class="col-md">
           <input
@@ -71,49 +79,34 @@
             required
             maxlength="10"
             pattern="^[0-9\-\+]{9,15}$"
-            [(ngModel)]="staff.phoneNumber"
+            [(ngModel)]="customer.phoneNumber"
           />
         </div>
       </div>
-       <div class="col-md-6">
-        <label class="col-md-7 col-form-label" for="birthDate">
-          {{ "Staff.BirthDate" | localize }}
+      <div class="col-md-6">
+        <label class="col-md-7 col-form-label" for="status">
+          {{ "Customer.Status" | localize }}
         </label>
         <div class="col-md">
-          <input
-            type="date"
-            class="form-control"
-            name="birthDate"
-            id="birthDate"
-            [(ngModel)]="staff.birthDate"
-          />
+          <select [(ngModel)]="selectedValueStatus" name="selectedValueStatus" class="form-control">
+            <option *ngFor="let item of selectListStatus" [value]="item.value">{{ item.text | localize }}</option>
+          </select>
         </div>
       </div>
     </div>
     <div class="form-group row m-1">
       <div class="col-md">
         <label class="col-form-label" for="address">
-          {{ "Staff.Address" | localize }}
+          {{ "Customer.Address" | localize }}
         </label>
-        <textarea class="form-control" rows="3" name="address" id="address" required
-          [(ngModel)]="staff.address"></textarea>
-      </div>
-    </div>
-    <div class="form-group row mb-0">
-      
-      <label class="col-md-3 col-form-label">
-        {{ "Staff.StaffStatus" | localize }}
-      </label>
-      <div class="col-md">
-        <select [(ngModel)]="selectedValueStaffStatus" name="selectListStaffStatus" class="form-control" >
-          <option *ngFor="let item of selectListStaffStatus" [value]="item.value">{{ item.text | localize }}</option>
-        </select>
+        <textarea class="form-control" rows="3" name="address" id="address"
+          [(ngModel)]="customer.address"></textarea>
       </div>
     </div>  
   </div>
   <abp-modal-footer
     [cancelDisabled]="saving"
-    [saveDisabled]="!editStaffModal.form.valid || saving"
+    [saveDisabled]="!createCustomerModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"
   ></abp-modal-footer>
 </form>

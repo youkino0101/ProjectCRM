@@ -120,6 +120,7 @@
 	  
 	  <!-- Enum Status-->
 	  <text name="Active">Hoạt động</text>
+	  <text name="OnLeave">Rời đi</text>
 	  <text name="Processing">Đang xử lý</text>
 	  <text name="Lock">Khóa</text>
 	  <text name="Canceled">Đã hủy</text>
@@ -166,6 +167,14 @@
 	  <text name="Staff.Create">Thêm nhân viên</text>
 	  <text name="Staff.Edit">Sửa nhân viên</text>
 	  <text name="Staff.View">Xem nhân viên</text>
+	  <text name="Staff.BirthDate">Ngày sinh</text>
+	  <text name="Staff.StaffCode">Mã nhân viên</text>
+	  <text name="Staff.Staff.Email">Email</text>
+	  <text name="Staff.StaffName">Tên nhân viên</text>
+	  <text name="Staff.PhoneNumber">Số điện thoại</text>
+	  <text name="Staff.StaffStatus">Trạng Thái</text>
+	  <text name="Staff.CreationTime">Ngày Tạo</text>
+	  <text name="Staff.Address">Địa Chỉ</text>
 
 	  <!-- Supplier -->
 	  <text name="Suppliers">Nhà cung cấp</text>
@@ -179,7 +188,18 @@
 	  <text name="Supplier.Email">Email</text>
 	  <text name="Supplier.Status">Trạng thái</text>
 	  <text name="Supplier.CreationTime">Ngày tạo</text>
-	  
-	  
+
+	  <!-- Customer -->
+	  <text name="Customers">Khách Hàng</text>
+	  <text name="Customer.Create">Thêm mới khách hàng</text>
+	  <text name="Customer.Edit">Sửa thông tin</text>
+	  <text name="Customer.View">Xem thông tin</text>
+	  <text name="Customer.CustomerCode">Mã khách hàng</text>
+	  <text name="Customer.CustomerName">Tên khách hàng</text>
+	  <text name="Customer.Address">Địa chỉ</text>
+	  <text name="Customer.PhoneNumber">Số điện thoại</text>
+	  <text name="Customer.Email">Email</text>
+	  <text name="Customer.Status">Trạng thái</text>
+	  <text name="Customer.CreationTime">Trạng thái</text>
   </texts>
 </localizationDictionary>

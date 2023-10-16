@@ -1,23 +1,27 @@
 
 
-export interface ICreateStaffDto {
+export interface IEditStaffDto {
+    id: number;
     staffCode: string;
     staffName: string;
     phoneNumber: string;
     email: string;
-    birthDate: Date;
+    birthDate: string;
     address: string;
+    staffStatus: string;
 }
 
-export class CreateStaffDto implements ICreateStaffDto {
+export class EditStaffDto implements IEditStaffDto {
+  id: number;
   staffCode: string;
   staffName: string;
   phoneNumber: string;
   email: string;
-  birthDate: Date;
+  birthDate: string;
   address: string;
+  staffStatus: string;
 
-  constructor(data?: ICreateStaffDto) {
+  constructor(data?: IEditStaffDto) {
       if (data) {
           for (var property in data) {
               if (data.hasOwnProperty(property))
@@ -28,36 +32,38 @@ export class CreateStaffDto implements ICreateStaffDto {
 
   init(_data?: any) {
       if (_data) {
+          this.id = _data["id"];
           this.staffCode = _data["staffCode"];
           this.staffName = _data["staffName"];
           this.email = _data["email"];
           this.address = _data["address"];
-          this.birthDate = _data["birthDate"];
           this.phoneNumber = _data["phoneNumber"];
+          this.staffStatus = _data["staffStatus"];
       }
   }
 
-  static fromJS(data: any): CreateStaffDto {
+  static fromJS(data: any): EditStaffDto {
       data = typeof data === 'object' ? data : {};
-      let result = new CreateStaffDto();
+      let result = new EditStaffDto();
       result.init(data);
       return result;
   }
 
   toJSON(data?: any) {
       data = typeof data === 'object' ? data : {};
+      data["id"] = this.id;
       data["staffCode"] = this.staffCode;
       data["staffName"] = this.staffName;
       data["email"] = this.email;
       data["address"] = this.address;
-      data["birthDate"] = this.birthDate;
       data["phoneNumber"] = this.phoneNumber;
+      data["staffStatus"] = this.staffStatus;
       return data;
   }
 
-  clone(): CreateStaffDto {
+  clone(): EditStaffDto {
       const json = this.toJSON();
-      let result = new CreateStaffDto();
+      let result = new EditStaffDto();
       result.init(json);
       return result;
   }

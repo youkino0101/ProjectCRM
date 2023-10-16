@@ -9,17 +9,17 @@ import {
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
 import { AppComponentBase } from '@shared/app-component-base';
-import { SupplierDto } from '@shared/dto/supplier/supplier';
-import { SupplierServiceProxy } from '@shared/service-proxies/supplier-service';
+import { CustomerDto } from '@shared/dto/customer/customer';
+import { CustomerServiceProxy } from '@shared/service-proxies/customer-service';
 
 @Component({
-  templateUrl: 'edit-supplier-dialog.component.html'
+  templateUrl: 'edit-customer-dialog.component.html'
 })
-export class EditSupplierDialogComponent extends AppComponentBase
+export class EditCustomerDialogComponent extends AppComponentBase
   implements OnInit {
   saving = false;
   id: number;
-  supplier = new SupplierDto();
+  customer = new CustomerDto();
   selectedValueCate: string;
   selectedValueStatus: string;
   @Input() selectListStatus: any;
@@ -27,26 +27,26 @@ export class EditSupplierDialogComponent extends AppComponentBase
 
   constructor(
     injector: Injector,
-    private _supplierService: SupplierServiceProxy,
+    private _customerService: CustomerServiceProxy,
     public bsModalRef: BsModalRef
   ) {
     super(injector);
   }
 
   ngOnInit(): void {
-    this._supplierService
+    this._customerService
       .get(this.id)
-      .subscribe((result: SupplierDto) => {
-        this.supplier = result;
+      .subscribe((result: CustomerDto) => {
+        this.customer = result;
         this.selectedValueStatus = result.statusName;
       });
   }
 
   save(): void {
     this.saving = true;
-    this.supplier.status = this.selectedValueStatus
+    this.customer.status = this.selectedValueStatus
     
-    this._supplierService.update(this.supplier).subscribe(
+    this._customerService.update(this.customer).subscribe(
       () => {
         this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();

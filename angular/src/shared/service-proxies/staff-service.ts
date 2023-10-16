@@ -74,118 +74,61 @@ export class StaffServiceProxy {
         return _observableOf(null as any);
     }
 
-    // /**
-    //  * @param permission (optional) 
-    //  * @return Success
-    //  */
-    // getRoles(permission: string | undefined): Observable<RoleListDtoListResultDto> {
-    //     let url_ = this.baseUrl + "/api/services/app/Role/GetRoles?";
-    //     if (permission === null)
-    //         throw new Error("The parameter 'permission' cannot be null.");
-    //     else if (permission !== undefined)
-    //         url_ += "Permission=" + encodeURIComponent("" + permission) + "&";
-    //     url_ = url_.replace(/[?&]$/, "");
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    update(body: StaffDto | undefined): Observable<StaffDto> {
+        let url_ = this.baseUrl + "/api/services/app/Staff/Update";
+        url_ = url_.replace(/[?&]$/, "");
 
-    //     let options_ : any = {
-    //         observe: "response",
-    //         responseType: "blob",
-    //         headers: new HttpHeaders({
-    //             "Accept": "text/plain"
-    //         })
-    //     };
+        const content_ = JSON.stringify(body);
 
-    //     return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-    //         return this.processGetRoles(response_);
-    //     })).pipe(_observableCatch((response_: any) => {
-    //         if (response_ instanceof HttpResponseBase) {
-    //             try {
-    //                 return this.processGetRoles(response_ as any);
-    //             } catch (e) {
-    //                 return _observableThrow(e) as any as Observable<RoleListDtoListResultDto>;
-    //             }
-    //         } else
-    //             return _observableThrow(response_) as any as Observable<RoleListDtoListResultDto>;
-    //     }));
-    // }
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
 
-    // protected processGetRoles(response: HttpResponseBase): Observable<RoleListDtoListResultDto> {
-    //     const status = response.status;
-    //     const responseBlob =
-    //         response instanceof HttpResponse ? response.body :
-    //         (response as any).error instanceof Blob ? (response as any).error : undefined;
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<StaffDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<StaffDto>;
+        }));
+    }
 
-    //     let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-    //     if (status === 200) {
-    //         return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-    //         let result200: any = null;
-    //         let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-    //         result200 = RoleListDtoListResultDto.fromJS(resultData200);
-    //         return _observableOf(result200);
-    //         }));
-    //     } else if (status !== 200 && status !== 204) {
-    //         return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-    //         return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
-    //         }));
-    //     }
-    //     return _observableOf(null as any);
-    // }
+    protected processUpdate(response: HttpResponseBase): Observable<StaffDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
 
-    // /**
-    //  * @param body (optional) 
-    //  * @return Success
-    //  */
-    // update(body: RoleDto | undefined): Observable<RoleDto> {
-    //     let url_ = this.baseUrl + "/api/services/app/Role/Update";
-    //     url_ = url_.replace(/[?&]$/, "");
-
-    //     const content_ = JSON.stringify(body);
-
-    //     let options_ : any = {
-    //         body: content_,
-    //         observe: "response",
-    //         responseType: "blob",
-    //         headers: new HttpHeaders({
-    //             "Content-Type": "application/json-patch+json",
-    //             "Accept": "text/plain"
-    //         })
-    //     };
-
-    //     return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-    //         return this.processUpdate(response_);
-    //     })).pipe(_observableCatch((response_: any) => {
-    //         if (response_ instanceof HttpResponseBase) {
-    //             try {
-    //                 return this.processUpdate(response_ as any);
-    //             } catch (e) {
-    //                 return _observableThrow(e) as any as Observable<RoleDto>;
-    //             }
-    //         } else
-    //             return _observableThrow(response_) as any as Observable<RoleDto>;
-    //     }));
-    // }
-
-    // protected processUpdate(response: HttpResponseBase): Observable<RoleDto> {
-    //     const status = response.status;
-    //     const responseBlob =
-    //         response instanceof HttpResponse ? response.body :
-    //         (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-    //     let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-    //     if (status === 200) {
-    //         return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-    //         let result200: any = null;
-    //         let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-    //         result200 = RoleDto.fromJS(resultData200);
-    //         return _observableOf(result200);
-    //         }));
-    //     } else if (status !== 200 && status !== 204) {
-    //         return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-    //         return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
-    //         }));
-    //     }
-    //     return _observableOf(null as any);
-    // }
-    // }
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = StaffDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 
     /**
      * @param id (optional) 

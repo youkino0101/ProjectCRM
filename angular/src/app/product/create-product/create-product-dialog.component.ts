@@ -93,7 +93,7 @@ export class CreateProductDialogComponent extends AppComponentBase
   }
 
   private getGenerateNumber() {
-    this._extensionService.getGenerateNumber('P').subscribe(
+    this._extensionService.getGenerateNumber('SP').subscribe(
       (success) => {
         this.product.productCode = success
       },

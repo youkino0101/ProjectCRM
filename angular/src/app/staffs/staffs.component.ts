@@ -10,6 +10,8 @@ import { StaffDto } from '@shared/dto/staff/staff';
 import { StaffDtoPagedResultDto } from '@shared/dto/staff/staff-page';
 import { StaffServiceProxy } from '@shared/service-proxies/staff-service';
 import { CreateStaffDialogComponent } from './create-staff/create-staff-dialog.component';
+import { EditStaffDialogComponent } from './edit-staff/edit-staff-dialog.component';
+import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 // import { CreateStaffDialogComponent } from './create-staff/create-staff-dialog.component';
 // import { EditStaffDialogComponent } from './edit-staff/edit-staff-dialog.component';
@@ -24,6 +26,7 @@ class PagedStaffsRequestDto extends PagedRequestDto {
 })
 export class StaffsComponent extends PagedListingComponentBase<StaffDto> {
   staffs: StaffDto[] = [];
+  
   keyword = '';
 
   constructor(
@@ -32,6 +35,7 @@ export class StaffsComponent extends PagedListingComponentBase<StaffDto> {
     private _modalService: BsModalService
   ) {
     super(injector);
+    
   }
 
   list(
@@ -76,15 +80,15 @@ export class StaffsComponent extends PagedListingComponentBase<StaffDto> {
         }
       );
     } else {
-      // createOrEditStaffDialog = this._modalService.show(
-      //   EditStaffDialogComponent,
-      //   {
-      //     class: 'modal-lg',
-      //     initialState: {
-      //       id: id,
-      //     },
-      //   }
-      // );
+      createOrEditStaffDialog = this._modalService.show(
+        EditStaffDialogComponent,
+        {
+          class: 'modal-lg',
+          initialState: {
+            id: id,
+          },
+        }
+      );
     }
 
     createOrEditStaffDialog.content.onSave.subscribe(() => {

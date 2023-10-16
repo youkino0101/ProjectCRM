@@ -16,5 +16,6 @@ namespace demo.Extensions
     
         Task<List<SelectListItem>> GetSelectListItemEnumStatusAsync();
         Task<List<SelectListItem>> GetSelectListItemEnumCategoryAsync();
+        Task<List<SelectListItem>> GetSelectListItemEnumStaffStatusAsync();
     }
 }

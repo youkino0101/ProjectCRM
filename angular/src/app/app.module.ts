@@ -36,7 +36,7 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 // staffs
 import { StaffsComponent } from '@app/staffs/staffs.component';
 import { CreateStaffDialogComponent } from './staffs/create-staff/create-staff-dialog.component';
-// import { EditStaffDialogComponent } from './staffs/edit-staff/edit-staff-dialog.component';
+import { EditStaffDialogComponent } from './staffs/edit-staff/edit-staff-dialog.component';
 // auditlogs
 import { AuditLogsComponent } from './auditlog/auditlogs.component';
 import { ViewAuditLogDialogComponent } from './auditlog/view-log/view-log-dialog.component';
@@ -50,6 +50,11 @@ import { SupplierComponent } from '@app/suppliers/suppliers.component';
 import { CreateSupplierDialogComponent } from './suppliers/create-supplier/create-supplier-dialog.component';
 import { ViewSupplierDialogComponent } from './suppliers/view-supplier/view-supplier-dialog.component';
 import { EditSupplierDialogComponent } from './suppliers/edit-supplier/edit-supplier-dialog.component';
+// // customers
+import { CustomerComponent } from '@app/customers/customers.component';
+import { CreateCustomerDialogComponent } from './customers/create-customer/create-customer-dialog.component';
+import { ViewCustomerDialogComponent } from './customers/view-customer/view-customer-dialog.component';
+import { EditCustomerDialogComponent } from './customers/edit-customer/edit-customer-dialog.component';
 
 @NgModule({
     declarations: [
@@ -68,6 +73,7 @@ import { EditSupplierDialogComponent } from './suppliers/edit-supplier/edit-supp
         // staffs
         StaffsComponent,
         CreateStaffDialogComponent,
+        EditStaffDialogComponent,
         // auditlogs
         AuditLogsComponent,
         ViewAuditLogDialogComponent,
@@ -81,6 +87,11 @@ import { EditSupplierDialogComponent } from './suppliers/edit-supplier/edit-supp
         CreateSupplierDialogComponent,
         ViewSupplierDialogComponent,
         EditSupplierDialogComponent,
+        // customers
+        CustomerComponent,
+        CreateCustomerDialogComponent,
+        ViewCustomerDialogComponent,
+        EditCustomerDialogComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

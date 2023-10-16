@@ -10,25 +10,25 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppComponentBase } from '@shared/app-component-base';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
 //dto
-import { SupplierServiceProxy } from '@shared/service-proxies/supplier-service';
+import { CustomerServiceProxy } from '@shared/service-proxies/customer-service';
 import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
-import { CreateSupplierDto } from '@shared/dto/supplier/supplier-create';
+import { CreateCustomerDto } from '@shared/dto/customer/customer-create';
 
 @Component({
-  templateUrl: 'create-supplier-dialog.component.html',
+  templateUrl: 'create-customer-dialog.component.html',
   animations: [appModuleAnimation()]
 })
-export class CreateSupplierDialogComponent extends AppComponentBase
+export class CreateCustomerDialogComponent extends AppComponentBase
   implements OnInit {
   saving = false;
-  supplier = new CreateSupplierDto();
+  customer = new CreateCustomerDto();
   @Input() selectListStatus: any;
   selectedValueStatus: string = 'Active';
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
     injector: Injector,
-    private _supplierService: SupplierServiceProxy,
+    private _customerService: CustomerServiceProxy,
     private _extensionService: ExtensionServiceProxy,
     public bsModalRef: BsModalRef
   ) {
@@ -42,8 +42,8 @@ export class CreateSupplierDialogComponent extends AppComponentBase
   save(): void {
     this.saving = true;
 
-    this._supplierService
-      .create(this.supplier)
+    this._customerService
+      .create(this.customer)
       .subscribe(
         () => {
           this.notify.info(this.l('SavedSuccessfully'));
@@ -58,9 +58,9 @@ export class CreateSupplierDialogComponent extends AppComponentBase
   }
 
   private getGenerateNumber() {
-    this._extensionService.getGenerateNumber('NCC').subscribe(
+    this._extensionService.getGenerateNumber('KH').subscribe(
       (success) => {
-        this.supplier.supplierCode = success
+        this.customer.codeCustomer = success
       },
       (error) => {
         abp.message.error(error, 'Error')
@@ -69,6 +69,6 @@ export class CreateSupplierDialogComponent extends AppComponentBase
   }
 
   onSelectionChange1() {
-    this.supplier.status = this.selectedValueStatus;
+    this.customer.status = this.selectedValueStatus;
   }
 }

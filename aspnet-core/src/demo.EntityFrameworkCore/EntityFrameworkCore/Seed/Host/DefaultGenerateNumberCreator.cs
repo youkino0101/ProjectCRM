@@ -15,9 +15,10 @@ namespace demo.EntityFrameworkCore.Seed.Host
         {
             return new List<GenerateNumber>
             {
-                new GenerateNumber(){Code ="P", Description ="Product", CurrentNumber = 0, Digit = 6},
-                new GenerateNumber(){Code ="SUP", Description ="Supplier", CurrentNumber = 0, Digit = 6},
+                new GenerateNumber(){Code ="SP", Description ="Product", CurrentNumber = 0, Digit = 6},
+                new GenerateNumber(){Code ="NCC", Description ="Supplier", CurrentNumber = 0, Digit = 6},
                 new GenerateNumber(){Code ="NV", Description ="Staff", CurrentNumber = 0, Digit = 6},
+                new GenerateNumber(){Code ="KH", Description ="Staff", CurrentNumber = 0, Digit = 6},
             };
         }
 

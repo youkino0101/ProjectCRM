@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+
 
 export interface IStaffDto {
     id: number;
@@ -6,10 +6,12 @@ export interface IStaffDto {
     staffName: string;
     phoneNumber: string;
     email: string;
-    birthDate: moment.Moment;
+    birthDate: string;
     address: string;
-    staffStatus: number;
-    creationTime : moment.Moment;
+    staffStatus: string;
+    staffStatusName: string;
+    creationTime : string;
+    userId: number;
 }
 
 export class StaffDto implements IStaffDto {
@@ -18,10 +20,12 @@ export class StaffDto implements IStaffDto {
     staffName: string;
     phoneNumber: string;
     email: string;
-    birthDate: moment.Moment;
+    birthDate: string;
     address: string;
-    staffStatus: number;
-    creationTime : moment.Moment;
+    staffStatus: string;
+    staffStatusName: string;
+    creationTime : string;
+    userId: number;
 
     constructor(data?: IStaffDto) {
         if (data) {
@@ -39,10 +43,12 @@ export class StaffDto implements IStaffDto {
             this.staffName = _data["staffName"];
             this.phoneNumber = _data["phoneNumber"];
             this.email = _data["email"];
-            this.birthDate = _data["birthDate"] ? moment(_data["birthDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"];
             this.address = _data["address"];
             this.staffStatus = _data["staffStatus"];
-            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.staffStatusName = _data["staffStatusName"];
+            this.creationTime = _data["creationTime"];
+            this.userId = _data["userId"];
         }
     }
 
@@ -60,10 +66,12 @@ export class StaffDto implements IStaffDto {
         data["staffName"] = this.staffName;
         data["phoneNumber"] = this.phoneNumber;
         data["email"] = this.email;
-        data["birthDate"] = this.birthDate ? this.birthDate.toISOString() : <any>undefined;
+        data["birthDate"] = this.birthDate ;
         data["address"] = this.address;
         data["staffStatus"] = this.staffStatus;
-        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["staffStatusName"] = this.staffStatusName;
+        data["creationTime"] = this.creationTime ;
+        data["userId"] = this.userId ;
         return data;
     }
 

@@ -1,9 +1,7 @@
 using System.Linq;
 using AutoMapper;
-using Abp.Authorization;
-using Abp.Authorization.Roles;
-using demo.Authorization.Roles;
 using demo.Entity;
+using demo.Common;
 
 namespace demo.Staffs.Dto
 {
@@ -11,7 +9,8 @@ namespace demo.Staffs.Dto
     {
         public StaffMapProfile()
         {
-            CreateMap<Staff, StaffDto>();
+            CreateMap<Staff, StaffDto>().ForMember(dest => dest.StaffStatusName,
+                opt => opt.MapFrom(src => src.StaffStatus.GetDescription()));
             CreateMap<CreateStaffDto, Staff>();
             CreateMap<Staff, EditStaffDto>();
             CreateMap<EditStaffDto, Staff>();

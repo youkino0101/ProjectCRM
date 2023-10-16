@@ -29,9 +29,9 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar(): void {
     if (this.sidebarExpanded) {
-      this.hideSidebar();
-    } else {
       this.showSidebar();
+    } else {
+      this.hideSidebar();
     }
   }
 

@@ -121,6 +121,7 @@
 
 	  <!-- Enum Status-->
 	  <text name="Active">Active</text>
+	  <text name="OnLeave">Leave</text>
 	  <text name="Processing">Processing</text>
 	  <text name="Lock">Lock</text>
 	  <text name="Canceled">Canceled</text>
@@ -162,11 +163,36 @@
 	  <text name="Staff.Create">Add staff</text>
 	  <text name="Staff.Edit">Edit staff</text>
 	  <text name="Staff.View">View staff</text>
+	  <text name="Staff.StaffName">Name</text>
+	  <text name="Staff.PhoneNumber">Phone Number</text>
+	  <text name="Staff.StaffStatus">Status</text>
+	  <text name="Staff.CreationTime">CreationTime</text>
+	  <text name="Staff.Address">Address</text>
 
 	  <!-- Supplier -->
 	  <text name="Suppliers">Supplier</text>
 	  <text name="Supplier.Create">Add supplier</text>
 	  <text name="Supplier.Edit">Edit supplier</text>
 	  <text name="Supplier.View">View supplier</text>
+	  <text name="Supplier.SupplierCode">Code</text>
+	  <text name="Supplier.SupplierName">Full Name</text>
+	  <text name="Supplier.Address">Address</text>
+	  <text name="Supplier.PhoneNumber">Phone Number</text>
+	  <text name="Supplier.Email">Email</text>
+	  <text name="Supplier.Status">Status</text>
+	  <text name="Supplier.CreationTime">Creation Time</text>
+
+	  <!-- Customer -->
+	  <text name="Customers">Customer</text>
+	  <text name="Customer.Create">Add customer</text>
+	  <text name="Customer.Edit">Edit customer</text>
+	  <text name="Customer.View">View customer</text>
+	  <text name="Customer.CustomerCode">Code</text>
+	  <text name="Customer.CustomerName">Full Name</text>
+	  <text name="Customer.Address">Address</text>
+	  <text name="Customer.PhoneNumber">Phone Number</text>
+	  <text name="Customer.Email">Email</text>
+	  <text name="Customer.Status">Status</text>
+	  <text name="Customer.CreationTime">Creation Time</text>
   </texts>
 </localizationDictionary>

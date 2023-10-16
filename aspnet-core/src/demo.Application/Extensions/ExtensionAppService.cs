@@ -68,6 +68,19 @@ namespace demo.Extensions
                 throw new UserFriendlyException("GetSelectListItemEnum exception message");
             }
         }
+
+        public async Task<List<SelectListItem>> GetSelectListItemEnumStaffStatusAsync()
+        {
+            try
+            {
+                return EnumHelper.GetSelectListFromEnum<StaffStatus>();
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException("GetSelectListItemEnum exception message");
+            }
+        }
+        
     }
 }
 

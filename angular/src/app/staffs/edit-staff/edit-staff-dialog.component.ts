@@ -1,97 +1,79 @@
-// import {
-//   Component,
-//   Injector,
-//   OnInit,
-//   EventEmitter,
-//   Output,
-// } from '@angular/core';
-// import { BsModalRef } from 'ngx-bootstrap/modal';
-// import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
-// import { AppComponentBase } from '@shared/app-component-base';
-// import {
-//   RoleServiceProxy,
-//   GetRoleForEditOutput,
-//   RoleDto,
-//   PermissionDto,
-//   RoleEditDto,
-//   FlatPermissionDto
-// } from '@shared/service-proxies/service-proxies';
+import {
+  Component,
+  Injector,
+  OnInit,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { forEach as _forEach, includes as _includes, map as _map } from 'lodash-es';
+import { AppComponentBase } from '@shared/app-component-base';
+import { StaffServiceProxy } from '@shared/service-proxies/staff-service';
+import { StaffDto } from '@shared/dto/staff/staff';
+import { EditStaffDto } from '@shared/dto/staff/staff-edit'
+import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
-// @Component({
-//   templateUrl: 'edit-role-dialog.component.html'
-// })
-// export class EditRoleDialogComponent extends AppComponentBase
-//   implements OnInit {
-//   saving = false;
-//   id: number;
-//   role = new RoleEditDto();
-//   permissions: FlatPermissionDto[];
-//   grantedPermissionNames: string[];
-//   checkedPermissionsMap: { [key: string]: boolean } = {};
+@Component({
+  templateUrl: 'edit-staff-dialog.component.html'
+})
+export class EditStaffDialogComponent extends AppComponentBase
+  implements OnInit {
+  saving = false;
+  id: number;
+  staff = new EditStaffDto();
+  selectListStaffStatus: any[] = [];
+  selectedValueStaffStatus: string;
+  @Output() onSave = new EventEmitter<any>();
 
-//   @Output() onSave = new EventEmitter<any>();
+  constructor(
+    injector: Injector,
+    private _staffService: StaffServiceProxy,
+    private _extensionService: ExtensionServiceProxy,
+    public bsModalRef: BsModalRef
+  ) {
+    super(injector);
+    this._extensionService.getItemEnumStaffStatus().subscribe(
+      (success) => {
+        this.selectListStaffStatus = success;
+        
+      }
+    );
+  }
 
-//   constructor(
-//     injector: Injector,
-//     private _roleService: RoleServiceProxy,
-//     public bsModalRef: BsModalRef
-//   ) {
-//     super(injector);
-//   }
+  ngOnInit(): void {
+    this._staffService
+      .get(this.id)
+      .subscribe((result: StaffDto) => {
+          this.staff = result;
+          this.selectedValueStaffStatus = result.staffStatusName
+          const selectedDate: Date = new Date(result.birthDate);
 
-//   ngOnInit(): void {
-//     this._roleService
-//       .getRoleForEdit(this.id)
-//       .subscribe((result: GetRoleForEditOutput) => {
-//         this.role = result.role;
-//         this.permissions = result.permissions;
-//         this.grantedPermissionNames = result.grantedPermissionNames;
-//         this.setInitialPermissionsStatus();
-//       });
-//   }
+          // Thêm một ngày
+          selectedDate.setDate(selectedDate.getDate() + 1);
+        
+          // Biến đổi thành định dạng "yyyy-MM-dd"
+          const formattedDate: string = selectedDate.toISOString().split('T')[0];
+          this.staff.birthDate = formattedDate;
+      });
+      
+  }
+ 
+  save(): void {
+    this.saving = true;
 
-//   setInitialPermissionsStatus(): void {
-//     _map(this.permissions, (item) => {
-//       this.checkedPermissionsMap[item.name] = this.isPermissionChecked(
-//         item.name
-//       );
-//     });
-//   }
+    const staff = new StaffDto();
+    staff.init(this.staff);
+    staff.staffStatus = this.selectedValueStaffStatus
 
-//   isPermissionChecked(permissionName: string): boolean {
-//     return _includes(this.grantedPermissionNames, permissionName);
-//   }
-
-//   onPermissionChange(permission: PermissionDto, $event) {
-//     this.checkedPermissionsMap[permission.name] = $event.target.checked;
-//   }
-
-//   getCheckedPermissions(): string[] {
-//     const permissions: string[] = [];
-//     _forEach(this.checkedPermissionsMap, function (value, key) {
-//       if (value) {
-//         permissions.push(key);
-//       }
-//     });
-//     return permissions;
-//   }
-
-//   save(): void {
-//     this.saving = true;
-
-//     const role = new RoleDto();
-//     role.init(this.role);
-//     role.grantedPermissions = this.getCheckedPermissions();
-
-//     this._roleService.update(role).subscribe(
-//       () => {
-//         this.notify.info(this.l('SavedSuccessfully'));
-//         this.bsModalRef.hide();
-//         this.onSave.emit();
-//       },
-//       () => {
-//         this.saving = false;
-//       }
-//     );
-//   }
-// }
+    this._staffService.update(staff).subscribe(
+      () => {
+        this.notify.info(this.l('SavedSuccessfully'));
+        this.bsModalRef.hide();
+        this.onSave.emit();
+      },
+      () => {
+        this.saving = false;
+      }
+    );
+  }
+}

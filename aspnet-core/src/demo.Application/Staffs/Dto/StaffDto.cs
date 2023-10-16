@@ -12,7 +12,9 @@ namespace demo.Staffs.Dto
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
+        public string StaffStatusName { get; set; }
         public StaffStatus StaffStatus { get; set; }
         public DateTime CreationTime { get; set; }
+        public long UserId { get; set; }
     }
 }
