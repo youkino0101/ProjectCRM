@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using demo.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace demo.Products
 {
@@ -104,6 +105,13 @@ namespace demo.Products
         protected override IQueryable<Product> ApplySorting(IQueryable<Product> query, PagedProductResultRequestDto input)
         {
             return query.OrderByDescending(s => s.Id);
+        }
+
+        public async Task<ListResultDto<ProductDto>> SearchAsync()
+        {
+            var listEntity = await Repository.GetAll()
+                .WhereIf(true, x => x.Status == Common.Status.Active).ToListAsync();
+            return new ListResultDto<ProductDto>(ObjectMapper.Map<List<ProductDto>>(listEntity));
         }
     }
 }

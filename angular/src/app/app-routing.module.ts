@@ -11,6 +11,7 @@ import { AuditLogsComponent } from './auditlog/auditlogs.component';
 import { ProductsComponent } from './product/products.component';
 import { SupplierComponent } from './suppliers/suppliers.component';
 import { CustomerComponent } from './customers/customers.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import { CustomerComponent } from './customers/customers.component';
                     { path: 'products', component: ProductsComponent,  data: {permission: 'Pages.Products'}, canActivate: [AppRouteGuard] },
                     { path: 'suppliers', component: SupplierComponent, data: {permission: 'Pages.Suppliers'}, canActivate: [AppRouteGuard] },
                     { path: 'customers', component: CustomerComponent, data: {permission: 'Pages.Customers'}, canActivate: [AppRouteGuard] },
+                    { path: 'orders', component: OrdersComponent,  canActivate: [AppRouteGuard] },
                 ]
             }
         ])

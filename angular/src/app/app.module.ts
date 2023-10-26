@@ -55,6 +55,8 @@ import { CustomerComponent } from '@app/customers/customers.component';
 import { CreateCustomerDialogComponent } from './customers/create-customer/create-customer-dialog.component';
 import { ViewCustomerDialogComponent } from './customers/view-customer/view-customer-dialog.component';
 import { EditCustomerDialogComponent } from './customers/edit-customer/edit-customer-dialog.component';
+// orders
+import { OrdersComponent } from '@app/orders/orders.component';
 
 @NgModule({
     declarations: [
@@ -92,6 +94,8 @@ import { EditCustomerDialogComponent } from './customers/edit-customer/edit-cust
         CreateCustomerDialogComponent,
         ViewCustomerDialogComponent,
         EditCustomerDialogComponent,
+        // orders
+        OrdersComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

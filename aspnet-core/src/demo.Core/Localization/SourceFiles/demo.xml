@@ -157,6 +157,7 @@
 	  <text name="Product.Category">Category</text>
 	  <text name="Product.Trademark">Trademark</text>
 	  <text name="Product.Status">Status</text>
+	  <text name="Product.Product.Amount">Amount</text>
 
 	  <!-- Staffs -->
 	  <text name="Staffs">Staff</text>

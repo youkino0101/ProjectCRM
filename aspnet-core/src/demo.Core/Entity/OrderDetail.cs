@@ -15,9 +15,9 @@ namespace demo.Entity
         public long? OrderId { get; set; }
         public virtual Order Order { get; set;}
         public string Unit { get; set; }
-        public ulong Quantity { get; set; }
-        public ulong UnitPrice { get; set; }
-        public ulong Amount { get; set; }
+        public ulong Quantity { get; set; } // số lượng 
+        public ulong UnitPrice { get; set; } // đơn giá
+        public ulong Amount { get; set; } // tiền
         public DateTime CreationTime { get; set; }
         public DateTime? LastModificationTime { get; set; }
         public long? CreatorUserId { get; set; }
