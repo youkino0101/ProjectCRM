@@ -1,8 +1,7 @@
-﻿    using Abp.Application.Services;
+﻿using Abp.Application.Services;
 using Abp.Domain.Repositories;
 using demo.Entity;
 using demo.Products.Dto;
-using demo.Users;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 using System;
@@ -13,7 +12,6 @@ using System.Linq;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using demo.Authorization;
@@ -112,6 +110,12 @@ namespace demo.Products
             var listEntity = await Repository.GetAll()
                 .WhereIf(true, x => x.Status == Common.Status.Active).ToListAsync();
             return new ListResultDto<ProductDto>(ObjectMapper.Map<List<ProductDto>>(listEntity));
+        }
+
+        public async Task<EditProductDto> GetIdAsync(long id)
+        {
+            var entity = await Repository.GetAsync(id);
+            return ObjectMapper.Map(entity, new EditProductDto());
         }
     }
 }

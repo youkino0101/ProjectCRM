@@ -16,6 +16,7 @@ import * as AuditLogApiServiceProxies from './audit-log-service';
 import * as ProductApiServiceProxies from './product-service';
 import * as SupplierApiServiceProxies from './supplier-service';
 import * as CustomerApiServiceProxies from './customer-service';
+import * as OrderApiServiceProxy from './order-service';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import * as CustomerApiServiceProxies from './customer-service';
         ExtensionApiServiceProxies.ExtensionServiceProxy,
         SupplierApiServiceProxies.SupplierServiceProxy,
         CustomerApiServiceProxies.CustomerServiceProxy,
+        OrderApiServiceProxy.OrderServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

@@ -4,7 +4,7 @@ export class OrderCreateDto  {
     orderCode: string;
     warehouse: string;
     customerId: number;
-    staffid: number;
+    staffId: number;
     statusOrder: string;
     totalPrice: number;
     listOrderDetail: OrderDetailCreateDto[] | undefined;

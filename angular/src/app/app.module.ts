@@ -57,6 +57,8 @@ import { ViewCustomerDialogComponent } from './customers/view-customer/view-cust
 import { EditCustomerDialogComponent } from './customers/edit-customer/edit-customer-dialog.component';
 // orders
 import { OrdersComponent } from '@app/orders/orders.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { HistoryOrderComponent } from './history-order/history-order.component';
 
 @NgModule({
     declarations: [
@@ -96,6 +98,8 @@ import { OrdersComponent } from '@app/orders/orders.component';
         EditCustomerDialogComponent,
         // orders
         OrdersComponent,
+        OrderDetailComponent,
+        HistoryOrderComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

@@ -8,7 +8,9 @@ using Abp.UI;
 using demo.Authorization;
 using demo.Customers.Dto;
 using demo.Entity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -65,5 +67,27 @@ namespace demo.Customers
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
         }
+
+        public async Task<ListResultDto<SelectDto>> GetSelectListItemAsync()
+        {
+            try
+            {
+                var result = Repository.GetAll()
+                  .Where(x => x.Status == Common.Status.Active)
+                  .Select(x => new SelectDto()
+                  {
+                      Id = x.Id,
+                      Text = x.NameCustomer + " - " + x.PhoneNumber
+                  })
+                  .ToList();
+
+                return new ListResultDto<SelectDto>(ObjectMapper.Map<List<SelectDto>>(result));
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException("Customer > GetSelectListItemAsync lỗi");
+            }
+        }
     }
 }
+

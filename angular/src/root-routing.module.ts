@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OrderDetailComponent } from '@app/orders/order-detail/order-detail.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/app/home', pathMatch: 'full' },

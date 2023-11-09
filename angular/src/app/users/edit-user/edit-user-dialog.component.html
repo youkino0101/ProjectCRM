@@ -123,11 +123,12 @@
         <div class="form-group row mb-0">
           <ng-container *ngFor="let role of roles; let i = index">
             <div class="col-md-6">
-              <div class="custom-control custom-checkbox">
+              <div class="custom-control custom-radio">
                 <input
-                  type="checkbox"
+                  type="radio"
                   class="custom-control-input"
                   [id]="'role_' + i"
+                  name="customRadio"
                   [checked]="isRoleChecked(role.normalizedName)"
                   (change)="onRoleChange(role, $event)"
                 />

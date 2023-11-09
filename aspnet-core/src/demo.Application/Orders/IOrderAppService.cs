@@ -12,5 +12,6 @@ namespace demo.Orders
 {
     public interface IOrderAppService : IAsyncCrudAppService<OrderDto, long, PagedOrderResultRequestDto, CreateOrderDto, EditOrderDto>
     {
+        Task<OrderInvoiceDto> GetExtensionAsync(EntityDto<long> input);
     }
 }

@@ -13,5 +13,6 @@ namespace demo.Products
     public interface IProductAppService : IAsyncCrudAppService<ProductDto, long, PagedProductResultRequestDto, CreateProductDto, EditProductDto>
     {
         Task<ListResultDto<ProductDto>> SearchAsync();
+        Task<EditProductDto> GetIdAsync(long id);
     }
 }

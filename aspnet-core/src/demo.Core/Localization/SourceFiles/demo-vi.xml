@@ -161,7 +161,7 @@
 	  <text name="Product.Category">Danh mục</text>
 	  <text name="Product.Trademark">Xuất xứ</text>
 	  <text name="Product.Status">Trạng thái</text>
-	  <text name="Product.Product.Amount">Thành tiền</text>
+	  <text name="Product.Amount">Thành tiền</text>
 
 	  <!-- Staffs -->
 	  <text name="Staffs">Nhân viên</text>
@@ -202,5 +202,9 @@
 	  <text name="Customer.Email">Email</text>
 	  <text name="Customer.Status">Trạng thái</text>
 	  <text name="Customer.CreationTime">Trạng thái</text>
+
+	  <!-- Invoice -->
+	  <text name="SelectAnOption">Vui lòng chọn</text>
+	  <text name="RelatedInformation">Thông tin liên quan</text>
   </texts>
 </localizationDictionary>

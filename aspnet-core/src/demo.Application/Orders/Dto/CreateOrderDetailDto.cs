@@ -5,7 +5,7 @@ namespace demo.Orders.Dto
 {
     public class CreateOrderDetailDto
     {
-        public long? ProductId { get; set; }
+        public long ProductId { get; set; }
         public long? OrderId { get; set; }
         public string Unit { get; set; }
         public ulong Quantity { get; set; }

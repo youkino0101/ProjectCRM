@@ -1,0 +1,123 @@
+<div [@routerTransition]>
+  <div class="row">
+      <div class="col-12">
+        <abp-modal-header
+          [title]="'Invoice' | localize"
+          (onCloseClick)="bsModalRef.hide()"
+        ></abp-modal-header>
+        <div id="content-print">
+        <div class="invoice p-3 mb-3" >
+          <!-- title row -->
+          <div class="row">
+            <div class="col-12">
+              <h4>
+                <i class="fa-solid fa-building"></i> CMS, Inc.
+                <small class="float-right">Ngày: {{currentDate | date: 'dd/MM/yyyy'}}</small>
+              </h4>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- info row -->
+          <div class="row invoice-info">
+            <div class="col-sm-4 invoice-col">
+              Bên bán
+              <address>
+                <strong>Công ty CMS, Inc.</strong><br>
+                {{ order.addressCompany }}<br>
+                Phone: {{ order.phoneNumberCompany }}<br>
+                Email: {{ order.emailCompany }}
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              Bên mua
+              <address>
+                <strong>{{ order.customerName }}</strong><br>
+                {{ order.addressCustomer }}<br>
+                Phone: {{ order.phoneNumberCustomer }}<br>
+                Email: {{ order.emailCustomer }}
+              </address>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-4 invoice-col">
+              <b>Hóa đơn {{order.orderCode}}</b><br>
+              <br>
+              <b>Mã hóa đơn:</b> {{ order.id }}<br>
+              <b>Thanh toán ngày: </b> {{ order.creationTime | date: 'dd/MM/yyyy'}}<br>
+              <b>Nhân viên: </b> {{ order.staffName }}
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- Table row -->
+          <div class="row">
+            <div class="col-12 table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                      <th>{{ "OrderDetail.Number" | localize }}</th>
+                      <th>{{ "OrderDetail.ProductCode" | localize }}</th>
+                      <th>{{ "OrderDetail.ProductName" | localize }}</th>
+                      <th>{{ "OrderDetail.Quantity" | localize }}</th>
+                      <th>{{ "OrderDetail.UnitPrice" | localize }}</th>
+                      <th>{{ "OrderDetail.Amount" | localize }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor=" let orderDetail of order.orderDetailDtos">
+                      <td>{{ orderDetail.number}}</td>
+                      <td>{{ orderDetail.productCode}}</td>
+                      <td>{{ orderDetail.productName}}</td>
+                      <td>{{ orderDetail.quantity}}</td>
+                      <td class="text-right">{{ orderDetail.unitPrice | currency:'VND':'symbol':'1.0-0'}}</td>
+                      <td class="text-right">{{ orderDetail.amount | currency:'VND':'symbol':'1.0-0'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-6">
+              <p class="lead">CHẾ ĐỘ BẢO HÀNH</p>
+              <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                - Chế độ đổi 1:1 đối với lỗi do nhà sản xuất<br>
+                - Bảo hàng phần cứng 12 tháng<br>
+                - Không bảo hành màn hình - pin - vân tay - Face ID - Icloud
+              </p>
+            </div>
+            <div class="col-6">
+              <p class="lead">Phần thanh toán: {{currentDate | date: 'dd/MM/yyyy'}}</p>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <tr>
+                    <th style="width:50%">Tiền hàng:</th>
+                    <td>{{ order.totalPrice | currency:'VND':'symbol':'1.0-0'}}</td>
+                  </tr>
+                  <tr>
+                    <th>Thuế GTGT (10.0%):</th>
+                    <td>{{taxPrice | currency:'VND':'symbol':'1.0-0'}}</td>
+                  </tr>
+                  <tr>
+                    <th>Tổng cộng:</th>
+                    <td>{{ total | currency:'VND':'symbol':'1.0-0'}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+
+          <!-- this row will not appear when printing -->
+        </div>
+      </div>
+        <!-- /.invoice -->
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+</div>

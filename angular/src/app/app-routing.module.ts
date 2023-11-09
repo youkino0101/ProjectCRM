@@ -12,6 +12,7 @@ import { ProductsComponent } from './product/products.component';
 import { SupplierComponent } from './suppliers/suppliers.component';
 import { CustomerComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
+import { HistoryOrderComponent } from './history-order/history-order.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,9 @@ import { OrdersComponent } from './orders/orders.component';
                     { path: 'products', component: ProductsComponent,  data: {permission: 'Pages.Products'}, canActivate: [AppRouteGuard] },
                     { path: 'suppliers', component: SupplierComponent, data: {permission: 'Pages.Suppliers'}, canActivate: [AppRouteGuard] },
                     { path: 'customers', component: CustomerComponent, data: {permission: 'Pages.Customers'}, canActivate: [AppRouteGuard] },
-                    { path: 'orders', component: OrdersComponent,  canActivate: [AppRouteGuard] },
+                    { path: 'orders', component: OrdersComponent, canActivate: [AppRouteGuard] },
+                    { path: 'history-order', component: HistoryOrderComponent, canActivate: [AppRouteGuard] }
+
                 ]
             }
         ])

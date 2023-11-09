@@ -88,10 +88,15 @@ namespace demo.Common
     }
     public enum StatusOrder
     {
+        [Display(Name = "Processing")]
         Processing, // đang xử lý
+        [Display(Name = "Confirmed")]
         Confirmed, // đã xác nhận
+        [Display(Name = "Completed")]
         Completed, // đã hoàn thành
+        [Display(Name = "Cancel")]
         Cancel, // đã hủy
+        [Display(Name = "Orther")]
         Orther // khác
     }
 }

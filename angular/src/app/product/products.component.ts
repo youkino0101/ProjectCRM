@@ -30,7 +30,7 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto>{
   selectListStatus: any[] = [];
   selectListCategory: any[] = [];
   selectedValueCate: string = '';
-  selectedValueStatus: string = '';
+  selectedValueStatus: string = 'Active';
   disabledCreate: boolean = false;
   disabledEdit: boolean = false;
   disabledView: boolean = false;
@@ -52,6 +52,7 @@ export class ProductsComponent extends PagedListingComponentBase<ProductDto>{
         this.selectListCategory = success;
       }
     );
+    
     this.disabledCreate = this.permission.isGranted("Pages.Product.Create");
     this.disabledEdit = this.permission.isGranted("Pages.Product.Edit");
     this.disabledView = this.permission.isGranted("Pages.Product.View");

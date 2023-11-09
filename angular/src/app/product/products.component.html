@@ -102,7 +102,11 @@
                       <img src="assets/img/default.jpg" class="table-avatar" alt="Default Image" style="width: auto; height: 80px;">
                     </ng-template>
                   </td>
-                  <td class="text-right">{{ product.quantity }}</td>
+                  <td class="text-center">
+                    <span *ngIf="product.quantity < 5" class="badge badge-danger mx-1">{{ product.quantity }}</span>
+                    <span *ngIf="product.quantity >= 5 && product.quantity <= 10" class="badge badge-warning mx-1">{{ product.quantity }}</span>
+                    <span *ngIf="product.quantity > 10" class="badge badge-success mx-1">{{ product.quantity }}</span>
+                  </td>
                   <td class="text-right">{{ product.price | currency:'VND':'symbol':'1.0-0' }}</td>
                   <td>{{ product.categoryName | localize }}</td>
                   <td>{{ product.trademark }}</td>

@@ -5,6 +5,7 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Linq.Extensions;
+using Abp.Runtime.Session;
 using Abp.UI;
 using demo.Authorization;
 using demo.Common;
@@ -71,6 +72,12 @@ namespace demo.Staffs
             {
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
+        }
+
+        public async Task<StaffDto> GetStaffSessionAsync()
+        {
+            var entity = await Repository.FirstOrDefaultAsync(x => x.UserId == AbpSession.GetUserId());
+            return MapToEntityDto(entity);
         }
 
         public async override Task<StaffDto> UpdateAsync(EditStaffDto input)

@@ -157,7 +157,7 @@
 	  <text name="Product.Category">Category</text>
 	  <text name="Product.Trademark">Trademark</text>
 	  <text name="Product.Status">Status</text>
-	  <text name="Product.Product.Amount">Amount</text>
+	  <text name="Product.Amount">Amount</text>
 
 	  <!-- Staffs -->
 	  <text name="Staffs">Staff</text>
@@ -195,5 +195,9 @@
 	  <text name="Customer.Email">Email</text>
 	  <text name="Customer.Status">Status</text>
 	  <text name="Customer.CreationTime">Creation Time</text>
+
+	  <!-- Invoice -->
+	  <text name="SelectAnOption">Select an option</text>
+	  <text name="RelatedInformation">Related information</text>
   </texts>
 </localizationDictionary>
