@@ -159,13 +159,55 @@ namespace demo.Orders
             return Repository.GetAllIncluding(x=> x.Customer, y=>y.Staff).WhereIf(!input.Keyword.IsNullOrWhiteSpace(), x => x.OrderCode.Contains(input.Keyword)
             || x.Customer.NameCustomer.Contains(input.Keyword) || x.Staff.StaffName.Contains(input.Keyword))
                 .WhereIf(input.FromDate.HasValue, x => x.CreationTime >= input.FromDate.GetValueOrDefault().Date)
-                .WhereIf(input.ToDate.HasValue, x => x.CreationTime < input.ToDate.GetValueOrDefault().Date.AddDays(1));
+                .WhereIf(input.ToDate.HasValue, x => x.CreationTime < input.ToDate.GetValueOrDefault().Date.AddDays(1))
+                .WhereIf(input.StatusOrder.HasValue, x=> x.StatusOrder == input.StatusOrder);
         }
         protected override IQueryable<Order> ApplySorting(IQueryable<Order> query, PagedOrderResultRequestDto input)
         {
             return query.OrderByDescending(s => s.Id);
         }
 
-        
+        public async Task<ListResultDto<ChartAxeDto>> GetChartAxeOrderAsync()
+        {
+            DateTime currentDate = DateTime.Now;
+
+            // Tạo một danh sách chứa thông kê tháng theo định dạng bạn muốn
+            var monthlyStats = new List<ChartAxeDto>();
+
+            for (int i = 0; i < 12; i++)
+            {
+                // Lấy ngày đầu tháng hiện tại
+                DateTime firstDayOfCurrentMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
+
+                // Lấy tháng và năm
+                string monthName = currentDate.ToString("MMM");
+                int year = currentDate.Year;
+
+                // Truy vấn danh sách các đơn đặt trong tháng này
+                var ordersInCurrentMonth = Repository.GetAll()
+                    .Where(o => o.CreationTime >= firstDayOfCurrentMonth && o.CreationTime < firstDayOfCurrentMonth.AddMonths(1))
+                    .ToList();
+
+                // Số lượng đơn đặt trong tháng này
+                int orderCountInCurrentMonth = ordersInCurrentMonth.Count;
+
+                // Tính tổng tiền của các đơn đặt trong tháng này
+                float totalAmountInCurrentMonth = ordersInCurrentMonth.Sum(o => (float)o.TotalPrice.GetValueOrDefault());
+
+                // Thêm thông tin tháng vào danh sách
+                monthlyStats.Add(new ChartAxeDto
+                {
+                    Month = monthName,
+                    TotalAmount = totalAmountInCurrentMonth,
+                    OrderCount = orderCountInCurrentMonth
+                });
+
+                // Di chuyển đến tháng trước đó
+                currentDate = currentDate.AddMonths(-1);
+            }
+            monthlyStats.Reverse();
+            // Sắp xếp danh sách theo tháng theo thứ tự tăng dần
+            return new ListResultDto<ChartAxeDto>(monthlyStats);
+        }
     }
 }

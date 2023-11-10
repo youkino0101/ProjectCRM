@@ -94,7 +94,7 @@ namespace demo.Common
         Confirmed, // đã xác nhận
         [Display(Name = "Completed")]
         Completed, // đã hoàn thành
-        [Display(Name = "Cancel")]
+        [Display(Name = "Canceled")]
         Cancel, // đã hủy
         [Display(Name = "Orther")]
         Orther // khác

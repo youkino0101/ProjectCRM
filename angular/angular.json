@@ -40,8 +40,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte-css-only/css/adminlte.min.css",
               "src/shared/core.less",
-              "node_modules/select2/dist/css/select2.min.css"
-              
+              "node_modules/select2/dist/css/select2.min.css",
+              "node_modules/ng2-daterangepicker/assets/daterangepicker.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

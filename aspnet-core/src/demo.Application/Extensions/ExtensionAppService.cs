@@ -80,7 +80,17 @@ namespace demo.Extensions
                 throw new UserFriendlyException("GetSelectListItemEnum exception message");
             }
         }
-        
+        public async Task<List<SelectListItem>> GetSelectListItemEnumOrderStatusAsync()
+        {
+            try
+            {
+                return EnumHelper.GetSelectListFromEnum<StatusOrder>();
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException("GetSelectListItemEnum exception message");
+            }
+        }
     }
 }
 

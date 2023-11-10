@@ -125,6 +125,9 @@
 	  <text name="Lock">Khóa</text>
 	  <text name="Canceled">Đã hủy</text>
 	  <text name="Orther">Khác</text>
+	  <text name="Confirmed">Đã xác nhận</text>
+	  <text name="Completed">Đã hoàn thành</text>
+	  
 	  <!-- Enum Category -->
 	  <text name="SmartPhone">Điện thoại thông minh</text>
 	  <text name="Ipad">Máy tính bảng</text>
@@ -193,8 +196,8 @@
 	  <!-- Customer -->
 	  <text name="Customers">Khách Hàng</text>
 	  <text name="Customer.Create">Thêm mới khách hàng</text>
-	  <text name="Customer.Edit">Sửa thông tin</text>
-	  <text name="Customer.View">Xem thông tin</text>
+	  <text name="Customer.Edit">Sửa thông tin khách hàng</text>
+	  <text name="Customer.View">Xem thông tin khách hàng</text>
 	  <text name="Customer.CustomerCode">Mã khách hàng</text>
 	  <text name="Customer.CustomerName">Tên khách hàng</text>
 	  <text name="Customer.Address">Địa chỉ</text>
@@ -206,5 +209,17 @@
 	  <!-- Invoice -->
 	  <text name="SelectAnOption">Vui lòng chọn</text>
 	  <text name="RelatedInformation">Thông tin liên quan</text>
+	  
+	  <!-- Order -->
+	  <text name="Orders">POS</text>
+	  <text name="History">Lịch sử mua hàng</text>
+	  <text name="Order.OrderCode">Mã đơn hàng</text>
+	  <text name="Order.Warehouse">Nhà kho</text>
+	  <text name="Order.StaffName">Nhân viên thực hiện</text>
+	  <text name="Order.CustomerName">Khách hàng mua</text>
+	  <text name="Order.StatusOrder">Trạng thái mua</text>
+	  <text name="Order.TotalPrice">Tổng tiền mua</text>
+	  <text name="Order.CreationTime">Thời gian mua</text>
+  
   </texts>
 </localizationDictionary>

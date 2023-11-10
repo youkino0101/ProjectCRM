@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component,OnInit, Injector } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -10,6 +10,8 @@ import { OrderServiceProxy } from '@shared/service-proxies/order-service';
 import { OrdersDto } from '@shared/dto/order/orders';
 import { OrderDtoPagedResultDto } from '@shared/dto/order/order-page';
 import { OrderDetailComponent } from '@app/orders/order-detail/order-detail.component';
+import * as moment from 'moment';
+import { Dayjs } from 'dayjs';
 
 class PagedOrdersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -21,9 +23,23 @@ class PagedOrdersRequestDto extends PagedRequestDto {
   templateUrl: './history-order.component.html',
   animations: [appModuleAnimation()]
 })
-export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> {
+export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> implements OnInit {
+  check = false;
+  selected: any;
+  alwaysShowCalendars: boolean;
+  ranges: any = {
+    'Today': [moment(), moment()],
+    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+    'This Month': [moment().startOf('month'), moment().endOf('month')],
+    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  }
+  invalidDates: moment.Moment[] = [moment().add(2, 'days'), moment().add(3, 'days'), moment().add(5, 'days')];
+
   orders: OrdersDto[] = [];
-  
+  selectListOrderStatus: any[] = [];
+  selectedValueOrder: string = '';
   keyword = '';
   fromDate = '';
   toDate = '';
@@ -34,7 +50,8 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
     private _modalService: BsModalService
   ) {
     super(injector);
-    
+    this.alwaysShowCalendars = true;
+
   }
 
   list(
@@ -43,6 +60,16 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
     finishedCallback: Function
   ): void {
     request.keyword = this.keyword;
+    
+    if (this.selected.startDate) {
+      const startDateAsDate: Date = this.selected.startDate.toDate();
+      const endDateAsDate: Date = this.selected.endDate.toDate();  
+      this.fromDate = startDateAsDate.toDateString();
+      this.toDate = endDateAsDate.toDateString();
+    } else {
+      this.fromDate = '';
+      this.toDate = '';
+    }
     request.fromDate = this.fromDate;
     request.toDate = this.toDate;
     this._ordersService
@@ -56,6 +83,7 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
         this.orders = result.items;
         this.showPaging(result, pageNumber);
       });
+      this.check = true;
   }
 
   delete(order: OrdersDto): void {
@@ -76,5 +104,8 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
         }
       );
     }
+  }
+  isInvalidDate = (m: moment.Moment) =>  {
+    return this.invalidDates.some(d => d.isSame(m, 'day') )
   }
 }

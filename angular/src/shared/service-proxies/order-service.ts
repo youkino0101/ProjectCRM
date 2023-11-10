@@ -205,12 +205,4 @@ export class OrderServiceProxy {
         return _observableOf(null as any);
     }
 
-    exportToPdf(htmlContent: string, fileName: string) {
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        pdf.html(htmlContent, {
-          callback: (pdf) => {
-            pdf.save(fileName);
-          },
-        });
-      }
 }

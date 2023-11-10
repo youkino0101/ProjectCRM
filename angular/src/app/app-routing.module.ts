@@ -21,7 +21,7 @@ import { HistoryOrderComponent } from './history-order/history-order.component';
                 path: '',
                 component: AppComponent,
                 children: [
-                    { path: 'home', component: HomeComponent,  canActivate: [AppRouteGuard] },
+                    { path: 'home', component: HomeComponent,  canActivate: [AppRouteGuard]},
                     { path: 'users', component: UsersComponent, data: { permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
                     { path: 'staffs', component: StaffsComponent, canActivate: [AppRouteGuard], data: { permission: 'Pages.Users' }, },
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },

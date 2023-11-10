@@ -60,6 +60,9 @@ import { OrdersComponent } from '@app/orders/orders.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { HistoryOrderComponent } from './history-order/history-order.component';
 
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -125,6 +128,8 @@ import { HistoryOrderComponent } from './history-order/history-order.component';
         ServiceProxyModule,
         SharedModule,
         NgxPaginationModule,
+        NgxDaterangepickerMd.forRoot(),
+        NgApexchartsModule
     ],
     providers: []
 })
