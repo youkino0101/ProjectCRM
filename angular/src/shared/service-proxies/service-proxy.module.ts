@@ -17,7 +17,7 @@ import * as ProductApiServiceProxies from './product-service';
 import * as SupplierApiServiceProxies from './supplier-service';
 import * as CustomerApiServiceProxies from './customer-service';
 import * as OrderApiServiceProxy from './order-service';
-
+import * as GoodsReceiptApiServiceProxy from './goods-receipt-service'
 
 @NgModule({
     providers: [
@@ -35,6 +35,7 @@ import * as OrderApiServiceProxy from './order-service';
         SupplierApiServiceProxies.SupplierServiceProxy,
         CustomerApiServiceProxies.CustomerServiceProxy,
         OrderApiServiceProxy.OrderServiceProxy,
+        GoodsReceiptApiServiceProxy.GoodsReceiptServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

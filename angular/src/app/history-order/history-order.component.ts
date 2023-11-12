@@ -12,9 +12,11 @@ import { OrderDtoPagedResultDto } from '@shared/dto/order/order-page';
 import { OrderDetailComponent } from '@app/orders/order-detail/order-detail.component';
 import * as moment from 'moment';
 import { Dayjs } from 'dayjs';
+import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 
 class PagedOrdersRequestDto extends PagedRequestDto {
   keyword: string;
+  statusOrder: string;
   fromDate: string;
   toDate: string;
 }
@@ -39,7 +41,7 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
 
   orders: OrdersDto[] = [];
   selectListOrderStatus: any[] = [];
-  selectedValueOrder: string = '';
+  selectedValueOrder: string = 'Completed';
   keyword = '';
   fromDate = '';
   toDate = '';
@@ -47,11 +49,16 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
   constructor(
     injector: Injector,
     private _ordersService: OrderServiceProxy,
-    private _modalService: BsModalService
+    private _modalService: BsModalService,
+    private _extensionService: ExtensionServiceProxy
   ) {
     super(injector);
     this.alwaysShowCalendars = true;
-
+    this._extensionService.getItemEnumOrderStatus().subscribe(
+      (success) => {
+        this.selectListOrderStatus = success;
+      }
+    );
   }
 
   list(
@@ -60,7 +67,7 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
     finishedCallback: Function
   ): void {
     request.keyword = this.keyword;
-    
+    request.statusOrder = this.selectedValueOrder;
     if (this.selected.startDate) {
       const startDateAsDate: Date = this.selected.startDate.toDate();
       const endDateAsDate: Date = this.selected.endDate.toDate();  
@@ -73,7 +80,7 @@ export class HistoryOrderComponent extends PagedListingComponentBase<OrdersDto> 
     request.fromDate = this.fromDate;
     request.toDate = this.toDate;
     this._ordersService
-      .getAll(request.keyword, request.skipCount, request.maxResultCount, request.fromDate, request.toDate)
+      .getAll(request.keyword, request.skipCount, request.maxResultCount, request.fromDate, request.toDate, request.statusOrder)
       .pipe(
         finalize(() => {
           finishedCallback();

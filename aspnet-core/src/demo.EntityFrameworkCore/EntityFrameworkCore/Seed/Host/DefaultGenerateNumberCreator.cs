@@ -20,6 +20,7 @@ namespace demo.EntityFrameworkCore.Seed.Host
                 new GenerateNumber(){Code ="NV", Description ="Staff", CurrentNumber = 0, Digit = 6},
                 new GenerateNumber(){Code ="KH", Description ="Staff", CurrentNumber = 0, Digit = 6},
                 new GenerateNumber(){Code ="HD", Description ="Invoice", CurrentNumber = 0, Digit = 6},
+                new GenerateNumber(){Code ="NH", Description ="GoodsReceipt", CurrentNumber = 0, Digit = 6},
             };
         }
 

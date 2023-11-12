@@ -29,5 +29,15 @@
         public const string Pages_Customer_Create = "Pages.Customer.Create";
         public const string Pages_Customer_View = "Pages.Customer.View";
         public const string Pages_Customer_Edit = "Pages.Customer.Edit";
+
+        public const string Pages_Orders = "Pages.Orders";
+        public const string Pages_Orders_Create = "Pages.Orders.Create";
+        public const string Pages_Orders_View = "Pages.Orders.View";
+        public const string Pages_Orders_Edit = "Pages.Orders.Edit";
+
+        public const string Pages_GoodsReceipts = "Pages.GoodsReceipts";
+        public const string Pages_GoodsReceipts_Create = "Pages.GoodsReceipts.Create";
+        public const string Pages_GoodsReceipts_View = "Pages.GoodsReceipts.View";
+        public const string Pages_GoodsReceipts_Edit = "Pages.GoodsReceipts.Edit";
     }
 }

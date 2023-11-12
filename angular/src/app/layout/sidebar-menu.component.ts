@@ -43,49 +43,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [
-            new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
-            new MenuItem(
-                this.l('Roles'),
-                '/app/roles',
-                'fas fa-theater-masks',
-                'Pages.Roles'
-            ),
-            new MenuItem(
-                this.l('Staffs'),
-                '/app/staffs',
-                'fas fa-building',
-                'Pages.Users'
-            ),
-            new MenuItem(
-                this.l('Users'),
-                '/app/users',
-                'fas fa-users',
-                'Pages.Users'
-            ),
-            new MenuItem(
-                this.l('AuditLogs'),
-                '/app/audit-logs',
-                'fas fa-info',
-                'Pages.AuditLogs'
-            ),
-            new MenuItem(
-                this.l('Products'),
-                '/app/products',
-                'fas fa-barcode',
-                'Pages.Products'
-            ),
-            new MenuItem(
-                this.l('Suppliers'),
-                '/app/suppliers',
-                'fas fa-truck-fast',
-                'Pages.Supplier'
-            ),
-            new MenuItem(
-                this.l('Customers'),
-                '/app/customers',
-                'fas fa-user',
-                'Pages.Customers'
-            ),
+            new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home')            ,
             new MenuItem(
                 this.l('Orders'),
                 '/app/orders',
@@ -98,57 +56,56 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 'fa-solid fa-clipboard-check',
                 'Pages.Customers'
             ),
-            // new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
-            //     new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
-            //         new MenuItem(
-            //             'Home',
-            //             'https://aspnetboilerplate.com?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Templates',
-            //             'https://aspnetboilerplate.com/Templates?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Samples',
-            //             'https://aspnetboilerplate.com/Samples?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Documents',
-            //             'https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //     ]),
-            //     new MenuItem('ASP.NET Zero', '', 'fas fa-dot-circle', '', [
-            //         new MenuItem(
-            //             'Home',
-            //             'https://aspnetzero.com?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Features',
-            //             'https://aspnetzero.com/Features?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Pricing',
-            //             'https://aspnetzero.com/Pricing?ref=abptmpl#pricing',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Faq',
-            //             'https://aspnetzero.com/Faq?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-            //         new MenuItem(
-            //             'Documents',
-            //             'https://aspnetzero.com/Documents?ref=abptmpl',
-            //             'far fa-circle'
-            //         )
-            //     ])
-            // ])
+            new MenuItem(
+                this.l('Products'),
+                '/app/products',
+                'fas fa-barcode',
+                'Pages.Products'
+            ),
+            new MenuItem(
+                this.l('GoodsReceipts'),
+                '/app/goods-receipt',
+                'fas fa-cart-arrow-down',
+                'Pages.GoodsReceipts'
+            ),
+            new MenuItem(
+                this.l('Staffs'),
+                '/app/staffs',
+                'fas fa-building',
+                'Pages.Users'
+            ),
+            new MenuItem(
+                this.l('Suppliers'),
+                '/app/suppliers',
+                'fas fa-truck-fast',
+                'Pages.Suppliers'
+            ),
+            new MenuItem(
+                this.l('Customers'),
+                '/app/customers',
+                'fas fa-user',
+                'Pages.Customers'
+            ),
+            new MenuItem(this.l('Settings'), '', 'fas fa-cog', '', [
+                new MenuItem(
+                    this.l('Roles'),
+                    '/app/roles',
+                    'fas fa-theater-masks',
+                    'Pages.Roles'
+                ),
+                new MenuItem(
+                    this.l('Users'),
+                    '/app/users',
+                    'fas fa-users',
+                    'Pages.Users'
+                ),
+                new MenuItem(
+                    this.l('AuditLogs'),
+                    '/app/audit-logs',
+                    'fas fa-info',
+                    'Pages.AuditLogs'
+                )
+            ])
         ];
     }
 

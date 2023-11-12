@@ -10,6 +10,7 @@ import { SupplierDtoPagedResultDto } from '@shared/dto/supplier/supplier-page';
 import { SupplierDto } from '@shared/dto/supplier/supplier';
 import { CreateSupplierDto } from '@shared/dto/supplier/supplier-create'
 import { EditSupplierDto } from '@shared/dto/supplier/supplier-edit'
+import { SelectListDto } from '@shared/dto/order/select-list';
 
 @Injectable()
 export class SupplierServiceProxy {
@@ -250,6 +251,54 @@ export class SupplierServiceProxy {
         } else if (status !== 200 && status !== 204) {
             return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    select(): Observable<SelectListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Supplier/GetSelectListItem?";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_: any) => {
+            return this.processSelect(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSelect(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<SelectListDto>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<SelectListDto>;
+        }));
+    }
+
+    protected processSelect(response: HttpResponseBase): Observable<SelectListDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+                (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); } }
+        if (status === 200) {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = SelectListDto.fromJS(resultData200);
+                return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return GeneralApi.blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+                return GeneralApi.throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
         return _observableOf(null as any);

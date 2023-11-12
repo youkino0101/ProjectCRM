@@ -25,6 +25,7 @@ using demo.Common;
 
 namespace demo.Orders
 {
+    [AbpAuthorize(PermissionNames.Pages_Orders)]
     public class OrderAppService : AsyncCrudAppService<Order, OrderDto, long, PagedOrderResultRequestDto, CreateOrderDto, EditOrderDto>, IOrderAppService
     {
         IProductAppService _productRepository;
@@ -34,11 +35,12 @@ namespace demo.Orders
             _productRepository = productRepository;
             _extensionAppService = extensionAppService;
         }
+        [AbpAuthorize(PermissionNames.Pages_Orders_View)]
         public override Task<OrderDto> GetAsync(EntityDto<long> input)
         {
             return base.GetAsync(input);
         }
-
+        [AbpAuthorize(PermissionNames.Pages_Orders_View)]
         public async Task<OrderInvoiceDto> GetExtensionAsync(EntityDto<long> input)
         {
             try
@@ -91,7 +93,7 @@ namespace demo.Orders
                 throw new UserFriendlyException("Đã xảy ra lỗi, vui lòng thử lại!!!");
             }
         }
-
+        [AbpAuthorize(PermissionNames.Pages_Orders_Create)]
         public async override Task<OrderDto> CreateAsync(CreateOrderDto input)
         {
             try
@@ -176,7 +178,6 @@ namespace demo.Orders
 
             for (int i = 0; i < 12; i++)
             {
-                // Lấy ngày đầu tháng hiện tại
                 DateTime firstDayOfCurrentMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
 
                 // Lấy tháng và năm
@@ -202,11 +203,9 @@ namespace demo.Orders
                     OrderCount = orderCountInCurrentMonth
                 });
 
-                // Di chuyển đến tháng trước đó
                 currentDate = currentDate.AddMonths(-1);
             }
             monthlyStats.Reverse();
-            // Sắp xếp danh sách theo tháng theo thứ tự tăng dần
             return new ListResultDto<ChartAxeDto>(monthlyStats);
         }
     }

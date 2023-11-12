@@ -28,7 +28,7 @@ export class OrderServiceProxy {
      * @param maxResultCount (optional) 
      * @return Success
      */
-    getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined, fromDate: string | undefined, toDate: string | undefined): Observable<OrderDtoPagedResultDto> {
+    getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined, fromDate: string | undefined, toDate: string | undefined, statusOrder: string | undefined): Observable<OrderDtoPagedResultDto> {
         let url_ = this.baseUrl + "/api/services/app/Order/GetAll?";
         if (keyword === null)
             throw new Error("The parameter 'keyword' cannot be null.");
@@ -50,6 +50,10 @@ export class OrderServiceProxy {
             throw new Error("The parameter 'toDate' cannot be null.");
         else if (toDate !== undefined)
             url_ += "ToDate=" + encodeURIComponent("" + toDate) + "&";
+        if (statusOrder === null)
+            throw new Error("The parameter 'statusOrder' cannot be null.");
+        else if (statusOrder !== undefined)
+            url_ += "StatusOrder=" + encodeURIComponent("" + statusOrder) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {

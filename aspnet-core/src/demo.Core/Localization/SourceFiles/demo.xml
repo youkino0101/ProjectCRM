@@ -199,5 +199,35 @@
 	  <!-- Invoice -->
 	  <text name="SelectAnOption">Select an option</text>
 	  <text name="RelatedInformation">Related information</text>
+
+	  <!-- Order -->
+	  <text name="Orders">POS</text>
+	  <text name="History">History Order</text>
+	  <text name="Order.OrderCode">Order Code</text>
+	  <text name="Order.Warehouse">Warehouse</text>
+	  <text name="Order.StaffName">Staff</text>
+	  <text name="Order.CustomerName">Customer</text>
+	  <text name="Order.StatusOrder">Status</text>
+	  <text name="Order.TotalPrice">Total price</text>
+	  <text name="Order.CreationTime">Purchase time</text>
+	  <text name="Orders.Orders">Order</text>
+	  <text name="Orders.Create">Create order</text>
+	  <text name="Orders.Edit">Edit order</text>
+	  <text name="Orders.View">View order</text>
+
+	  <!-- Dashboard -->
+	  <text name="SalesProceeds">Sales Proceeds</text>
+	  <text name="TotalOrder">Total Order</text>
+	  <text name="SalesStatistics">Sales Statistics</text>
+	  <text name="Dashboard.TotalOrder">Total Order Today</text>
+	  <text name="Dashboard.TotalRevenue">Total Revenue Today</text>
+	  <text name="Dashboard.TotalProductSold">Total Product Sold Today</text>
+	  <text name="Dashboard.MostSoldProduct">Most Sold Product Today</text>
+	  <text name="Dashboard.TotalProductsInStock">Total Products In Stock</text>
+	  <text name="Dashboard.TotalProductsSold">Total Products Sold</text>
+	  <text name="Dashboard.ProductsBelowMinimum">Products Below Minimum</text>
+	  <text name="Dashboard.MostSoldProductInfo">Most Sold Product Info</text>
+	  <text name="Notyet">Not yet</text>
+	  <text name="RecentSalesHistory">Recent Sales History</text>
   </texts>
 </localizationDictionary>

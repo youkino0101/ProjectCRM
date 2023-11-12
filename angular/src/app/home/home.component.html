@@ -10,74 +10,49 @@
   </section>
   <section class="content px-2">
     <div class="container-fluid">
-      
       <div class="row">
         <div class="col-lg-3 col-6">
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>8.2k+</h3>
-              <p>Stargazers</p>
+              <h3>{{ dashboardDto.totalOrder }}</h3>
+              <p>{{ "Dashboard.TotalOrder" | localize }}</p>
             </div>
             <div class="icon">
-              <i class="fas fa-star"></i>
+              <i class="fas fa-shopping-bag"></i>
             </div>
-            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/stargazers"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a>
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>140+</h3>
-              <p>Contributors</p>
+              <h3>{{ dashboardDto.totalRevenue| currency:'VND':'symbol':'1.0-0' }}</h3>
+              <p>{{ "Dashboard.TotalRevenue" | localize }}</p>
             </div>
             <div class="icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-dollar-sign"></i>
             </div>
-            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/graphs/contributors"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a>
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>1.6k+</h3>
-              <p>Used / Dependents</p>
+              <h3>{{ dashboardDto.totalProductSold }}</h3>
+              <p>{{ "Dashboard.TotalProductSold" | localize }}</p>
             </div>
             <div class="icon">
-              <i class="fas fa-tools"></i>
+              <i class="fas fa-sort-amount-up"></i>
             </div>
-            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/dependents"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a>
           </div>
         </div>
         <div class="col-lg-3 col-6">
           <div class="small-box bg-primary">
             <div class="inner">
-              <h3>3.1k+</h3>
-              <p>Forks</p>
+              <h3>{{ dashboardDto.mostSoldProduct | localize }}</h3>
+              <p>{{ "Dashboard.MostSoldProduct" | localize }}</p>
             </div>
             <div class="icon">
-              <i class="fas fa-code"></i>
+              <i class="fas fa-chart-pie"></i>
             </div>
-            <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/network/members"
-              class="small-box-footer"
-              target="_blank">
-              More info
-              <i class="fas fa-arrow-circle-right"></i>
-            </a>
           </div>
         </div>
       </div>
@@ -85,12 +60,12 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
             <span class="info-box-icon bg-primary elevation-1">
-              <i class="fas fa-plus-circle"></i>
+              <i class="fas fa-chart-line"></i>
             </span>
             <div class="info-box-content">
-              <span class="info-box-text">Commits</span>
+              <span class="info-box-text">{{ "Dashboard.TotalProductsInStock" | localize }}</span>
               <span class="info-box-number">
-                6,350+
+                {{ dashboardDto.totalProductsInStock }}
               </span>
             </div>
           </div>
@@ -98,12 +73,12 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-warning elevation-1">
-              <i class="fas fa-exclamation-triangle"></i>
+              <i class="fas fa-chart-bar"></i>
             </span>
             <div class="info-box-content">
-              <span class="info-box-text">Issues</span>
+              <span class="info-box-text">{{ "Dashboard.TotalProductsSold" | localize }}</span>
               <span class="info-box-number">
-                170+
+                {{ dashboardDto.totalProductsSold }}
               </span>
             </div>
           </div>
@@ -112,12 +87,12 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-info elevation-1">
-              <i class="fas fa-tag"></i>
+              <i class="fas fa-barcode"></i>
             </span>
             <div class="info-box-content">
-              <span class="info-box-text">Releases</span>
+              <span class="info-box-text">{{ "Dashboard.ProductsBelowMinimum" | localize }}</span>
               <span class="info-box-number">
-                200+
+                {{ dashboardDto.productsBelowMinimum }}
               </span>
             </div>
           </div>
@@ -128,33 +103,15 @@
               <i class="fas fa-eye"></i>
             </span>
             <div class="info-box-content">
-              <span class="info-box-text">Watching by</span>
+              <span class="info-box-text">{{ "Dashboard.MostSoldProductInfo" | localize }}</span>
               <span class="info-box-number">
-                810+
+                {{ dashboardDto.mostSoldProductInfo | localize }}
               </span>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <div id="chart">
-            <apx-chart
-              [series]="chartOptions.series"
-              [chart]="chartOptions.chart"
-              [yaxis]="chartOptions.yaxis"
-              [xaxis]="chartOptions.xaxis"
-              [labels]="chartOptions.labels"
-              [stroke]="chartOptions.stroke"
-              [title]="chartOptions.title"
-              [dataLabels]="chartOptions.dataLabels"
-              [fill]="chartOptions.fill"
-              [tooltip]="chartOptions.tooltip"
-            ></apx-chart>
-          </div>
-        </div>
-      </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
@@ -235,70 +192,53 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Closed Pull Requests</h3>
+              <h3 class="card-title">{{ "RecentSalesHistory" | localize}}</h3>
             </div>
             <div class="card-body table-responsive p-0">
               <table class="table table-hover text-nowrap">
                 <thead class="bg-light">
                   <tr>
-                    <th>Id</th>
-                    <th class="w-25">Title</th>
-                    <th class="w-25">Milestone</th>
-                    <th>Date</th>
-                    <th>Made by</th>
+                    <th>{{ "Order.OrderCode" | localize }}</th>
+                    <th  class="w-25">{{ "Order.CustomerName" | localize }}</th>
+                    <th class="w-25">{{ "Order.StaffName" | localize }}</th>
+                    <th >{{ "Order.TotalPrice" | localize }}</th>
+                    <th>{{ "Order.CreationTime" | localize }}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/5430"
-                        target="_blank">
-                        5430
-                      </a>
-                    </td>
-                    <td>
-                      Added Dynamic-Parameter-System doc to documentation menu
-                    </td>
-                    <td>v5.6</td>
-                    <td>18 days ago</td>
-                    <td>maliming</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/5362"
-                        target="_blank">
-                        5362
-                      </a>
-                    </td>
-                    <td>
-                      Dynamic Parameter Module
-                    </td>
-                    <td>v5.4</td>
-                    <td>25 days ago</td>
-                    <td>demirmusa</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="https://github.com/aspnetboilerplate/aspnetboilerplate/pull/4924"
-                        target="_blank">
-                        4924
-                      </a>
-                    </td>
-                    <td>
-                      ASP.NET Core 3.0 Upgrade
-                    </td>
-                    <td>v5.0</td>
-                    <td>Oct 15</td>
-                    <td>ismcagdas</td>
+                  <tr *ngFor="let order of orders" (click)="viewOrder(order)">
+                    <td>{{ order.orderCode }}</td>
+                    <td><strong>{{ order.customerName}}</strong></td>
+                    <td><strong>{{ order.staffName}}</strong></td>
+                    <td class="text-center">{{ order.totalPrice | currency:'VND':'symbol':'1.0-0' }}</td>
+                    <td>{{ order.creationTime | date: 'dd/MM/yy, HH:mm:ss'}}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div id="chart">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [yaxis]="chartOptions.yaxis"
+              [xaxis]="chartOptions.xaxis"
+              [labels]="chartOptions.labels"
+              [stroke]="chartOptions.stroke"
+              [title]="chartOptions.title"
+              [dataLabels]="chartOptions.dataLabels"
+              [fill]="chartOptions.fill"
+              [tooltip]="chartOptions.tooltip"
+            ></apx-chart>
           </div>
         </div>
       </div>

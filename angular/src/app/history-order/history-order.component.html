@@ -22,33 +22,35 @@
         <div class="card-header">
           <div class="row">
             <div class="col-md-9">
-              <div class="col-md-2 mb-1">
-                <label class="col-md col-form-label control-label">Tìm kiếm từ</label>
-                <div class="input-group">
-                  <div class="input-group-prepend" style="width: 330px;">
-                    <input type="text" ngxDaterangepickerMd
-                      [(ngModel)]="selected" [showCustomRangeLabel]="true" [alwaysShowCalendars]="true"
-                      [ranges]="ranges"
-                      [linkedCalendars]="true"
-                      [isInvalidDate] = "isInvalidDate"
-                      [showClearButton]="true"
-                      class="form-control"
-                      (change)="getDataPage(1)"
-                      placeholder="dd/mm/yyyy -> dd/mm/yyyy" />
+              <div class="row">
+                <div class="col-md-2 mb-1">
+                  <div class="form-group">
+                    <label class="col-md col-form-label control-label">{{ "Product.Category" | localize}}</label>
+                    <div class="col-md">
+                      <select [(ngModel)]="selectedValueOrder" class="form-control btn-filter-search statesSelect2"  name="selectedValueCate" (click)="getDataPage(1)">
+                        <option value="">{{ "All" | localize }}</option>
+                        <option *ngFor="let item of selectListOrderStatus" [value]="item.value">{{ item.text | localize}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-md mb-1">
+                  <label class="col-md col-form-label control-label">Tìm kiếm từ</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend" style="width: 330px;">
+                      <input type="text" ngxDaterangepickerMd
+                        [(ngModel)]="selected" [showCustomRangeLabel]="true" [alwaysShowCalendars]="true"
+                        [ranges]="ranges"
+                        [linkedCalendars]="true"
+                        [isInvalidDate] = "isInvalidDate"
+                        [showClearButton]="true"
+                        class="form-control"
+                        (change)="getDataPage(1)"
+                        placeholder="dd/mm/yyyy -> dd/mm/yyyy" />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-2 mb-1">
-                <div class="form-group">
-                  <label class="col-md col-form-label control-label">{{ "Product.Category" | localize}}</label>
-                  <div class="col-md">
-                    <select [(ngModel)]="selectedValueOrder" class="form-control btn-filter-search statesSelect2"  name="selectedValueCate" (click)="getDataPage(1)">
-                      <option value="">{{ "All" | localize }}</option>
-                      <option *ngFor="let item of selectListOrderStatus" [value]="item.value">{{ item.text | localize}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>  
             </div>
             <div class="col-md-3">
               <label class="col-md col-form-label control-label"></label>

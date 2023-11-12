@@ -60,6 +60,9 @@ import { OrdersComponent } from '@app/orders/orders.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { HistoryOrderComponent } from './history-order/history-order.component';
 
+import { GoodsReceiptsComponent } from '@app/goods-receipt/goods-receipt.component';
+// import { GoodsReceiptDetailComponent } from '@app/goods-receipt/goods-receipt-detail/goods-receipt-detail.component';
+
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { NgApexchartsModule } from "ng-apexcharts";
 
@@ -103,6 +106,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
         OrdersComponent,
         OrderDetailComponent,
         HistoryOrderComponent,
+
+        GoodsReceiptsComponent,
         // layout
         HeaderComponent,
         HeaderLeftNavbarComponent,

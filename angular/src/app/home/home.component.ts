@@ -13,8 +13,13 @@ import {
 } from "ng-apexcharts";
 import { ExtensionServiceProxy } from '@shared/service-proxies/service-proxies';
 import { ChartAxeDto } from '@shared/dto/chart/chartAxe';
-import { ListChartAxe } from '@shared/dto/chart/listResultChartAxe';
-import { Subject } from 'rxjs';
+import { Subject, finalize } from 'rxjs';
+import { DashboardDto } from '@shared/dto/chart/dashboardDto'
+import { OrderServiceProxy } from '@shared/service-proxies/order-service';
+import { OrderDtoPagedResultDto } from '@shared/dto/order/order-page';
+import { OrdersDto } from '@shared/dto/order/orders';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { OrderDetailComponent } from '@app/orders/order-detail/order-detail.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -34,9 +39,10 @@ export type ChartOptions = {
   animations: [appModuleAnimation()],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent extends AppComponentBase{
+export class HomeComponent extends AppComponentBase {
   chartAxe: ChartAxeDto[] = [];
   totalAmountData: any;
+  dashboardDto = new DashboardDto();
   orderCountData: any;
   monthData: any;
   dateArray: string[] = [];
@@ -44,24 +50,33 @@ export class HomeComponent extends AppComponentBase{
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
   ];
+  orders: OrdersDto[] = [];
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   private dataReadySubject = new Subject<void>();
   constructor(
     injector: Injector,
-    private _extensionService: ExtensionServiceProxy)
+    private _extensionService: ExtensionServiceProxy,
+    private _ordersService: OrderServiceProxy,
+    private _modalService: BsModalService)
  {
     super(injector);
     this._extensionService.getChartAxeOrder().subscribe((success) => {
       this.chartAxe = success.items;
-      console.log(this.chartAxe);
-      this.dataReadySubject.next(); // Thông báo rằng dữ liệu đã sẵn sàng
+      this.dataReadySubject.next();
     });
-  
     this.dataReadySubject.subscribe(() => {
       this.setupChart();
     });
+    this._extensionService.getInfomationOrderOfDashBoard().subscribe((success) => {
+      this.dashboardDto = success;
+    });
     this.generateMonthArray();
+    this._ordersService
+      .getAll('', 0, 3, '', '', '')
+      .subscribe((result: OrderDtoPagedResultDto) => {
+        this.orders = result.items;
+      });
   }
 
   generateMonthArray() {
@@ -84,12 +99,12 @@ export class HomeComponent extends AppComponentBase{
     this.chartOptions = {
       series: [
         {
-          name: "Tiền Bán Hàng",
+          name: this.l("SalesProceeds"),
           type: "column",
           data: this.totalAmountData
         },
         {
-          name: "Số đơn Hàng",
+          name: this.l("TotalOrder"),
           type: "line",
           data: this.orderCountData
         }
@@ -102,7 +117,7 @@ export class HomeComponent extends AppComponentBase{
         width: [0, 4]
       },
       title: {
-        text: "Thống kế mua hàng"
+        text: this.l("SalesStatistics")
       },
       dataLabels: {
         enabled: true,
@@ -115,16 +130,32 @@ export class HomeComponent extends AppComponentBase{
       yaxis: [
         {
           title: {
-            text: "Website Blog"
+            text: this.l("SalesProceeds")
           }
         },
         {
           opposite: true,
           title: {
-            text: "Social Media"
+            text: this.l("TotalOrder")
           }
         }
       ]
     };
+  }
+
+  viewOrder(order?: OrdersDto): void {
+    let viewModalDialog: BsModalRef;
+    if (order.id) {
+      viewModalDialog = this._modalService.show(
+
+        OrderDetailComponent,
+        {
+          class: 'modal-xl',
+          initialState: {
+            id: order.id,
+          },
+        }
+      );
+    }
   }
 }

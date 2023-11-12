@@ -94,7 +94,7 @@
 	  <text name="SuccessfullyDeleted">Đã xóa thành công</text>
 	  <text name="StartTyping">Bắt đầu nhập</text>
 	  <text name="Skins">Viền</text>
-	  <text name="Settings">Cài đặt</text>
+	  <text name="Settings">Cấu hình</text>
 	  <text name="Filter">Lọc</text>
 	  <text name="CurrentPassword">Mật khẩu hiện tại</text>
 	  <text name="NewPassword">Mật khẩu mới</text>
@@ -173,7 +173,7 @@
 	  <text name="Staff.View">Xem nhân viên</text>
 	  <text name="Staff.BirthDate">Ngày sinh</text>
 	  <text name="Staff.StaffCode">Mã nhân viên</text>
-	  <text name="Staff.Staff.Email">Email</text>
+	  <text name="Staff.Email">Email</text>
 	  <text name="Staff.StaffName">Tên nhân viên</text>
 	  <text name="Staff.PhoneNumber">Số điện thoại</text>
 	  <text name="Staff.StaffStatus">Trạng Thái</text>
@@ -216,10 +216,32 @@
 	  <text name="Order.OrderCode">Mã đơn hàng</text>
 	  <text name="Order.Warehouse">Nhà kho</text>
 	  <text name="Order.StaffName">Nhân viên thực hiện</text>
-	  <text name="Order.CustomerName">Khách hàng mua</text>
-	  <text name="Order.StatusOrder">Trạng thái mua</text>
-	  <text name="Order.TotalPrice">Tổng tiền mua</text>
-	  <text name="Order.CreationTime">Thời gian mua</text>
-  
+	  <text name="Order.CustomerName">Khách hàng</text>
+	  <text name="Order.StatusOrder">Trạng thái</text>
+	  <text name="Order.TotalPrice">Tổng tiền</text>
+	  <text name="Order.CreationTime">Thời gian</text>
+	  <text name="Orders.Orders">Đặt mua hàng</text>
+	  <text name="Orders.Create">Tạo đơn hàng</text>
+	  <text name="Orders.Edit">Chỉnh sửa đơn hàng</text>
+	  <text name="Orders.View">Xem thông tin đơn hàng</text>
+
+	  <!-- Dashboard -->
+	  <text name="SalesProceeds">Tiền bán hàng</text>
+	  <text name="TotalOrder">Tổng đơn hàng</text>
+	  <text name="SalesStatistics">Doanh thu mua hàng</text>
+	  <text name="Dashboard.TotalOrder">Đơn trong ngày</text>
+	  <text name="Dashboard.TotalRevenue">Lợi nhuận ngày</text>
+	  <text name="Dashboard.TotalProductSold">Tổng SP bán trong ngày</text>
+	  <text name="Dashboard.MostSoldProduct">SP bán nhiều nhất ngày</text>
+	  <text name="Dashboard.TotalProductsInStock">Tổng SP trong kho</text>
+	  <text name="Dashboard.TotalProductsSold">Tổng SP đã bán</text>
+	  <text name="Dashboard.ProductsBelowMinimum">SP dưới mức tối thiểu</text>
+	  <text name="Dashboard.MostSoldProductInfo">SP bán nhiều nhất</text>
+	  <text name="Notyet">Không có</text>
+	  <text name="RecentSalesHistory">Lịch sử bán gần đây</text>
+	  
+	  <text name="GoodsReceipts">Nhập hàng</text>
+	  
+	  
   </texts>
 </localizationDictionary>

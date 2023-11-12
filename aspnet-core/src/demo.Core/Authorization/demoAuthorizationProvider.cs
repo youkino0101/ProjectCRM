@@ -33,6 +33,16 @@ namespace demo.Authorization
             context.CreatePermission(PermissionNames.Pages_Customer_Create, L("Customer.Create"));
             context.CreatePermission(PermissionNames.Pages_Customer_View, L("Customer.View"));
             context.CreatePermission(PermissionNames.Pages_Customer_Edit, L("Customer.Edit"));
+
+            context.CreatePermission(PermissionNames.Pages_Orders, L("Orders.Orders"));
+            context.CreatePermission(PermissionNames.Pages_Orders_Create, L("Orders.Create"));
+            context.CreatePermission(PermissionNames.Pages_Orders_View, L("Orders.View"));
+            context.CreatePermission(PermissionNames.Pages_Orders_Edit, L("Orders.Edit"));
+
+            context.CreatePermission(PermissionNames.Pages_GoodsReceipts, L("GoodsReceipts.GoodsReceipts"));
+            context.CreatePermission(PermissionNames.Pages_GoodsReceipts_Create, L("GoodsReceipts.Create"));
+            context.CreatePermission(PermissionNames.Pages_GoodsReceipts_View, L("GoodsReceipts.View"));
+            context.CreatePermission(PermissionNames.Pages_GoodsReceipts_Edit, L("GoodsReceipts.Edit"));
         }
 
         private static ILocalizableString L(string name)

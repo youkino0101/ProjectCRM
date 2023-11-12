@@ -13,6 +13,7 @@ import { SupplierComponent } from './suppliers/suppliers.component';
 import { CustomerComponent } from './customers/customers.component';
 import { OrdersComponent } from './orders/orders.component';
 import { HistoryOrderComponent } from './history-order/history-order.component';
+import { GoodsReceiptsComponent } from './goods-receipt/goods-receipt.component';
 
 @NgModule({
     imports: [
@@ -30,9 +31,10 @@ import { HistoryOrderComponent } from './history-order/history-order.component';
                     { path: 'products', component: ProductsComponent,  data: {permission: 'Pages.Products'}, canActivate: [AppRouteGuard] },
                     { path: 'suppliers', component: SupplierComponent, data: {permission: 'Pages.Suppliers'}, canActivate: [AppRouteGuard] },
                     { path: 'customers', component: CustomerComponent, data: {permission: 'Pages.Customers'}, canActivate: [AppRouteGuard] },
-                    { path: 'orders', component: OrdersComponent, canActivate: [AppRouteGuard] },
-                    { path: 'history-order', component: HistoryOrderComponent, canActivate: [AppRouteGuard] }
-
+                    { path: 'orders', component: OrdersComponent, data: {permission: 'Pages.Orders'}, canActivate: [AppRouteGuard] },
+                    { path: 'history-order', component: HistoryOrderComponent, canActivate: [AppRouteGuard] },
+                    { path: 'goods-receipt', component: GoodsReceiptsComponent, data: {permission: 'Pages.GoodsReceipts'}, canActivate: [AppRouteGuard] },
+                    
                 ]
             }
         ])

@@ -11,6 +11,8 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using demo.Authorization;
 using demo.Suppliers.Dto;
+using demo.Customers.Dto;
+using System.Collections.Generic;
 
 namespace demo.Suppliers
 {
@@ -56,6 +58,27 @@ namespace demo.Suppliers
                 || x.SupplierName.Contains(input.Keyword)
                 || x.PhoneNumber.Contains(input.Keyword))
                 .WhereIf(input.Status.HasValue, x => x.Status == input.Status);
+        }
+
+        public async Task<ListResultDto<SelectDto>> GetSelectListItemAsync()
+        {
+            try
+            {
+                var result = Repository.GetAll()
+                  .Where(x => x.Status == Common.Status.Active)
+                  .Select(x => new SelectDto()
+                  {
+                      Id = x.Id,
+                      Text = x.SupplierName + " - " + x.PhoneNumber
+                  })
+                  .ToList();
+
+                return new ListResultDto<SelectDto>(ObjectMapper.Map<List<SelectDto>>(result));
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException("Customer > GetSelectListItemAsync lỗi");
+            }
         }
     }
 }
